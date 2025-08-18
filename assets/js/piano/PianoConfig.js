@@ -12,7 +12,7 @@ export const PIANO_CONFIG = {
   // Visual configuration
   colors: {
     whiteKey: "#0a0a0a",
-    whiteKeyPressed: "#1a1a1a",
+    whiteKeyPressed: "#00ffff",
     whiteKeyBorder: "#00ffff",
     blackKey: "#0a0a0a",
     blackKeyPressed: "#00ffff",
