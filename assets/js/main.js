@@ -1,4 +1,5 @@
 import Piano from "./piano.js";
+import { setupVirtualKeyboard } from "./keypress.js";
 
 // =========================
 // INITIALIZATION
@@ -10,7 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Make piano globally accessible for potential future features
   window.piano = piano;
 });
-
-import { setupVirtualKeyboard } from "./keypress.js";
 
 setupVirtualKeyboard();
