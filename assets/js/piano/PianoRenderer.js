@@ -10,13 +10,50 @@ import {
 
 /**
  * PianoRenderer - Handles all piano canvas rendering operations
- * Responsible for drawing the piano keys with all visual effects
+ * Responsible for drawing the piano keys with all visual effects and canvas management
  */
 export class PianoRenderer {
   constructor(canvas, config) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.config = config;
+  }
+
+  /**
+   * Set up canvas dimensions and styling based on responsive configuration
+   * @returns {Object} Canvas dimensions {width, height}
+   */
+  setupCanvas() {
+    // Calculate responsive width
+    const containerWidth = this.canvas.parentElement.clientWidth;
+    const windowWidth = window.innerWidth;
+
+    let targetWidth = Math.min(
+      containerWidth * this.config.responsiveWidthPercent,
+      windowWidth * this.config.responsive.maxWindowWidthPercent
+    );
+
+    // Clamp between min and max values
+    targetWidth = Math.max(
+      this.config.minWidth,
+      Math.min(this.config.maxWidth, targetWidth)
+    );
+
+    // Set canvas dimensions
+    this.canvas.width = targetWidth;
+    this.canvas.height = targetWidth * this.config.aspectRatio;
+
+    // Set CSS size for proper aspect ratio
+    this.canvas.style.width = targetWidth + "px";
+    this.canvas.style.height = targetWidth * this.config.aspectRatio + "px";
+
+    // Update context reference after resize
+    this.ctx = this.canvas.getContext("2d");
+
+    return {
+      width: targetWidth,
+      height: targetWidth * this.config.aspectRatio,
+    };
   }
 
   /**
@@ -149,14 +186,7 @@ export class PianoRenderer {
 
     // Apply 3D effects for unpressed keys
     if (!isPressed) {
-      applyBlackKey3DEffect(
-        this.ctx,
-        key.x,
-        key.y,
-        key.width,
-        key.height,
-        radius
-      );
+      applyWhiteKey3DEffect(this.ctx, key.x, key.y, key.width, key.height);
     }
   }
 
@@ -225,17 +255,5 @@ export class PianoRenderer {
       width: this.canvas.width,
       height: this.canvas.height,
     };
-  }
-
-  /**
-   * Resize the canvas and update context reference
-   * @param {number} width - New canvas width
-   * @param {number} height - New canvas height
-   */
-  resize(width, height) {
-    this.canvas.width = width;
-    this.canvas.height = height;
-    // Context might need to be re-obtained after resize
-    this.ctx = this.canvas.getContext("2d");
   }
 }

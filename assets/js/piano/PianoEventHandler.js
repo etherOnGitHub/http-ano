@@ -32,7 +32,7 @@ export class PianoEventHandler {
    */
   setupMouseEvents() {
     this.piano.canvas.addEventListener("mousedown", this.handleMouseDown);
-    this.piano.canvas.addEventListener("mouseup", this.handleMouseUp);
+    window.addEventListener("mouseup", this.handleMouseUp);
   }
 
   /**
@@ -75,10 +75,10 @@ export class PianoEventHandler {
    * @param {MouseEvent} event - Mouse event
    */
   handleMouseUp(event) {
-    if (this.currentMouseKey) {
-      this.piano.releaseKey(this.currentMouseKey);
-      this.currentMouseKey = null;
-    }
+    if (!this.currentMouseKey) return;
+    
+    this.piano.releaseKey(this.currentMouseKey);
+    this.currentMouseKey = null;
   }
 
   /**

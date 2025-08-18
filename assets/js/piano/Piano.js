@@ -72,34 +72,10 @@ class Piano {
   }
 
   /**
-   * Set up canvas dimensions and styling based on responsive configuration
+   * Set up canvas dimensions using the renderer
    */
   setupCanvas() {
-    // Calculate responsive width
-    const containerWidth = this.canvas.parentElement.clientWidth;
-    const windowWidth = window.innerWidth;
-
-    let targetWidth = Math.min(
-      containerWidth * this.config.responsiveWidthPercent,
-      windowWidth * this.config.responsive.maxWindowWidthPercent
-    );
-
-    // Clamp between min and max values
-    targetWidth = Math.max(
-      this.config.minWidth,
-      Math.min(this.config.maxWidth, targetWidth)
-    );
-
-    // Set canvas dimensions
-    this.canvas.width = targetWidth;
-    this.canvas.height = targetWidth * this.config.aspectRatio;
-
-    // Set CSS size for proper aspect ratio
-    this.canvas.style.width = targetWidth + "px";
-    this.canvas.style.height = targetWidth * this.config.aspectRatio + "px";
-
-    // Update renderer canvas reference if needed
-    this.renderer.resize(targetWidth, targetWidth * this.config.aspectRatio);
+    this.renderer.setupCanvas();
   }
 
   /**
