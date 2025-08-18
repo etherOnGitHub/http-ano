@@ -8,8 +8,10 @@ import { playSound } from "./sound.js";
 // PIANO CONFIGURATION
 // =========================
 const PIANO_CONFIG = {
-  aspectRatio: 0.4, // Height to width ratio for single octave
-  pianoWidth: 450, // Fixed width for piano in pixels
+  aspectRatio: 0.45, // Height to width ratio for single octave
+  maxWidth: 600, // Maximum width for piano in pixels
+  minWidth: 300, // Minimum width for piano in pixels
+  responsiveWidthPercent: 0.8, // Percentage of container width to use
   colors: {
     whiteKey: "#0a0a0a",
     whiteKeyPressed: "#1a1a1a",
@@ -53,18 +55,34 @@ class Piano {
     this.setupCanvas();
     this.createKeys();
     this.setupEventListeners();
+    this.setupResizeListener();
     this.draw();
   }
 
   setupCanvas() {
-    // Use fixed width for single octave piano
-    this.canvas.width = PIANO_CONFIG.pianoWidth;
-    this.canvas.height = PIANO_CONFIG.pianoWidth * PIANO_CONFIG.aspectRatio;
+    // Calculate responsive width based on container and window size
+    const containerWidth = this.canvas.parentElement.clientWidth;
+    const windowWidth = window.innerWidth;
 
-    // Set CSS size to center the piano
-    this.canvas.style.width = PIANO_CONFIG.pianoWidth + "px";
-    this.canvas.style.height =
-      PIANO_CONFIG.pianoWidth * PIANO_CONFIG.aspectRatio + "px";
+    // Use smaller of container width or window-based calculation
+    let targetWidth = Math.min(
+      containerWidth * PIANO_CONFIG.responsiveWidthPercent,
+      windowWidth * 0.8 // Never more than 80% of window width
+    );
+
+    // Clamp between min and max values
+    targetWidth = Math.max(
+      PIANO_CONFIG.minWidth,
+      Math.min(PIANO_CONFIG.maxWidth, targetWidth)
+    );
+
+    // Set canvas dimensions
+    this.canvas.width = targetWidth;
+    this.canvas.height = targetWidth * PIANO_CONFIG.aspectRatio;
+
+    // Set CSS size to match canvas dimensions for proper aspect ratio
+    this.canvas.style.width = targetWidth + "px";
+    this.canvas.style.height = targetWidth * PIANO_CONFIG.aspectRatio + "px";
   }
 
   createKeys() {
@@ -147,6 +165,13 @@ class Piano {
     // Prevent context menu on right click
     this.canvas.addEventListener("contextmenu", (event) => {
       event.preventDefault();
+    });
+  }
+
+  setupResizeListener() {
+    // Add window resize listener for responsive behavior
+    window.addEventListener("resize", () => {
+      this.handleResize();
     });
   }
 
@@ -249,10 +274,10 @@ class Piano {
           key.x,
           key.y + key.height * 0.3
         );
-        gradient.addColorStop(0, "rgba(0, 255, 255, 0.1)");
-        gradient.addColorStop(1, "rgba(0, 255, 255, 0)");
+        gradient.addColorStop(0, "rgba(0, 255, 255, 0.4)");
+        gradient.addColorStop(1, "rgba(0, 255, 255, 0.0)");
         this.ctx.fillStyle = gradient;
-        this.ctx.fillRect(key.x, key.y, key.width, key.height * 0.3);
+        this.ctx.fillRect(key.x, key.y, key.width, key.height * 0.4);
 
         // Bottom shadow for depth
         const bottomShadow = this.ctx.createLinearGradient(
