@@ -264,23 +264,6 @@ export function applyWhiteKey3DEffect(
       { offset: 1, color: `rgba(${highlightColor}, 0.0)` },
     ]
   );
-
-  // Bottom shadow for depth
-  fillRectWithGradient(
-    ctx,
-    x,
-    y + height * 0.7,
-    width,
-    height * 0.3,
-    x,
-    y + height * 0.7,
-    x,
-    y + height,
-    [
-      { offset: 0, color: "rgba(0, 0, 0, 0)" },
-      { offset: 1, color: "rgba(0, 0, 0, 0.3)" },
-    ]
-  );
 }
 
 /**

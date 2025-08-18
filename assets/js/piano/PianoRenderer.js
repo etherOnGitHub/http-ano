@@ -186,7 +186,13 @@ export class PianoRenderer {
 
     // Apply 3D effects for unpressed keys
     if (!isPressed) {
-      applyWhiteKey3DEffect(this.ctx, key.x, key.y, key.width, key.height);
+      applyWhiteKey3DEffect(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height / this.config.keyRatios.blackKeyHeightRatio
+      );
     }
   }
 
