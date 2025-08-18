@@ -1,1 +1,3 @@
-// Basic JS file - no functionality
+import { setupVirtualKeyboard } from "./keypress.js";
+
+setupVirtualKeyboard();
