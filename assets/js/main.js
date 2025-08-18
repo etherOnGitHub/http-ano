@@ -1,5 +1,5 @@
 import Piano from "./piano.js";
-import { setupVirtualKeyboard } from "./keypress.js";
+import { setupVirtualKeyboard } from "./pianoKeyPress.js";
 
 // =========================
 // INITIALIZATION

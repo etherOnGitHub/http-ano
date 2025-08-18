@@ -1,7 +1,7 @@
 // Piano Canvas Application
 // Organized into sections to avoid merge conflicts
 
-import { keyMap } from "./keypress.js";
+import { keyMap } from "./pianoKeyPress.js";
 import { playSound } from "./sound.js";
 
 // =========================
