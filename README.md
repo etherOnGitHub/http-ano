@@ -1,4 +1,4 @@
-# http-ano | [Live Build]() | [Project Board](https://github.com/users/etherOnGitHub/projects/5/)
+# http-ano | [Live Build](https://etherongithub.github.io/http-ano/) | [Project Board](https://github.com/users/etherOnGitHub/projects/5/)
 
 
 |  Area 	|  Criteria 	|
@@ -18,7 +18,22 @@
 ---------------------------
 ## Design 
 ### Wireframes
+During the planning Ryan decided to create the wireframes for the project as he was most comfortable with Balsamiq and is quite great at designing! 
 
+<p align="center">
+    <img src="https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/wireframe-combined-ryan.webp" alt="Two black and white images stacked together, one containing the layout for a desktop website with a navbar, notes and keyboard. A mobile view stacked next to it with a rotated display to maximise keyboard space"><br>
+    <sub>Link to Git Image: https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/wireframe-combined-ryan.webp</sub>
+</p>
+
+--------------
+
+<br>
+After some consideration we also had another great alternative mock up done by Naz for mobile with a simplified view.
+
+<p align="center">
+    <img src="https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/mobile-wireframe-naz-rocio.webp" alt="Another black and white wireframe showing an alternative view of the keyboard in portrain mode with simplified features."><br>
+    <sub>Link to Git Image: https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/mobile-wireframe-naz-rocio.webp</sub>
+</p>
 
 ## Development
 ### Git LFS
