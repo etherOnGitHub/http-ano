@@ -151,19 +151,19 @@ export function setupVirtualKeyboard() {
     }
   });
 
-  // Enhanced keyboard event handling for piano canvas integration
+  // Track pressed keys to prevent repeat firing
+  const pressedKeys = new Set();
   document.addEventListener("keydown", (e) => {
     const key = e.key.toLowerCase();
+    if (pressedKeys.has(key)) return; // Ignore holding
+    pressedKeys.add(key);
     const mappedKey = keyMap.find((mappedKey) => mappedKey.key === key);
     if (mappedKey) {
-      // If there's a button element, use the button action (for compatibility)
-      const btn = document.getElementById(mappedKey.id);
-      if (btn) {
-        handleButtonAction(mappedKey.id);
-      } else {
-        // If no button exists, directly handle the piano key press
-        handlePianoKeyPress(mappedKey);
-      }
+      handleButtonAction(mappedKey.id);
     }
+  });
+  document.addEventListener("keyup", (e) => {
+    const key = e.key.toLowerCase();
+    pressedKeys.delete(key);
   });
 }
