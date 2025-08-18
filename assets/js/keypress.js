@@ -1,17 +1,17 @@
 // Virtual keyboard button key mapping
 export const keyMap = [
-  { id: "vk-btn-C5", key: "1", audio: "assets/audio/piano/C5piano.mp3" },
-  { id: "vk-btn-Cs5", key: "2", audio: "assets/audio/piano/Cs5piano.mp3" },
-  { id: "vk-btn-D5", key: "3", audio: "assets/audio/piano/D5piano.mp3" },
-  { id: "vk-btn-Ds5", key: "4", audio: "assets/audio/piano/Ds5piano.mp3" },
-  { id: "vk-btn-E5", key: "5", audio: "assets/audio/piano/E5piano.mp3" },
-  { id: "vk-btn-F5", key: "6", audio: "assets/audio/piano/F5piano.mp3" },
-  { id: "vk-btn-Fs5", key: "7", audio: "assets/audio/piano/Fs5piano.mp3" },
-  { id: "vk-btn-G5", key: "8", audio: "assets/audio/piano/G5piano.mp3" },
-  { id: "vk-btn-Gs5", key: "9", audio: "assets/audio/piano/Gs5piano.mp3" },
-  { id: "vk-btn-A5", key: "0", audio: "assets/audio/piano/A5piano.mp3" },
-  { id: "vk-btn-As5", key: "q", audio: "assets/audio/piano/As5piano.mp3" },
-  { id: "vk-btn-B5", key: "w", audio: "assets/audio/piano/B5piano.mp3" },
+  { id: "vk-btn-C5", key: "t", audio: "assets/audio/piano/C5piano.mp3" },
+  { id: "vk-btn-Cs5", key: "y", audio: "assets/audio/piano/Cs5piano.mp3" },
+  { id: "vk-btn-D5", key: "u", audio: "assets/audio/piano/D5piano.mp3" },
+  { id: "vk-btn-Ds5", key: "i", audio: "assets/audio/piano/Ds5piano.mp3" },
+  { id: "vk-btn-E5", key: "o", audio: "assets/audio/piano/E5piano.mp3" },
+  { id: "vk-btn-F5", key: "p", audio: "assets/audio/piano/F5piano.mp3" },
+  { id: "vk-btn-Fs5", key: "1", audio: "assets/audio/piano/Fs5piano.mp3" },
+  { id: "vk-btn-G5", key: "2", audio: "assets/audio/piano/G5piano.mp3" },
+  { id: "vk-btn-Gs5", key: "3", audio: "assets/audio/piano/Gs5piano.mp3" },
+  { id: "vk-btn-A5", key: "4", audio: "assets/audio/piano/A5piano.mp3" },
+  { id: "vk-btn-As5", key: "5", audio: "assets/audio/piano/As5piano.mp3" },
+  { id: "vk-btn-B5", key: "6", audio: "assets/audio/piano/B5piano.mp3" },
 ];
 
 export function handleButtonAction(id) {
