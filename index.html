@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,71 @@
     <title>http-ano</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10" id="piano-container">
+                <div class="keys d-flex flex-wrap justify-content-center">
+
+                    <!-- Octave 3 -->
+                    <div class="key white" data-note="C3"></div>
+                    <div class="key black" data-note="C#3"></div>
+                    <div class="key white" data-note="D3"></div>
+                    <div class="key black" data-note="D#3"></div>
+                    <div class="key white" data-note="E3"></div>
+                    <div class="key white" data-note="F3"></div>
+                    <div class="key black" data-note="F#3"></div>
+                    <div class="key white" data-note="G3"></div>
+                    <div class="key black" data-note="G#3"></div>
+                    <div class="key white" data-note="A3"></div>
+                    <div class="key black" data-note="A#3"></div>
+                    <div class="key white" data-note="B3"></div>
+
+                    <!-- Octave 4 -->
+                    <div class="key white" data-note="C4"></div>
+                    <div class="key black" data-note="C#4"></div>
+                    <div class="key white" data-note="D4"></div>
+                    <div class="key black" data-note="D#4"></div>
+                    <div class="key white" data-note="E4"></div>
+                    <div class="key white" data-note="F4"></div>
+                    <div class="key black" data-note="F#4"></div>
+                    <div class="key white" data-note="G4"></div>
+                    <div class="key black" data-note="G#4"></div>
+                    <div class="key white" data-note="A4"></div>
+                    <div class="key black" data-note="A#4"></div>
+                    <div class="key white" data-note="B4"></div>
+
+                    <!-- Octave 5 -->
+                    <div class="key white" data-note="C5"></div>
+                    <div class="key black" data-note="C#5"></div>
+                    <div class="key white" data-note="D5"></div>
+                    <div class="key black" data-note="D#5"></div>
+                    <div class="key white" data-note="E5"></div>
+                    <div class="key white" data-note="F5"></div>
+                    <div class="key black" data-note="F#5"></div>
+                    <div class="key white" data-note="G5"></div>
+                    <div class="key black" data-note="G#5"></div>
+                    <div class="key white" data-note="A5"></div>
+                    <div class="key black" data-note="A#5"></div>
+                    <div class="key white" data-note="B5"></div>
+
+                    <!-- Final top key -->
+                    <div class="key white" data-note="C6"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas Row -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 col-md-10">
+                <canvas id="piano" class="w-100"></canvas>
+            </div>
+        </div>
+    </div>
+
+
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
