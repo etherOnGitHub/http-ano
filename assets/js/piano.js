@@ -11,12 +11,12 @@ const PIANO_CONFIG = {
   aspectRatio: 0.4, // Height to width ratio for single octave
   pianoWidth: 450, // Fixed width for piano in pixels
   colors: {
-    whiteKey: "#ffffff",
-    whiteKeyPressed: "#e0e0e0",
-    whiteKeyBorder: "#ccc",
-    blackKey: "#2c2c2c",
-    blackKeyPressed: "#1a1a1a",
-    background: "#f5f5f5",
+    whiteKey: "#0a0a0a",
+    whiteKeyPressed: "#1a1a1a",
+    whiteKeyBorder: "#00ffff",
+    blackKey: "#0a0a0a",
+    blackKeyPressed: "#00ffff",
+    background: "#1a1a1a",
   },
 };
 
@@ -205,11 +205,11 @@ class Piano {
         this.drawKey(key);
       });
 
-    // Draw a nice 5px red border at the top of the canvas
+    // Draw a nice 5px cyan border at the top of the canvas
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.rect(0, 0, this.canvas.width, 8);
-    this.ctx.fillStyle = "#e63333";
+    this.ctx.fillStyle = "#00ffff";
     this.ctx.fill();
     this.ctx.restore();
   }
@@ -223,7 +223,7 @@ class Piano {
     if (key.type === "white") {
       // White key shadow (only when not pressed)
       if (!isPressed) {
-        this.ctx.shadowColor = "rgba(0, 0, 0, 0.1)";
+        this.ctx.shadowColor = "rgba(0, 255, 255, 0.3)";
         this.ctx.shadowBlur = 8;
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 4;
@@ -242,15 +242,15 @@ class Piano {
 
       // Add subtle gradient for 3D effect
       if (!isPressed) {
-        // Top highlight
+        // Top highlight with cyan tint
         const gradient = this.ctx.createLinearGradient(
           key.x,
           key.y,
           key.x,
           key.y + key.height * 0.3
         );
-        gradient.addColorStop(0, "rgba(255, 255, 255, 0.4)");
-        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        gradient.addColorStop(0, "rgba(0, 255, 255, 0.1)");
+        gradient.addColorStop(1, "rgba(0, 255, 255, 0)");
         this.ctx.fillStyle = gradient;
         this.ctx.fillRect(key.x, key.y, key.width, key.height * 0.3);
 
@@ -262,7 +262,7 @@ class Piano {
           key.y + key.height
         );
         bottomShadow.addColorStop(0, "rgba(0, 0, 0, 0)");
-        bottomShadow.addColorStop(1, "rgba(0, 0, 0, 0.02)");
+        bottomShadow.addColorStop(1, "rgba(0, 0, 0, 0.3)");
         this.ctx.fillStyle = bottomShadow;
         this.ctx.fillRect(
           key.x,
@@ -271,30 +271,53 @@ class Piano {
           key.height * 0.3
         );
       } else {
-        // Pressed state - inset shadow effect
+        // Pressed state - cyan glow effect
         const insetShadow = this.ctx.createLinearGradient(
           key.x,
           key.y,
           key.x,
           key.y + key.height * 0.2
         );
-        insetShadow.addColorStop(0, "rgba(0, 0, 0, 0.1)");
-        insetShadow.addColorStop(1, "rgba(0, 0, 0, 0)");
+        insetShadow.addColorStop(0, "rgba(0, 255, 255, 0.3)");
+        insetShadow.addColorStop(1, "rgba(0, 255, 255, 0)");
         this.ctx.fillStyle = insetShadow;
         this.ctx.fillRect(key.x, key.y, key.width, key.height * 0.2);
       }
 
       // Draw border
       this.ctx.strokeStyle = PIANO_CONFIG.colors.whiteKeyBorder;
-      this.ctx.lineWidth = 2;
+      this.ctx.lineWidth = 4;
       this.ctx.strokeRect(key.x, key.y, key.width, key.height);
     } else {
-      // Black key shadow (more pronounced)
+      // Black key with pink neon glow border
+
+      // Create pink neon glow effect
+      this.ctx.shadowColor = "#ff1493"; // Deep pink
+      this.ctx.shadowBlur = 15;
+      this.ctx.shadowOffsetX = 0;
+      this.ctx.shadowOffsetY = 0;
+
+      // Draw outer glow (larger)
+      this.ctx.strokeStyle = "rgba(255, 20, 147, 0.9)"; // Semi-transparent pink
+      this.ctx.lineWidth = 4;
+      this.ctx.strokeRect(key.x - 2, key.y - 2, key.width + 4, key.height + 4);
+
+      // Draw inner glow (smaller, brighter)
+      this.ctx.strokeStyle = "rgba(255, 20, 147, 0.9)"; // Brighter pink
+      this.ctx.lineWidth = 2;
+      this.ctx.strokeRect(key.x - 1, key.y - 1, key.width + 2, key.height + 2);
+
+      // Black key shadow (cyan glow when pressed)
       if (!isPressed) {
         this.ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
         this.ctx.shadowBlur = 12;
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 6;
+      } else {
+        this.ctx.shadowColor = "rgba(0, 255, 255, 0.8)";
+        this.ctx.shadowBlur = 20;
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
       }
 
       // Set fill color based on pressed state
@@ -332,35 +355,23 @@ class Piano {
 
       // Add gradient for 3D effect using the same rounded path
       if (!isPressed) {
-        // Top highlight for glossy effect
+        // Top highlight for glossy effect with cyan tint
         const blackGradient = this.ctx.createLinearGradient(
           key.x,
           key.y,
           key.x,
           key.y + key.height * 0.4
         );
-        blackGradient.addColorStop(0, "rgba(255, 255, 255, 0.15)");
-        blackGradient.addColorStop(0.3, "rgba(255, 255, 255, 0.05)");
-        blackGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        blackGradient.addColorStop(0, "rgba(0, 255, 255, 0.2)");
+        blackGradient.addColorStop(0.3, "rgba(0, 255, 255, 0.05)");
+        blackGradient.addColorStop(1, "rgba(0, 255, 255, 0)");
         this.ctx.fillStyle = blackGradient;
         this.ctx.fill();
 
-        // Side highlights for rounded appearance
-        this.ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+        // Side highlights for rounded appearance with cyan
+        this.ctx.fillStyle = "rgba(0, 255, 255, 0.1)";
         this.ctx.fillRect(key.x, key.y, 2, key.height - radius);
         this.ctx.fillRect(key.x + key.width - 2, key.y, 2, key.height - radius);
-      } else {
-        // Pressed state - darker inset
-        const blackInset = this.ctx.createLinearGradient(
-          key.x,
-          key.y,
-          key.x,
-          key.y + key.height * 0.3
-        );
-        blackInset.addColorStop(0, "rgba(0, 0, 0, 0.3)");
-        blackInset.addColorStop(1, "rgba(0, 0, 0, 0)");
-        this.ctx.fillStyle = blackInset;
-        this.ctx.fill();
       }
     }
 
@@ -447,7 +458,7 @@ class Piano {
     this.pressedKeys.add(note);
     this.draw();
 
-    playSound(this.noteAudioMap[note])
+    playSound(this.noteAudioMap[note]);
   }
 
   /**
