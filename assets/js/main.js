@@ -11,4 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.piano = piano;
 });
 
-// Basic JS file - no functionality
+import { setupVirtualKeyboard } from "./keypress.js";
+
+setupVirtualKeyboard();
