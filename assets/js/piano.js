@@ -1,12 +1,15 @@
 // Piano Canvas Application
 // Organized into sections to avoid merge conflicts
 
+import { keyMap } from "./keypress.js";
+import { playSound } from "./sound.js";
+
 // =========================
 // PIANO CONFIGURATION
 // =========================
 const PIANO_CONFIG = {
   aspectRatio: 0.4, // Height to width ratio for single octave
-  pianoWidth: 400, // Fixed width for piano in pixels
+  pianoWidth: 450, // Fixed width for piano in pixels
   colors: {
     whiteKey: "#ffffff",
     whiteKeyPressed: "#e0e0e0",
@@ -30,12 +33,26 @@ class Piano {
     // Simple configuration - always one octave starting from C4
     this.startOctave = 4;
 
+    // Create note-to-audio mapping from keyMap
+    this.noteAudioMap = this.createNoteAudioMap();
+
     this.init();
+  }
+
+  createNoteAudioMap() {
+    const noteAudioMap = {};
+    keyMap.forEach(({ note, audio }) => {
+      if (note && audio) {
+        noteAudioMap[note] = audio;
+      }
+    });
+    return noteAudioMap;
   }
 
   init() {
     this.setupCanvas();
     this.createKeys();
+    this.setupEventListeners();
     this.draw();
   }
 
@@ -103,6 +120,69 @@ class Piano {
       }
 
       whiteKeyIndex++;
+    }
+  }
+
+  setupEventListeners() {
+    // Add mouse event listeners for piano key clicks
+    this.canvas.addEventListener("mousedown", (event) => {
+      this.handleMouseDown(event);
+    });
+
+    this.canvas.addEventListener("mouseup", (event) => {
+      this.handleMouseUp(event);
+    });
+
+    // Add touch event listeners for mobile support
+    this.canvas.addEventListener("touchstart", (event) => {
+      event.preventDefault(); // Prevent scrolling
+      this.handleTouchStart(event);
+    });
+
+    this.canvas.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      this.handleTouchEnd(event);
+    });
+
+    // Prevent context menu on right click
+    this.canvas.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+  }
+
+  handleMouseDown(event) {
+    const key = this.getKeyFromEvent(event);
+    if (key) {
+      console.log(`Piano key clicked: ${key.note} (${key.type} key)`);
+      this.pressKey(key.note);
+
+      // Store the currently pressed key for mouse up handling
+      this.currentMouseKey = key.note;
+    }
+  }
+
+  handleMouseUp(event) {
+    if (this.currentMouseKey) {
+      this.releaseKey(this.currentMouseKey);
+      this.currentMouseKey = null;
+    }
+  }
+
+  handleTouchStart(event) {
+    const key = this.getKeyFromEvent(event);
+    if (key) {
+      console.log(`Piano key touched: ${key.note} (${key.type} key)`);
+      this.pressKey(key.note);
+
+      // Store the currently pressed key for touch end handling
+      this.currentTouchKey = key.note;
+    }
+  }
+
+  handleTouchEnd(event) {
+    if (this.currentTouchKey) {
+      this.releaseKey(this.currentTouchKey);
+      this.currentTouchKey = null;
     }
   }
 
@@ -366,6 +446,8 @@ class Piano {
   pressKey(note) {
     this.pressedKeys.add(note);
     this.draw();
+
+    playSound(this.noteAudioMap[note])
   }
 
   /**
