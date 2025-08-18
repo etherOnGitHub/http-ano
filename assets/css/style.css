@@ -19,7 +19,7 @@
 }
 
 /* Piano html keys are still kept in the html, but are hidden away */
-.keys {
+/* .keys {
   visibility: hidden;
   height: 0px;
-}
+} */
