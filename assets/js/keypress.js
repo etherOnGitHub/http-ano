@@ -71,11 +71,19 @@ export function setupVirtualKeyboard() {
     }
   });
 
+  // Track pressed keys to prevent repeat firing
+  const pressedKeys = new Set();
   document.addEventListener("keydown", (e) => {
     const key = e.key.toLowerCase();
+    if (pressedKeys.has(key)) return; // Ignore holding
+    pressedKeys.add(key);
     const mappedKey = keyMap.find((mappedKey) => mappedKey.key === key);
     if (mappedKey) {
       handleButtonAction(mappedKey.id);
     }
+  });
+  document.addEventListener("keyup", (e) => {
+    const key = e.key.toLowerCase();
+    pressedKeys.delete(key);
   });
 }
