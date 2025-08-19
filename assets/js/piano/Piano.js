@@ -31,6 +31,8 @@ class Piano {
     this.keys = [];
     this.pressedKeys = new Set();
     this.startOctave = this.config.layout.defaultOctave;
+    this.numOctaves = this.config.layout.numOctaves || 2;
+    this.extraNotes = this.config.layout.extraNotes || ["C6"];
 
     // Initialize modular components
     this.keyGenerator = new KeyGenerator(this.config);
@@ -82,10 +84,12 @@ class Piano {
    * Generate piano keys using the KeyGenerator
    */
   createKeys() {
-    this.keys = this.keyGenerator.generateOctaveKeys(
+    this.keys = this.keyGenerator.generateMultiOctaveKeys(
       this.canvas.width,
       this.canvas.height,
-      this.startOctave
+      this.startOctave,
+      this.numOctaves,
+      this.extraNotes
     );
   }
 
@@ -250,6 +254,12 @@ class Piano {
   handleResize() {
     clearTimeout(this.resizeTimeout);
     this.resizeTimeout = setTimeout(() => {
+      // Adjust octave configuration for larger screens
+      if (window.innerWidth > 768) {
+        this.config.layout.numOctaves = 2;
+      } else {
+        this.config.layout.numOctaves = 1;
+      }
       this.setupCanvas();
       this.createKeys();
       this.draw();

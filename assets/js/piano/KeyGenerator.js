@@ -65,6 +65,97 @@ export class KeyGenerator {
   }
 
   /**
+   * Generate keys for multiple octaves
+   * @param {number} canvasWidth - Width of the canvas
+   * @param {number} canvasHeight - Height of the canvas
+   * @param {number} startOctave - Starting octave number
+   * @param {number} numOctaves - Number of octaves to generate
+   * @param {Array} extraNotes - Array of additional notes beyond full octaves (e.g., ["C6"])
+   * @returns {Array} Array of key objects
+   */
+  generateMultiOctaveKeys(
+    canvasWidth,
+    canvasHeight,
+    startOctave,
+    numOctaves = 2,
+    extraNotes = []
+  ) {
+    const keys = [];
+    const totalWhiteKeys =
+      numOctaves * 7 + extraNotes.filter((note) => !note.includes("#")).length;
+    const whiteKeyWidth = canvasWidth / totalWhiteKeys;
+    const blackKeyWidth = whiteKeyWidth * 0.6;
+    const whiteKeyHeight = canvasHeight;
+    const blackKeyHeight = whiteKeyHeight * 0.6;
+
+    let whiteKeyIndex = 0;
+    let keyIndex = 0;
+
+    // Generate full octaves
+    for (let octave = 0; octave < numOctaves; octave++) {
+      const currentOctave = startOctave + octave;
+
+      for (
+        let noteIndex = 0;
+        noteIndex < this.notePattern.length;
+        noteIndex++
+      ) {
+        const noteName = this.notePattern[noteIndex];
+        const fullNoteName = noteName + currentOctave;
+
+        // Generate white key
+        keys.push(
+          this.createWhiteKey(
+            whiteKeyIndex,
+            whiteKeyWidth,
+            whiteKeyHeight,
+            fullNoteName,
+            keyIndex
+          )
+        );
+        keyIndex++;
+
+        // Generate black key if needed
+        if (this.blackKeyPattern[noteIndex] === 1) {
+          keys.push(
+            this.createBlackKey(
+              whiteKeyIndex,
+              whiteKeyWidth,
+              blackKeyWidth,
+              blackKeyHeight,
+              noteName + "#" + currentOctave,
+              keyIndex
+            )
+          );
+          keyIndex++;
+        }
+
+        whiteKeyIndex++;
+      }
+    }
+
+    // Generate extra notes
+    extraNotes.forEach((note) => {
+      if (!note.includes("#")) {
+        // White key
+        keys.push(
+          this.createWhiteKey(
+            whiteKeyIndex,
+            whiteKeyWidth,
+            whiteKeyHeight,
+            note,
+            keyIndex
+          )
+        );
+        keyIndex++;
+        whiteKeyIndex++;
+      }
+    });
+
+    return keys;
+  }
+
+  /**
    * Create a white key object
    * @param {number} whiteKeyIndex - Index among white keys
    * @param {number} width - Key width
