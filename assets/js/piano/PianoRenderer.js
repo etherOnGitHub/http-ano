@@ -6,7 +6,7 @@ import {
   applyPressedGlowEffect,
   createBottomRoundedRectPath,
   applyBlackKey3DEffect,
-} from "../canvasHelpers.js";
+} from "./helpers/canvasHelpers.js";
 
 /**
  * PianoRenderer - Handles all piano canvas rendering operations
