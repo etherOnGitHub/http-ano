@@ -1,25 +1,141 @@
 /* Basic stylesheet - no design */
+/* 🎹 General cyberpunk/neon style */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    background-color: #0d0d0d;
+    color: #f5f5f5;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
+/* Navbar neon style */
+.navbar {
+    background: linear-gradient(90deg, #ff00ff, #00fff9);
+    border-bottom: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+.nav-link:hover  {
+    color: #0d0d0d !important;
+    text-shadow: 0 0 5px #00fff9;
+    transition: all 0.2s ease-in-out;
+}
+.nav-link {
+    color: #ff00ff !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+/* Piano container */
+#piano-container {
+    margin-top: 2rem;
+    padding: 20px;
+    background: rgba(15, 15, 30, 0.95);
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset;
+}
+
+/* Keys styling */
+.key {
+    position: relative;
+    display: inline-block;
+    margin: 3px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.key.white {
+    width: 40px;
+    height: 140px;
+    background: #1a1a1a;
+    border: 2px solid #0ff;
+    box-shadow: 0 0 10px #0ff;
+}
+
+.key.black {
+    width: 30px;
+    height: 90px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background: #111;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+    z-index: 2;
+}
+
+.key:hover {
+    box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset; /* neon purple glow */
+}
+
+/* Buttons inside keys */
+.key button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00fff9, 0 0 10px #ff00ff;
+    cursor: pointer;
+}
+
+/* Animation when a key is pressed */
+.key.active,
+.key button:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9;
+    transition: 0.1s ease;
+}
+
+/* Canvas with neon border */
+/* Canvas with neon border and unified styles */
+#piano {
+    background: transparent;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff9;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Instructions panel */
+#instructions {
+    background: rgba(25, 25, 60, 0.85);
+    border: 1px solid #0ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
+}
+
+#instructions h2,
+#instructions h3 {
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+}
 
 /* Piano Canvas Styles */
 .piano-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#piano {
-  border: 2px solid #333;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  display: block;
-  /* Remove any width constraints to let the Piano class handle sizing */
-  max-width: 100%;
-  height: auto;
-}
+/* ...existing code... */
 
 /* Piano html keys are still kept in the html, but are hidden away */
 /* .keys {
