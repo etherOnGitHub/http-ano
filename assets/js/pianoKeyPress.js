@@ -168,6 +168,11 @@ export function handlePianoKeyPress(mappedKey) {
   }
 
   console.log(`Piano key '${mappedKey.key}' pressed - Note: ${mappedKey.note}`);
+
+  // Dispatch a custom event for play-along logic
+  document.dispatchEvent(
+    new CustomEvent("noteplayed", { detail: { note: mappedKey.note } })
+  );
 }
 
 export function handleButtonAction(id) {

@@ -1,5 +1,5 @@
 import Piano from "./piano/Piano.js";
-import { setupVirtualKeyboard } from "./pianoKeyPress.js";
+import { setupVirtualKeyboard, keyMap } from "./pianoKeyPress.js";
 import { testPlayAlong, PlayAlongController } from "./playAlong.js";
 
 // =========================
@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Make piano globally accessible for potential future features
   window.piano = piano;
 
-  
   console.log("Piano keys array information:", piano.getAllKeys());
 });
 
@@ -97,13 +96,13 @@ document.addEventListener("noteplayed", function (e) {
 // TOGGLE
 // =========================
 // Toggle visualiser box
-  document.querySelector("#visualiser .toggle-text").onclick = function() {
-    const box = document.getElementById("visualiser-box");
-    box.style.display = (box.style.display === "none") ? "block" : "none";
-  };
+document.querySelector("#visualiser .toggle-text").onclick = function () {
+  const box = document.getElementById("visualiser-box");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+};
 
-  // Toggle instructions box
-  document.querySelector("#instructions .toggle-text").onclick = function() {
-    const box = document.getElementById("instructions-box");
-    box.style.display = (box.style.display === "none") ? "block" : "none";
-  };
+// Toggle instructions box
+document.querySelector("#instructions .toggle-text").onclick = function () {
+  const box = document.getElementById("instructions-box");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+};

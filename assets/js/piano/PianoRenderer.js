@@ -60,10 +60,11 @@ export class PianoRenderer {
    * Draw the complete piano with all keys
    * @param {Array} keys - Array of key objects
    * @param {Set} pressedKeys - Set of currently pressed key notes
+   * @param {string} expectedNote - The note that should be highlighted for play-along
    */
-  draw(keys, pressedKeys) {
+  draw(keys, pressedKeys, expectedNote = null) {
     this.clearCanvas();
-    this.drawKeys(keys, pressedKeys);
+    this.drawKeys(keys, pressedKeys, expectedNote);
     this.drawTopBorder();
   }
 
@@ -79,20 +80,25 @@ export class PianoRenderer {
    * Draw all piano keys in proper layering order
    * @param {Array} keys - Array of key objects
    * @param {Set} pressedKeys - Set of currently pressed key notes
+   * @param {string} expectedNote - The note that should be highlighted for play-along
    */
-  drawKeys(keys, pressedKeys) {
+  drawKeys(keys, pressedKeys, expectedNote = null) {
     // Draw white keys first (background layer)
     keys
       .filter((key) => key.type === "white")
       .forEach((key) => {
-        this.drawKey(key, pressedKeys.has(key.note));
+        const isPressed = pressedKeys.has(key.note);
+        const isExpected = expectedNote === key.note;
+        this.drawKey(key, isPressed, isExpected);
       });
 
     // Draw black keys on top (foreground layer)
     keys
       .filter((key) => key.type === "black")
       .forEach((key) => {
-        this.drawKey(key, pressedKeys.has(key.note));
+        const isPressed = pressedKeys.has(key.note);
+        const isExpected = expectedNote === key.note;
+        this.drawKey(key, isPressed, isExpected);
       });
   }
 
@@ -100,14 +106,15 @@ export class PianoRenderer {
    * Draw a single piano key with all effects
    * @param {Object} key - Key object with position and note information
    * @param {boolean} isPressed - Whether the key is currently pressed
+   * @param {boolean} isExpected - Whether this key is expected for play-along
    */
-  drawKey(key, isPressed) {
+  drawKey(key, isPressed, isExpected = false) {
     this.ctx.save();
 
     if (key.type === "white") {
-      this.drawWhiteKey(key, isPressed);
+      this.drawWhiteKey(key, isPressed, isExpected);
     } else {
-      this.drawBlackKey(key, isPressed);
+      this.drawBlackKey(key, isPressed, isExpected);
     }
 
     this.ctx.restore();
@@ -117,15 +124,20 @@ export class PianoRenderer {
    * Draw a white key with all visual effects
    * @param {Object} key - Key object
    * @param {boolean} isPressed - Whether the key is pressed
+   * @param {boolean} isExpected - Whether this key is expected for play-along
    */
-  drawWhiteKey(key, isPressed) {
+  drawWhiteKey(key, isPressed, isExpected = false) {
     // Apply shadow effects
     this.applyWhiteKeyShadow(isPressed);
 
-    // Set fill color and draw main body
-    this.ctx.fillStyle = isPressed
-      ? this.config.colors.whiteKeyPressed
-      : this.config.colors.whiteKey;
+    // Set fill color and draw main body - orange if expected
+    if (isExpected && !isPressed) {
+      this.ctx.fillStyle = "#ff9800"; // Orange for expected key
+    } else {
+      this.ctx.fillStyle = isPressed
+        ? this.config.colors.whiteKeyPressed
+        : this.config.colors.whiteKey;
+    }
     this.ctx.fillRect(key.x, key.y, key.width, key.height);
 
     // Clear shadow for additional effects
@@ -138,8 +150,12 @@ export class PianoRenderer {
       applyPressedGlowEffect(this.ctx, key.x, key.y, key.width, key.height);
     }
 
-    // Draw border
-    this.ctx.strokeStyle = this.config.colors.whiteKeyBorder;
+    // Draw border - orange if expected
+    if (isExpected && !isPressed) {
+      this.ctx.strokeStyle = "#ff6f00"; // Darker orange for border
+    } else {
+      this.ctx.strokeStyle = this.config.colors.whiteKeyBorder;
+    }
     this.ctx.lineWidth = 4;
     this.ctx.strokeRect(key.x, key.y, key.width, key.height);
   }
@@ -148,11 +164,13 @@ export class PianoRenderer {
    * Draw a black key with all visual effects
    * @param {Object} key - Key object
    * @param {boolean} isPressed - Whether the key is pressed
+   * @param {boolean} isExpected - Whether this key is expected for play-along
    */
-  drawBlackKey(key, isPressed) {
+  drawBlackKey(key, isPressed, isExpected = false) {
     const radius = 6;
 
-    // Draw neon border effect
+    // Draw neon border effect - orange if expected
+    const borderColor = isExpected && !isPressed ? "#ff9800" : "#ff00ff";
     drawNeonBorder(
       this.ctx,
       key.x,
@@ -160,16 +178,20 @@ export class PianoRenderer {
       key.width,
       key.height,
       radius,
-      "#ff00ff"
+      borderColor
     );
 
     // Apply shadow effects
     this.applyBlackKeyShadow(isPressed);
 
-    // Set fill color and draw rounded rectangle
-    this.ctx.fillStyle = isPressed
-      ? this.config.colors.blackKeyPressed
-      : this.config.colors.blackKey;
+    // Set fill color and draw rounded rectangle - orange if expected
+    if (isExpected && !isPressed) {
+      this.ctx.fillStyle = "#ff9800"; // Orange for expected key
+    } else {
+      this.ctx.fillStyle = isPressed
+        ? this.config.colors.blackKeyPressed
+        : this.config.colors.blackKey;
+    }
 
     createBottomRoundedRectPath(
       this.ctx,
