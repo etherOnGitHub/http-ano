@@ -39,9 +39,6 @@ class Piano {
     // Create note-to-audio mapping
     this.noteAudioMap = this.createNoteAudioMap();
 
-    // Track resize timeout for debouncing
-    this.resizeTimeout = null;
-
     // Initialize the piano
     this.init();
   }
@@ -244,32 +241,6 @@ class Piano {
   }
 
   /**
-   * Handle resize events (debounced)
-   */
-  handleResize() {
-    clearTimeout(this.resizeTimeout);
-    this.resizeTimeout = setTimeout(() => {
-      // Adjust octave configuration for larger screens
-      if (window.innerWidth > 768) {
-        // Use 2 octaves for larger screens if not already set
-        if (this.config.layout.numOctaves !== 2) {
-          this.setNumOctaves(2);
-        }
-      } else {
-        // Use 1 octave for smaller screens if not already set
-        if (this.config.layout.numOctaves !== 1) {
-          this.setNumOctaves(1);
-        }
-      }
-
-      // Always refresh canvas and redraw for window resize
-      this.setupCanvas();
-      this.createKeys();
-      this.draw();
-    }, this.config.responsive.resizeDebounceMs);
-  }
-
-  /**
    * Change the octave of the piano
    * @param {number} octave - New octave number
    */
@@ -318,11 +289,6 @@ class Piano {
   destroy() {
     // Clean up event listeners
     this.eventHandler.cleanup();
-
-    // Clear any pending timeouts
-    if (this.resizeTimeout) {
-      clearTimeout(this.resizeTimeout);
-    }
 
     // Clear pressed keys
     this.releaseAllKeys();

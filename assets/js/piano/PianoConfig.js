@@ -4,7 +4,7 @@
  */
 export const PIANO_CONFIG = {
   // Canvas and sizing configuration
-  aspectRatio: 0.2, // Height to width ratio for multi-octave piano (smaller for wider keyboard)
+  aspectRatio: 0.18, // Height to width ratio for multi-octave piano (smaller for wider keyboard)
   maxWidth: 1400, // Maximum width for piano in pixels (increased for more keys)
   minWidth: 700, // Minimum width for piano in pixels (increased for more keys)
   responsiveWidthPercent: 0.85, // Percentage of container width to use
@@ -53,7 +53,7 @@ export const PIANO_CONFIG = {
   // Piano layout configuration
   layout: {
     defaultOctave: 4,
-    numOctaves: 2, // Number of full octaves to display (C4-B4, C5-B5)
+    numOctaves: 3, // Number of full octaves to display (C4-B4, C5-B5)
     whiteKeysPerOctave: 7,
     notePattern: ["C", "D", "E", "F", "G", "A", "B"],
     blackKeyPattern: [1, 1, 0, 1, 1, 1, 0], // Which notes have sharps
