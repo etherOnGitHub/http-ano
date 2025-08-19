@@ -183,42 +183,10 @@ export function handleButtonAction(id) {
     // Handle the piano key press
     handlePianoKeyPress(mappedKey);
 
-    // Switch for console logging and future testing
-    switch (id) {
-      case "vk-btn-C4":
-      case "vk-btn-Cs4":
-      case "vk-btn-D4":
-      case "vk-btn-Ds4":
-      case "vk-btn-E4":
-      case "vk-btn-F4":
-      case "vk-btn-Fs4":
-      case "vk-btn-G4":
-      case "vk-btn-Gs4":
-      case "vk-btn-A4":
-      case "vk-btn-As4":
-      case "vk-btn-B4":
-      case "vk-btn-C5":
-      case "vk-btn-Cs5":
-      case "vk-btn-D5":
-      case "vk-btn-Ds5":
-      case "vk-btn-E5":
-      case "vk-btn-F5":
-      case "vk-btn-Fs5":
-      case "vk-btn-G5":
-      case "vk-btn-Gs5":
-      case "vk-btn-A5":
-      case "vk-btn-As5":
-      case "vk-btn-B5":
-      case "vk-btn-C6":
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-        break;
-      default:
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-    }
+    // Console logging for testing
+    console.log(
+      `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+    );
   }
 }
 

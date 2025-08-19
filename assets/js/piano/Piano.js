@@ -30,9 +30,6 @@ class Piano {
     // Initialize state
     this.keys = [];
     this.pressedKeys = new Set();
-    this.startOctave = this.config.layout.defaultOctave;
-    this.numOctaves = this.config.layout.numOctaves || 2;
-    this.extraNotes = this.config.layout.extraNotes || ["C6"];
 
     // Initialize modular components
     this.keyGenerator = new KeyGenerator(this.config);
@@ -84,12 +81,10 @@ class Piano {
    * Generate piano keys using the KeyGenerator
    */
   createKeys() {
+    // The KeyGenerator will now read config values dynamically
     this.keys = this.keyGenerator.generateMultiOctaveKeys(
       this.canvas.width,
-      this.canvas.height,
-      this.startOctave,
-      this.numOctaves,
-      this.extraNotes
+      this.canvas.height
     );
   }
 
@@ -256,10 +251,18 @@ class Piano {
     this.resizeTimeout = setTimeout(() => {
       // Adjust octave configuration for larger screens
       if (window.innerWidth > 768) {
-        this.config.layout.numOctaves = 2;
+        // Use 2 octaves for larger screens if not already set
+        if (this.config.layout.numOctaves !== 2) {
+          this.setNumOctaves(2);
+        }
       } else {
-        this.config.layout.numOctaves = 1;
+        // Use 1 octave for smaller screens if not already set
+        if (this.config.layout.numOctaves !== 1) {
+          this.setNumOctaves(1);
+        }
       }
+
+      // Always refresh canvas and redraw for window resize
       this.setupCanvas();
       this.createKeys();
       this.draw();
@@ -275,10 +278,38 @@ class Piano {
       throw new Error("Octave must be a number between 0 and 8");
     }
 
-    this.startOctave = octave;
+    this.config.layout.defaultOctave = octave;
     this.releaseAllKeys(); // Clear any pressed keys
     this.createKeys(); // Regenerate keys with new octave
     this.draw(); // Redraw the piano
+  }
+
+  /**
+   * Change the number of octaves displayed
+   * @param {number} numOctaves - Number of octaves to display
+   */
+  setNumOctaves(numOctaves) {
+    if (typeof numOctaves !== "number" || numOctaves < 1 || numOctaves > 4) {
+      throw new Error("Number of octaves must be between 1 and 4");
+    }
+
+    this.config.layout.numOctaves = numOctaves;
+    this.releaseAllKeys(); // Clear any pressed keys
+    this.setupCanvas(); // Recalculate canvas size for new layout
+    this.createKeys(); // Regenerate keys with new number of octaves
+    this.draw(); // Redraw the piano
+  }
+
+  /**
+   * Get current configuration values
+   * @returns {Object} Current layout configuration
+   */
+  getCurrentLayout() {
+    return {
+      defaultOctave: this.config.layout.defaultOctave,
+      numOctaves: this.config.layout.numOctaves,
+      totalKeys: this.keys.length,
+    };
   }
 
   /**
