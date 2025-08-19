@@ -111,13 +111,7 @@ body {
     height: auto;
 }
 
-#visualiser {
-    position: relative;
-    z-index: 1;
-}
-
-/* Instructions panel */
-#instructions {
+#visualiser, #instructions {
     background: rgba(25, 25, 60, 0.85);
     border: 1px solid #0ff;
     padding: 20px;
@@ -125,6 +119,20 @@ body {
     box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
     z-index: 1;
     position: relative;
+}
+
+#visualiser button {
+    background: transparent;
+    border: none;
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+}
+
+/* Instructions panel */
+
+#instructions button {
+    background: transparent;
+    border: none;
 }
 
 #instructions h2,
