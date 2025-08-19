@@ -13,3 +13,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 setupVirtualKeyboard();
+
+// =========================
+// TOGGLE
+// =========================
+// Toggle visualiser box
+  document.querySelector("#visualiser .toggle-text").onclick = function() {
+    const box = document.getElementById("visualiser-box");
+    box.style.display = (box.style.display === "none") ? "block" : "none";
+  };
+
+  // Toggle instructions box
+  document.querySelector("#instructions .toggle-text").onclick = function() {
+    const box = document.getElementById("instructions-box");
+    box.style.display = (box.style.display === "none") ? "block" : "none";
+  };
