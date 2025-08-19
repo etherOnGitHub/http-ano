@@ -21,6 +21,15 @@
   height: auto;
 }
 
+#visualiser-canvas {
+  width: 100%;
+  height: 400px;
+  background-color: #000000;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
 /* Piano html keys are still kept in the html, but are hidden away */
 /* .keys {
   visibility: hidden;
