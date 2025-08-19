@@ -67,6 +67,10 @@ export class PianoEventHandler {
       console.log(`Piano key clicked: ${key.note} (${key.type} key)`);
       this.piano.pressKey(key.note);
       this.currentMouseKey = key.note;
+      // Dispatch noteplayed event for play-along
+      document.dispatchEvent(
+        new CustomEvent("noteplayed", { detail: { note: key.note } })
+      );
     }
   }
 
@@ -76,7 +80,7 @@ export class PianoEventHandler {
    */
   handleMouseUp(event) {
     if (!this.currentMouseKey) return;
-    
+
     this.piano.releaseKey(this.currentMouseKey);
     this.currentMouseKey = null;
   }
@@ -92,6 +96,10 @@ export class PianoEventHandler {
       console.log(`Piano key touched: ${key.note} (${key.type} key)`);
       this.piano.pressKey(key.note);
       this.currentTouchKey = key.note;
+      // Dispatch noteplayed event for play-along
+      document.dispatchEvent(
+        new CustomEvent("noteplayed", { detail: { note: key.note } })
+      );
     }
   }
 

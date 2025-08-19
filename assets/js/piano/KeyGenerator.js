@@ -3,67 +3,6 @@
  * Generates piano key layout for a given octave with proper positioning
  */
 export class KeyGenerator {
-  constructor(config) {
-    this.config = config;
-    this.notePattern = ["C", "D", "E", "F", "G", "A", "B"];
-    this.blackKeyPattern = [1, 1, 0, 1, 1, 1, 0]; // Which notes have sharps (C#, D#, F#, G#, A#)
-  }
-
-  /**
-   * Generate keys for a single octave
-   * @param {number} canvasWidth - Width of the canvas
-   * @param {number} canvasHeight - Height of the canvas
-   * @param {number} startOctave - Starting octave number
-   * @returns {Array} Array of key objects
-   */
-  generateOctaveKeys(canvasWidth, canvasHeight, startOctave) {
-    const keys = [];
-    const totalWhiteKeys = 7;
-    const whiteKeyWidth = canvasWidth / totalWhiteKeys;
-    const blackKeyWidth = whiteKeyWidth * 0.6;
-    const whiteKeyHeight = canvasHeight;
-    const blackKeyHeight = whiteKeyHeight * 0.6;
-
-    let whiteKeyIndex = 0;
-    let keyIndex = 0;
-
-    for (let noteIndex = 0; noteIndex < this.notePattern.length; noteIndex++) {
-      const noteName = this.notePattern[noteIndex];
-      const fullNoteName = noteName + startOctave;
-
-      // Generate white key
-      keys.push(
-        this.createWhiteKey(
-          whiteKeyIndex,
-          whiteKeyWidth,
-          whiteKeyHeight,
-          fullNoteName,
-          keyIndex
-        )
-      );
-      keyIndex++;
-
-      // Generate black key if needed
-      if (this.blackKeyPattern[noteIndex] === 1) {
-        keys.push(
-          this.createBlackKey(
-            whiteKeyIndex,
-            whiteKeyWidth,
-            blackKeyWidth,
-            blackKeyHeight,
-            noteName + "#" + startOctave,
-            keyIndex
-          )
-        );
-        keyIndex++;
-      }
-
-      whiteKeyIndex++;
-    }
-
-    return keys;
-  }
-
   /**
    * Create a white key object
    * @param {number} whiteKeyIndex - Index among white keys
@@ -84,6 +23,83 @@ export class KeyGenerator {
       index: index,
       pressed: false,
     };
+  }
+  constructor(config) {
+    this.config = config;
+    this.notePattern = ["C", "D", "E", "F", "G", "A", "B"];
+    this.blackKeyPattern = [1, 1, 0, 1, 1, 1, 0]; // Which notes have sharps (C#, D#, F#, G#, A#)
+  }
+
+  /**
+   * Generate keys for a single octave
+   * @param {number} canvasWidth - Width of the canvas
+   * @param {number} canvasHeight - Height of the canvas
+   * @param {number} startOctave - Starting octave number
+   * @returns {Array} Array of key objects
+   */
+  generateOctaveKeys(canvasWidth, canvasHeight, startOctave) {
+    const keys = [];
+    const totalWhiteKeys = this.config.layout.totalWhiteKeys;
+    const whiteKeyWidth = canvasWidth / totalWhiteKeys;
+    const blackKeyWidth = whiteKeyWidth * 0.6;
+    const whiteKeyHeight = canvasHeight;
+    const blackKeyHeight = whiteKeyHeight * 0.6;
+
+    let whiteKeyIndex = 0;
+    let keyIndex = 0;
+    let octave = startOctave;
+
+    // Helper to get key binding from keyMap
+    const getKeyBinding = (note) => {
+      const mapping = window.keyMap?.find((k) => k.note === note);
+      return mapping ? mapping.key : "";
+    };
+
+    // Loop until we reach the desired number of white keys
+    while (whiteKeyIndex < totalWhiteKeys) {
+      for (
+        let noteIndex = 0;
+        noteIndex < this.notePattern.length && whiteKeyIndex < totalWhiteKeys;
+        noteIndex++
+      ) {
+        const noteName = this.notePattern[noteIndex];
+        const fullNoteName = noteName + octave;
+
+        // Generate white key
+        keys.push({
+          ...this.createWhiteKey(
+            whiteKeyIndex,
+            whiteKeyWidth,
+            whiteKeyHeight,
+            fullNoteName,
+            keyIndex
+          ),
+          key: getKeyBinding(fullNoteName),
+        });
+        keyIndex++;
+
+        // Generate black key if needed
+        if (this.blackKeyPattern[noteIndex] === 1) {
+          const blackNote = noteName + "#" + octave;
+          keys.push({
+            ...this.createBlackKey(
+              whiteKeyIndex,
+              whiteKeyWidth,
+              blackKeyWidth,
+              blackKeyHeight,
+              blackNote,
+              keyIndex
+            ),
+            key: getKeyBinding(blackNote),
+          });
+          keyIndex++;
+        }
+        whiteKeyIndex++;
+      }
+      octave++;
+    }
+
+    return keys;
   }
 
   /**

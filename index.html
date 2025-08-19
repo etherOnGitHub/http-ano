@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>http-ano</title>
     <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">HTTP-ANO</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">HTTP-ANO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#instructions">Instructions</a>
-            </li>
-          </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#instructions">Instructions</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10" id="piano-container">
-          <div class="keys d-flex flex-wrap justify-content-center">
-            <!-- Octave 3 -->
-            <!-- <div class="key white" data-note="C3" data-key="z"></div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10" id="piano-container">
+                <div class="keys d-flex flex-wrap justify-content-center">
+                    <!-- Octave 3 -->
+                    <!-- <div class="key white" data-note="C3" data-key="z"></div>
                     <div class="key black" data-note="C#3" data-key="x"></div>
                     <div class="key white" data-note="D3" data-key="c"></div>
                     <div class="key black" data-note="D#3" data-key="v"></div>
@@ -58,9 +48,20 @@
                     <div class="key white" data-note="A3" data-key="0"></div>
                     <div class="key black" data-note="A#3" data-key="a"></div>
                     <div class="key white" data-note="B3" data-key="s"></div> -->
+                    <!-- Song Controls -->
+                    <div style="text-align:center; margin-bottom:20px;">
+                        <label for="song-select">Choose a song:</label>
+                        <select id="song-select">
+                            <option value="twinkle">Twinkle Twinkle</option>
+                            <option value="mary">Mary Had a Little Lamb</option>
+                            <option value="keytest">keytest</option>
+                        </select>
+                        <button id="play-song">Play</button>
+                        <button id="stop-song">Stop</button>
+                    </div>
 
-            <!-- Octave 4 -->
-            <!-- <div class="key white" data-note="C4" data-key="d"></div>
+                    <!-- Octave 4 -->
+                    <!-- <div class="key white" data-note="C4" data-key="d"></div>
                     <div class="key black" data-note="C#4" data-key="f"></div>
                     <div class="key white" data-note="D4" data-key="g"></div>
                     <div class="key black" data-note="D#4" data-key="h"></div>
@@ -73,81 +74,88 @@
                     <div class="key black" data-note="A#4" data-key="e"></div>
                     <div class="key white" data-note="B4" data-key="r"></div> -->
 
-            <!-- Octave 5 -->
-            <div class="key white" data-note="C5" data-key="t">
-              <button id="vk-btn-C5">C5</button>
-            </div>
-            <div class="key black" data-note="C#5" data-key="y">
-              <button id="vk-btn-Cs5">C#5</button>
-            </div>
-            <div class="key white" data-note="D5" data-key="u">
-              <button id="vk-btn-D5">D5</button>
-            </div>
-            <div class="key black" data-note="D#5" data-key="i">
-              <button id="vk-btn-Ds5">D#5</button>
-            </div>
-            <div class="key white" data-note="E5" data-key="o">
-              <button id="vk-btn-E5">E5</button>
-            </div>
-            <div class="key white" data-note="F5" data-key="p">
-              <button id="vk-btn-F5">F5</button>
-            </div>
-            <div class="key black" data-note="F#5" data-key="1">
-              <button id="vk-btn-Fs5">F#5</button>
-            </div>
-            <div class="key white" data-note="G5" data-key="2">
-              <button id="vk-btn-G5">G5</button>
-            </div>
-            <div class="key black" data-note="G#5" data-key="3">
-              <button id="vk-btn-Gs5">G#5</button>
-            </div>
-            <div class="key white" data-note="A5" data-key="4">
-              <button id="vk-btn-A5">A5</button>
-            </div>
-            <div class="key black" data-note="A#5" data-key="5">
-              <button id="vk-btn-As5">A#5</button>
-            </div>
-            <div class="key white" data-note="B5" data-key="6">
-              <button id="vk-btn-B5">B5</button>
-            </div>
+                    <!-- Octave 5 -->
+                    <div class="key white" data-note="C5" data-key="t">
+                        <button id="vk-btn-C5">C5</button>
+                    </div>
+                    <div class="key black" data-note="C#5" data-key="y">
+                        <button id="vk-btn-Cs5">C#5</button>
+                    </div>
+                    <div class="key white" data-note="D5" data-key="u">
+                        <button id="vk-btn-D5">D5</button>
+                    </div>
+                    <div class="key black" data-note="D#5" data-key="i">
+                        <button id="vk-btn-Ds5">D#5</button>
+                    </div>
+                    <div class="key white" data-note="E5" data-key="o">
+                        <button id="vk-btn-E5">E5</button>
+                    </div>
+                    <div class="key white" data-note="F5" data-key="p">
+                        <button id="vk-btn-F5">F5</button>
+                    </div>
+                    <div class="key black" data-note="F#5" data-key="1">
+                        <button id="vk-btn-Fs5">F#5</button>
+                    </div>
+                    <div class="key white" data-note="G5" data-key="2">
+                        <button id="vk-btn-G5">G5</button>
+                    </div>
+                    <div class="key black" data-note="G#5" data-key="3">
+                        <button id="vk-btn-Gs5">G#5</button>
+                    </div>
+                    <div class="key white" data-note="A5" data-key="4">
+                        <button id="vk-btn-A5">A5</button>
+                    </div>
+                    <div class="key black" data-note="A#5" data-key="5">
+                        <button id="vk-btn-As5">A#5</button>
+                    </div>
+                    <div class="key white" data-note="B5" data-key="6">
+                        <button id="vk-btn-B5">B5</button>
+                    </div>
 
-            <!-- Final top key -->
-            <div class="key white" data-note="C6" data-key="37"></div>
-          </div>
-        </div>
-      </div>
+                    <!-- Final top key -->
+                    <div class="key white" data-note="C6" data-key="37"></div>
+                </div>
 
-      <!-- Canvas Row -->
-      <div class="row justify-content-center mt-3">
-        <div class="col-12 d-flex justify-content-center">
-          <canvas id="piano"></canvas>
+            </div>
         </div>
-      </div>
+
+        <!-- Canvas Row -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 d-flex flex-column align-items-center">
+                <canvas id="piano"></canvas>
+                <span id="keybind-indicator"
+                    style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800;"></span>
+            </div>
+        </div>
+    </div>
     </div>
 
+    <!-- Removed duplicate canvas and container -->
+
     <section id="instructions" class="container mt-5">
-      <h2>Instructions</h2>
-      <p>
-        Welcome to the Virtual Piano! Use your QWERTY keyboard to play notes.
-        The piano spans 36 keys from <strong>C3</strong> to <strong>C6</strong>.
-      </p>
+        <h2>Instructions</h2>
+        <p>
+            Welcome to the Virtual Piano! Use your QWERTY keyboard to play notes.
+            The piano spans 36 keys from <strong>C3</strong> to <strong>C6</strong>.
+        </p>
 
-      <h3>Keyboard Mapping</h3>
-      <p>
-        Each piano key corresponds to a key on your QWERTY keyboard. The mapping
-        is designed to match the physical keyboard layout for easier play.
-      </p>
+        <h3>Keyboard Mapping</h3>
+        <p>
+            Each piano key corresponds to a key on your QWERTY keyboard. The mapping
+            is designed to match the physical keyboard layout for easier play.
+        </p>
 
-      <h3>Tips</h3>
-      <ul>
-        <li>Press the corresponding QWERTY key to play a note.</li>
-        <li>Use multiple keys simultaneously to play chords.</li>
-        <li>
-          Clicking on the piano keys with your mouse will also play the notes.
-        </li>
-      </ul>
+        <h3>Tips</h3>
+        <ul>
+            <li>Press the corresponding QWERTY key to play a note.</li>
+            <li>Use multiple keys simultaneously to play chords.</li>
+            <li>
+                Clicking on the piano keys with your mouse will also play the notes.
+            </li>
+        </ul>
     </section>
 
     <script type="module" src="assets/js/main.js"></script>
-  </body>
+</body>
+
 </html>

@@ -17,6 +17,7 @@ export class PianoRenderer {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.config = config;
+    this.containerPadding = 2;
   }
 
   /**
@@ -39,20 +40,22 @@ export class PianoRenderer {
       Math.min(this.config.maxWidth, targetWidth)
     );
 
-    // Set canvas dimensions
-    this.canvas.width = targetWidth;
-    this.canvas.height = targetWidth * this.config.aspectRatio;
+    // Add padding to canvas dimensions
+    this.canvas.width = targetWidth + this.containerPadding * 2;
+    this.canvas.height =
+      targetWidth * this.config.aspectRatio + this.containerPadding * 2;
 
     // Set CSS size for proper aspect ratio
-    this.canvas.style.width = targetWidth + "px";
-    this.canvas.style.height = targetWidth * this.config.aspectRatio + "px";
+    this.canvas.style.width = targetWidth + this.containerPadding * 2 + "px";
+    this.canvas.style.height =
+      targetWidth * this.config.aspectRatio + this.containerPadding * 2 + "px";
 
     // Update context reference after resize
     this.ctx = this.canvas.getContext("2d");
 
     return {
-      width: targetWidth,
-      height: targetWidth * this.config.aspectRatio,
+      width: targetWidth + this.containerPadding * 2,
+      height: targetWidth * this.config.aspectRatio + this.containerPadding * 2,
     };
   }
 
@@ -63,7 +66,9 @@ export class PianoRenderer {
    */
   draw(keys, pressedKeys) {
     this.clearCanvas();
-    this.drawKeys(keys, pressedKeys);
+    // Highlight expected note if set
+    let expectedNote = window.expectedNote;
+    this.drawKeys(keys, pressedKeys, expectedNote);
     this.drawTopBorder();
   }
 
@@ -80,19 +85,35 @@ export class PianoRenderer {
    * @param {Array} keys - Array of key objects
    * @param {Set} pressedKeys - Set of currently pressed key notes
    */
-  drawKeys(keys, pressedKeys) {
+  drawKeys(keys, pressedKeys, expectedNote) {
     // Draw white keys first (background layer)
     keys
       .filter((key) => key.type === "white")
       .forEach((key) => {
-        this.drawKey(key, pressedKeys.has(key.note));
+        this.drawKey(
+          {
+            ...key,
+            x: key.x + this.containerPadding,
+            y: key.y + this.containerPadding,
+          },
+          pressedKeys.has(key.note),
+          expectedNote === key.note
+        );
       });
 
     // Draw black keys on top (foreground layer)
     keys
       .filter((key) => key.type === "black")
       .forEach((key) => {
-        this.drawKey(key, pressedKeys.has(key.note));
+        this.drawKey(
+          {
+            ...key,
+            x: key.x + this.containerPadding,
+            y: key.y + this.containerPadding,
+          },
+          pressedKeys.has(key.note),
+          expectedNote === key.note
+        );
       });
   }
 
@@ -101,13 +122,28 @@ export class PianoRenderer {
    * @param {Object} key - Key object with position and note information
    * @param {boolean} isPressed - Whether the key is currently pressed
    */
-  drawKey(key, isPressed) {
+  drawKey(key, isPressed, isExpected) {
+    if (isExpected) {
+      console.log("Highlighting key:", key.note, "Key binding:", key.key);
+    }
     this.ctx.save();
 
     if (key.type === "white") {
-      this.drawWhiteKey(key, isPressed);
+      this.drawWhiteKey(key, isPressed, isExpected);
     } else {
-      this.drawBlackKey(key, isPressed);
+      this.drawBlackKey(key, isPressed, isExpected);
+    }
+
+    // Draw key label (key binding) under expected note
+    if (isExpected && key.key) {
+      this.ctx.font = "bold 16px Arial";
+      this.ctx.fillStyle = "#ff9800";
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        key.key,
+        key.x + key.width / 2,
+        key.y + key.height + 18
+      );
     }
 
     this.ctx.restore();
@@ -118,30 +154,76 @@ export class PianoRenderer {
    * @param {Object} key - Key object
    * @param {boolean} isPressed - Whether the key is pressed
    */
-  drawWhiteKey(key, isPressed) {
-    // Apply shadow effects
-    this.applyWhiteKeyShadow(isPressed);
-
-    // Set fill color and draw main body
+  drawWhiteKey(key, isPressed, isExpected) {
+    // Draw neon glow to match border color
+    if (isExpected && !isPressed) {
+      drawNeonBorder(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height,
+        8,
+        "#ff9800"
+      );
+    } else {
+      drawNeonBorder(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height,
+        8,
+        "rgba(0, 255, 255, 0.9)"
+      );
+    }
+    // Draw orange background behind expected key
+    if (isExpected && !isPressed) {
+      this.ctx.save();
+      this.ctx.globalAlpha = 0.5;
+      this.ctx.fillStyle = "#ff9800";
+      this.ctx.fillRect(key.x - 2, key.y - 2, key.width + 4, key.height + 4);
+      this.ctx.restore();
+    }
+    // Make white key height slightly shorter than full height
+    const keyHeightShorten = 4; // px
     this.ctx.fillStyle = isPressed
       ? this.config.colors.whiteKeyPressed
       : this.config.colors.whiteKey;
-    this.ctx.fillRect(key.x, key.y, key.width, key.height);
+    this.ctx.fillRect(key.x, key.y, key.width, key.height - keyHeightShorten);
+    // Restore context state
+    this.ctx.restore();
+
+    // Draw key border
+    if (isExpected && !isPressed) {
+      this.ctx.strokeStyle = "#ff9800";
+    } else {
+      this.ctx.strokeStyle = "rgba(0, 255, 255, 0.9)";
+    }
+    this.ctx.lineWidth = 4;
+    this.ctx.strokeRect(key.x, key.y, key.width, key.height - keyHeightShorten);
 
     // Clear shadow for additional effects
     clearShadow(this.ctx);
 
     // Apply 3D visual effects
     if (!isPressed) {
-      applyWhiteKey3DEffect(this.ctx, key.x, key.y, key.width, key.height);
+      applyWhiteKey3DEffect(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height - keyHeightShorten
+      );
     } else {
-      applyPressedGlowEffect(this.ctx, key.x, key.y, key.width, key.height);
+      applyPressedGlowEffect(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height - keyHeightShorten
+      );
     }
-
-    // Draw border
-    this.ctx.strokeStyle = this.config.colors.whiteKeyBorder;
-    this.ctx.lineWidth = 4;
-    this.ctx.strokeRect(key.x, key.y, key.width, key.height);
   }
 
   /**
@@ -149,22 +231,46 @@ export class PianoRenderer {
    * @param {Object} key - Key object
    * @param {boolean} isPressed - Whether the key is pressed
    */
-  drawBlackKey(key, isPressed) {
+  drawBlackKey(key, isPressed, isExpected) {
+    // Draw orange background behind expected black key
+    if (isExpected && !isPressed) {
+      this.ctx.save();
+      this.ctx.globalAlpha = 0.5;
+      this.ctx.fillStyle = "#ff9800";
+      this.ctx.fillRect(key.x - 2, key.y - 2, key.width + 4, key.height + 4);
+      this.ctx.restore();
+    }
     const radius = 6;
 
-    // Draw neon border effect
-    drawNeonBorder(
-      this.ctx,
-      key.x,
-      key.y,
-      key.width,
-      key.height,
-      radius,
-      "rgba(255, 20, 147, 0.9)"
-    );
-
-    // Apply shadow effects
-    this.applyBlackKeyShadow(isPressed);
+    // Draw neon border effect (orange if expected and not pressed, pink otherwise)
+    if (isExpected && !isPressed) {
+      drawNeonBorder(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height,
+        radius,
+        "#ff9800"
+      );
+      // Only draw orange border
+      this.ctx.save();
+      this.ctx.strokeStyle = "#ff9800";
+      this.ctx.lineWidth = 4;
+      this.ctx.strokeRect(key.x, key.y, key.width, key.height);
+      this.ctx.restore();
+    } else {
+      drawNeonBorder(
+        this.ctx,
+        key.x,
+        key.y,
+        key.width,
+        key.height,
+        radius,
+        "rgba(255, 20, 147, 0.9)"
+      );
+      // No border for non-expected black keys
+    }
 
     // Set fill color and draw rounded rectangle
     this.ctx.fillStyle = isPressed
@@ -180,6 +286,8 @@ export class PianoRenderer {
       radius
     );
     this.ctx.fill();
+    // Restore context state
+    this.ctx.restore();
 
     // Clear shadow and apply 3D effects
     clearShadow(this.ctx);

@@ -1,6 +1,7 @@
 /* Basic stylesheet - no design */
 
 /* Piano Canvas Styles */
+
 .piano-container {
   width: 100%;
   max-width: 1200px;
@@ -16,8 +17,8 @@
   border-radius: 8px;
   background-color: #f5f5f5;
   display: block;
-  /* Remove any width constraints to let the Piano class handle sizing */
   max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
