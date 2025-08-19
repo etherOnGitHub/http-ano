@@ -22,12 +22,12 @@ body {
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
-.nav-link {
-    color: #fff !important;
+.nav-link:hover  {
+    color: #0d0d0d !important;
     text-shadow: 0 0 5px #00fff9;
     transition: all 0.2s ease-in-out;
 }
-.nav-link:hover {
+.nav-link {
     color: #ff00ff !important;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
