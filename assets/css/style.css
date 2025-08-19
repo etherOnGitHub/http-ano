@@ -23,7 +23,7 @@ body {
     margin-left: 1.5rem;
 }
 
-.nav-link:hover  {
+.nav-link:hover {
     color: #0d0d0d !important;
     text-shadow: 0 0 5px #00fff9;
     transition: all 0.2s ease-in-out;
@@ -117,6 +117,34 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
+}
+
+#instructions ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+#instructions ul li {
+    display: inline-flex; /* Horizontal flex with icon and text */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Center content */
+    gap: 0.5em; /* Space between icon and text */
+    margin-bottom: 0.7em;
+
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+#instructions ul li::before {
+    font-family: 'Font Awesome 6 Free'; /* Font Awesome font */
+    content: '\f51f'; /* Unicode for compact-disc icon */
+    font-weight: 900; /* Solid style */
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+    font-size: 1.2em;
+    display: inline-block;
 }
 
 #instructions h2,
