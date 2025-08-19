@@ -160,7 +160,7 @@ export class PianoRenderer {
       key.width,
       key.height,
       radius,
-      "rgba(255, 20, 147, 0.9)"
+      "#ff00ff"
     );
 
     // Apply shadow effects

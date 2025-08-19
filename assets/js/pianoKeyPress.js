@@ -1,76 +1,157 @@
-// Virtual keyboard button key mapping
+// Virtual keyboard button key mapping - Extended for multi-octave piano
 export const keyMap = [
+  // Octave 4 (Lower octave)
   {
-    id: "vk-btn-C5",
-    key: "t",
-    audio: "assets/audio/piano/C5piano.mp3",
+    id: "vk-btn-C4",
+    key: "a",
+    audio: "assets/audio/piano/C4piano.mp3",
     note: "C4",
   },
   {
-    id: "vk-btn-Cs5",
-    key: "y",
-    audio: "assets/audio/piano/Cs5piano.mp3",
+    id: "vk-btn-Cs4",
+    key: "w",
+    audio: "assets/audio/piano/Cs4piano.mp3",
     note: "C#4",
   },
   {
-    id: "vk-btn-D5",
-    key: "u",
-    audio: "assets/audio/piano/D5piano.mp3",
+    id: "vk-btn-D4",
+    key: "s",
+    audio: "assets/audio/piano/D4piano.mp3",
     note: "D4",
   },
   {
-    id: "vk-btn-Ds5",
-    key: "i",
-    audio: "assets/audio/piano/Ds5piano.mp3",
+    id: "vk-btn-Ds4",
+    key: "e",
+    audio: "assets/audio/piano/Ds4piano.mp3",
     note: "D#4",
   },
   {
-    id: "vk-btn-E5",
-    key: "o",
-    audio: "assets/audio/piano/E5piano.mp3",
+    id: "vk-btn-E4",
+    key: "d",
+    audio: "assets/audio/piano/E4piano.mp3",
     note: "E4",
   },
   {
-    id: "vk-btn-F5",
-    key: "p",
-    audio: "assets/audio/piano/F5piano.mp3",
+    id: "vk-btn-F4",
+    key: "f",
+    audio: "assets/audio/piano/F4piano.mp3",
     note: "F4",
   },
   {
-    id: "vk-btn-Fs5",
-    key: "1",
-    audio: "assets/audio/piano/Fs5piano.mp3",
+    id: "vk-btn-Fs4",
+    key: "t",
+    audio: "assets/audio/piano/Fs4piano.mp3",
     note: "F#4",
   },
   {
-    id: "vk-btn-G5",
-    key: "2",
-    audio: "assets/audio/piano/G5piano.mp3",
+    id: "vk-btn-G4",
+    key: "g",
+    audio: "assets/audio/piano/G4piano.mp3",
     note: "G4",
   },
   {
-    id: "vk-btn-Gs5",
-    key: "3",
-    audio: "assets/audio/piano/Gs5piano.mp3",
+    id: "vk-btn-Gs4",
+    key: "y",
+    audio: "assets/audio/piano/Gs4piano.mp3",
     note: "G#4",
   },
   {
-    id: "vk-btn-A5",
-    key: "4",
-    audio: "assets/audio/piano/A5piano.mp3",
+    id: "vk-btn-A4",
+    key: "h",
+    audio: "assets/audio/piano/A4piano.mp3",
     note: "A4",
   },
   {
-    id: "vk-btn-As5",
-    key: "5",
-    audio: "assets/audio/piano/As5piano.mp3",
+    id: "vk-btn-As4",
+    key: "u",
+    audio: "assets/audio/piano/As4piano.mp3",
     note: "A#4",
   },
   {
-    id: "vk-btn-B5",
-    key: "6",
-    audio: "assets/audio/piano/B5piano.mp3",
+    id: "vk-btn-B4",
+    key: "j",
+    audio: "assets/audio/piano/B4piano.mp3",
     note: "B4",
+  },
+  // Octave 5 (Upper octave)
+  {
+    id: "vk-btn-C5",
+    key: "k",
+    audio: "assets/audio/piano/C5piano.mp3",
+    note: "C5",
+  },
+  {
+    id: "vk-btn-Cs5",
+    key: "o",
+    audio: "assets/audio/piano/Cs5piano.mp3",
+    note: "C#5",
+  },
+  {
+    id: "vk-btn-D5",
+    key: "l",
+    audio: "assets/audio/piano/D5piano.mp3",
+    note: "D5",
+  },
+  {
+    id: "vk-btn-Ds5",
+    key: "p",
+    audio: "assets/audio/piano/Ds5piano.mp3",
+    note: "D#5",
+  },
+  {
+    id: "vk-btn-E5",
+    key: ";",
+    audio: "assets/audio/piano/E5piano.mp3",
+    note: "E5",
+  },
+  {
+    id: "vk-btn-F5",
+    key: "'",
+    audio: "assets/audio/piano/F5piano.mp3",
+    note: "F5",
+  },
+  {
+    id: "vk-btn-Fs5",
+    key: "]",
+    audio: "assets/audio/piano/Fs5piano.mp3",
+    note: "F#5",
+  },
+  {
+    id: "vk-btn-G5",
+    key: "z",
+    audio: "assets/audio/piano/G5piano.mp3",
+    note: "G5",
+  },
+  {
+    id: "vk-btn-Gs5",
+    key: "x",
+    audio: "assets/audio/piano/Gs5piano.mp3",
+    note: "G#5",
+  },
+  {
+    id: "vk-btn-A5",
+    key: "c",
+    audio: "assets/audio/piano/A5piano.mp3",
+    note: "A5",
+  },
+  {
+    id: "vk-btn-As5",
+    key: "v",
+    audio: "assets/audio/piano/As5piano.mp3",
+    note: "A#5",
+  },
+  {
+    id: "vk-btn-B5",
+    key: "b",
+    audio: "assets/audio/piano/B5piano.mp3",
+    note: "B5",
+  },
+  // Additional note C6
+  {
+    id: "vk-btn-C6",
+    key: "n",
+    audio: "assets/audio/piano/C6piano.mp3",
+    note: "C6",
   },
 ];
 
@@ -102,29 +183,10 @@ export function handleButtonAction(id) {
     // Handle the piano key press
     handlePianoKeyPress(mappedKey);
 
-    // Switch for console logging and future testing
-    switch (id) {
-      case "vk-btn-C5":
-      case "vk-btn-Cs5":
-      case "vk-btn-D5":
-      case "vk-btn-Ds5":
-      case "vk-btn-E5":
-      case "vk-btn-F5":
-      case "vk-btn-Fs5":
-      case "vk-btn-G5":
-      case "vk-btn-Gs5":
-      case "vk-btn-A5":
-      case "vk-btn-As5":
-      case "vk-btn-B5":
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-        break;
-      default:
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-    }
+    // Console logging for testing
+    console.log(
+      `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+    );
   }
 }
 

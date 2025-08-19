@@ -30,7 +30,6 @@ class Piano {
     // Initialize state
     this.keys = [];
     this.pressedKeys = new Set();
-    this.startOctave = this.config.layout.defaultOctave;
 
     // Initialize modular components
     this.keyGenerator = new KeyGenerator(this.config);
@@ -39,9 +38,6 @@ class Piano {
 
     // Create note-to-audio mapping
     this.noteAudioMap = this.createNoteAudioMap();
-
-    // Track resize timeout for debouncing
-    this.resizeTimeout = null;
 
     // Initialize the piano
     this.init();
@@ -82,10 +78,10 @@ class Piano {
    * Generate piano keys using the KeyGenerator
    */
   createKeys() {
-    this.keys = this.keyGenerator.generateOctaveKeys(
+    // The KeyGenerator will now read config values dynamically
+    this.keys = this.keyGenerator.generateMultiOctaveKeys(
       this.canvas.width,
-      this.canvas.height,
-      this.startOctave
+      this.canvas.height
     );
   }
 
@@ -245,18 +241,6 @@ class Piano {
   }
 
   /**
-   * Handle resize events (debounced)
-   */
-  handleResize() {
-    clearTimeout(this.resizeTimeout);
-    this.resizeTimeout = setTimeout(() => {
-      this.setupCanvas();
-      this.createKeys();
-      this.draw();
-    }, this.config.responsive.resizeDebounceMs);
-  }
-
-  /**
    * Change the octave of the piano
    * @param {number} octave - New octave number
    */
@@ -265,10 +249,55 @@ class Piano {
       throw new Error("Octave must be a number between 0 and 8");
     }
 
-    this.startOctave = octave;
+    this.config.layout.defaultOctave = octave;
     this.releaseAllKeys(); // Clear any pressed keys
     this.createKeys(); // Regenerate keys with new octave
     this.draw(); // Redraw the piano
+  }
+
+  /**
+   * Change the number of octaves displayed and update config based on octave amount
+   * @param {number} numOctaves - Number of octaves to display
+   */
+  setNumOctaves(numOctaves) {
+    if (typeof numOctaves !== "number" || numOctaves < 1 || numOctaves > 4) {
+      throw new Error("Number of octaves must be between 1 and 4");
+    }
+
+    switch (numOctaves) {
+      case 3:
+        this.config.layout.defaultOctave = 4;
+        this.config.aspectRatio = 0.18;
+        break;
+      case 2:
+        this.config.layout.defaultOctave = 4;
+        this.config.aspectRatio = 0.2;
+        break;
+      case 1:
+        this.config.layout.defaultOctave = 5;
+        this.config.aspectRatio = 0.25;
+        break;
+      default:
+        break;
+    }
+
+    this.config.layout.numOctaves = numOctaves;
+    this.releaseAllKeys(); // Clear any pressed keys
+    this.setupCanvas(); // Recalculate canvas size for new layout
+    this.createKeys(); // Regenerate keys with new number of octaves
+    this.draw(); // Redraw the piano
+  }
+
+  /**
+   * Get current configuration values
+   * @returns {Object} Current layout configuration
+   */
+  getCurrentLayout() {
+    return {
+      defaultOctave: this.config.layout.defaultOctave,
+      numOctaves: this.config.layout.numOctaves,
+      totalKeys: this.keys.length,
+    };
   }
 
   /**
@@ -277,11 +306,6 @@ class Piano {
   destroy() {
     // Clean up event listeners
     this.eventHandler.cleanup();
-
-    // Clear any pending timeouts
-    if (this.resizeTimeout) {
-      clearTimeout(this.resizeTimeout);
-    }
 
     // Clear pressed keys
     this.releaseAllKeys();
