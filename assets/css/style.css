@@ -2,6 +2,7 @@
 /* 🎹 General cyberpunk/neon style */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+
 body {
     background-color: #0d0d0d;
     color: #f5f5f5;
@@ -174,7 +175,11 @@ body {
     position: fixed;
     left: 0;
     z-index: 0;
+
+
 }
+
+/* ...existing code... */
 
 /* Piano html keys are still kept in the html, but are hidden away */
 /* .keys {
