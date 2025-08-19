@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Make piano globally accessible for potential future features
   window.piano = piano;
+
+  
+  console.log("Piano keys array information:", piano.getAllKeys());
 });
 
 setupVirtualKeyboard();

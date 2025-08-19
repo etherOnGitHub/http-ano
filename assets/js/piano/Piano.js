@@ -256,12 +256,29 @@ class Piano {
   }
 
   /**
-   * Change the number of octaves displayed
+   * Change the number of octaves displayed and update config based on octave amount
    * @param {number} numOctaves - Number of octaves to display
    */
   setNumOctaves(numOctaves) {
     if (typeof numOctaves !== "number" || numOctaves < 1 || numOctaves > 4) {
       throw new Error("Number of octaves must be between 1 and 4");
+    }
+
+    switch (numOctaves) {
+      case 3:
+        this.config.layout.defaultOctave = 4;
+        this.config.layout.aspectRatio = 0.18;
+        break;
+      case 2:
+        this.config.layout.defaultOctave = 4;
+        this.config.layout.aspectRatio = 0.2;
+        break;
+      case 1:
+        this.config.layout.defaultOctave = 5;
+        this.config.layout.aspectRatio = 0.25;
+        break;
+      default:
+        break;
     }
 
     this.config.layout.numOctaves = numOctaves;

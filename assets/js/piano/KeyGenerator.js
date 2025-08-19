@@ -165,21 +165,15 @@ export class KeyGenerator {
 
   /**
    * Create a white key object
-   * @param {number} whiteKeyIndex - Index among white keys
-   * @param {number} width - Key width
-   * @param {number} height - Key height
-   * @param {string} note - Note name (e.g., "C4")
-   * @param {number} index - Overall key index
-   * @returns {Object} White key object
    */
-  createWhiteKey(whiteKeyIndex, width, height, note, index) {
+  createWhiteKey(whiteKeyIndex, width, height, noteName, index) {
     return {
       type: "white",
       x: whiteKeyIndex * width,
       y: 0,
       width: width,
       height: height,
-      note: note,
+      note: noteName,
       index: index,
       pressed: false,
     };
@@ -187,20 +181,13 @@ export class KeyGenerator {
 
   /**
    * Create a black key object
-   * @param {number} whiteKeyIndex - Index of the white key this black key is positioned relative to
-   * @param {number} whiteKeyWidth - Width of white keys
-   * @param {number} blackKeyWidth - Width of black keys
-   * @param {number} height - Key height
-   * @param {string} note - Note name (e.g., "C#4")
-   * @param {number} index - Overall key index
-   * @returns {Object} Black key object
    */
   createBlackKey(
     whiteKeyIndex,
     whiteKeyWidth,
     blackKeyWidth,
     height,
-    note,
+    noteName,
     index
   ) {
     return {
@@ -209,7 +196,7 @@ export class KeyGenerator {
       y: 0,
       width: blackKeyWidth,
       height: height,
-      note: note,
+      note: noteName,
       index: index,
       pressed: false,
     };

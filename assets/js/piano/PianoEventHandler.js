@@ -118,15 +118,13 @@ export class PianoEventHandler {
     this.resizeTimeout = setTimeout(() => {
       // Adjust octave configuration for larger screens
       if (window.innerWidth > 768) {
-        // Use 2 octaves for larger screens if not already set
+        // Use 3 octaves for larger screens if not already set
         if (this.piano.config.layout.numOctaves !== 3) {
-          this.piano.config.aspectRatio = 0.18
           this.piano.setNumOctaves(3);
         }
       } else {
         // Use 1 octave for smaller screens if not already set
         if (this.piano.config.layout.numOctaves !== 1) {
-          this.piano.config.aspectRatio = 0.25
           this.piano.setNumOctaves(1);
         }
       }
