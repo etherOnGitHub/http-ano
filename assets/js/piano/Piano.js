@@ -267,15 +267,15 @@ class Piano {
     switch (numOctaves) {
       case 3:
         this.config.layout.defaultOctave = 4;
-        this.config.layout.aspectRatio = 0.18;
+        this.config.aspectRatio = 0.18;
         break;
       case 2:
         this.config.layout.defaultOctave = 4;
-        this.config.layout.aspectRatio = 0.2;
+        this.config.aspectRatio = 0.2;
         break;
       case 1:
         this.config.layout.defaultOctave = 5;
-        this.config.layout.aspectRatio = 0.25;
+        this.config.aspectRatio = 0.25;
         break;
       default:
         break;

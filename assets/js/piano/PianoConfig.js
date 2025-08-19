@@ -7,7 +7,7 @@ export const PIANO_CONFIG = {
   aspectRatio: 0.18, // Height to width ratio for multi-octave piano (smaller for wider keyboard)
   maxWidth: 1400, // Maximum width for piano in pixels (increased for more keys)
   minWidth: 700, // Minimum width for piano in pixels (increased for more keys)
-  responsiveWidthPercent: 0.85, // Percentage of container width to use
+  responsiveWidthPercent: 1, // Percentage of container width to use
 
   // Visual configuration
   colors: {
@@ -46,7 +46,7 @@ export const PIANO_CONFIG = {
 
   // Responsive behavior
   responsive: {
-    maxWindowWidthPercent: 0.95, // Never more than this percent of window width (increased for wider piano)
+    maxWindowWidthPercent: 1, // Never more than this percent of window width (increased for wider piano)
     resizeDebounceMs: 250, // Debounce time for resize events
   },
 
