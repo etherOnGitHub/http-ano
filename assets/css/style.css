@@ -21,6 +21,7 @@ body {
     color: #fff;
     font-weight: bold;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin-left: 1.5rem;
 }
 
 .nav-link:hover {
@@ -138,6 +139,34 @@ body {
     border: none;
 }
 
+#instructions ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+#instructions ul li {
+    display: inline-flex; /* Horizontal flex with icon and text */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Center content */
+    gap: 0.5em; /* Space between icon and text */
+    margin-bottom: 0.7em;
+
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+#instructions ul li::before {
+    font-family: 'Font Awesome 6 Free'; /* Font Awesome font */
+    content: '\f51f'; /* Unicode for compact-disc icon */
+    font-weight: 900; /* Solid style */
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+    font-size: 1.2em;
+    display: inline-block;
+}
+
 #instructions h2,
 #instructions h3 {
     color: #0ff;
@@ -181,10 +210,47 @@ body {
 
 }
 
-/* ...existing code... */
+/* Footer styling */
+footer {
+    background: linear-gradient(90deg, #ff00ff, #00fff9);
+    border-top: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff;
+}
 
-/* Piano html keys are still kept in the html, but are hidden away */
-/* .keys {
-  visibility: hidden;
-  height: 0px;
-} */
+
+footer .container-fluid {
+    position: relative;
+}
+
+footer .row {
+    position: relative;
+}
+
+#tagline {
+    color: #fff !important;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    text-align: center !important;
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer .text-muted {
+    color: #fff !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+/* Ensure spacing between icons and text in taglines */
+#tagline i {
+    margin-right: 0.5rem;
+}
+
+#tagline i:last-child {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
