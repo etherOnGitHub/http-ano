@@ -37,6 +37,14 @@
         </div>
     </nav>
 
+    <div class="container-fluid">
+      <canvas id="visualiser-canvas">
+        Your browser does not support the canvas element.
+      </canvas>
+    </div>
+
+
+
     <!-- Canvas Row -->
     <div class="row justify-content-center mt-3">
         <div class="col-12 d-flex justify-content-center">
@@ -44,6 +52,20 @@
         </div>
     </div>
     </div>
+
+
+    <section id="visualiser" class="container mt-5">
+      <h2>Visualiser</h2>
+      
+      <p>
+        The visualiser displays the notes being played in real-time. Each note
+        corresponds to a key on the virtual piano.
+      </p>
+      <p>
+        Click on the piano keys or press the corresponding QWERTY keys to see
+        the visualisation.
+      </p>
+    </section>
 
     <section id="instructions" class="container mt-5">
         <h2>Instructions</h2>
@@ -67,6 +89,30 @@
             </li>
         </ul>
     </section>
+=======
+    <section id="instructions" class="container mt-5">
+        <h2>Instructions</h2>
+        <p>
+            Welcome to the Virtual Piano! Use your QWERTY keyboard to play notes.
+            The piano spans 36 keys from <strong>C3</strong> to <strong>C6</strong>.
+        </p>
+
+        <h3>Keyboard Mapping</h3>
+        <p>
+            Each piano key corresponds to a key on your QWERTY keyboard. The mapping
+            is designed to match the physical keyboard layout for easier play.
+        </p>
+
+        <h3>Tips</h3>
+        <ul>
+            <li>Press the corresponding QWERTY key to play a note.</li>
+            <li>Use multiple keys simultaneously to play chords.</li>
+            <li>
+                Clicking on the piano keys with your mouse will also play the notes.
+            </li>
+        </ul>
+    </section>
+
     <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
     <script type="module" src="assets/js/main.js"></script>
 </body>

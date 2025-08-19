@@ -2,6 +2,7 @@
 /* 🎹 General cyberpunk/neon style */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+
 body {
     background-color: #0d0d0d;
     color: #f5f5f5;
@@ -22,11 +23,12 @@ body {
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
-.nav-link:hover  {
+.nav-link:hover {
     color: #0d0d0d !important;
     text-shadow: 0 0 5px #00fff9;
     transition: all 0.2s ease-in-out;
 }
+
 .nav-link {
     color: #ff00ff !important;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
@@ -73,7 +75,8 @@ body {
 }
 
 .key:hover {
-    box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset; /* neon purple glow */
+    box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset;
+    /* neon purple glow */
 }
 
 /* Buttons inside keys */
@@ -109,13 +112,28 @@ body {
     height: auto;
 }
 
-/* Instructions panel */
-#instructions {
+#visualiser, #instructions {
     background: rgba(25, 25, 60, 0.85);
     border: 1px solid #0ff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
+    z-index: 1;
+    position: relative;
+}
+
+#visualiser button {
+    background: transparent;
+    border: none;
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+}
+
+/* Instructions panel */
+
+#instructions button {
+    background: transparent;
+    border: none;
 }
 
 #instructions h2,
@@ -125,7 +143,7 @@ body {
 }
 
 /* Piano Canvas Styles */
-.piano-container {
+#piano-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -133,6 +151,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+}
+
+/* ...existing code... */
+#piano {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: block;
+    /* Remove any width constraints to let the Piano class handle sizing */
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+#visualiser-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    position: fixed;
+    left: 0;
+    z-index: 0;
+
+
 }
 
 /* ...existing code... */
