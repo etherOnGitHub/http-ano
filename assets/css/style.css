@@ -1,7 +1,7 @@
 /* Basic stylesheet - no design */
 
 /* Piano Canvas Styles */
-.piano-container {
+#piano-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 #piano {
@@ -19,6 +20,7 @@
   /* Remove any width constraints to let the Piano class handle sizing */
   max-width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 #visualiser-canvas {
@@ -28,6 +30,8 @@
   border: 1px solid #ccc;
   border-radius: 0;
   margin-top: 10px;
+  position: absolute;
+  z-index: 0;
 }
 
 /* Piano html keys are still kept in the html, but are hidden away */

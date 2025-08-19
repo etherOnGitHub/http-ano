@@ -42,6 +42,9 @@
     </nav>
 
     <div class="container-fluid">
+        <canvas id="visualiser-canvas" class="ml-0">
+        Your browser does not support the canvas element.
+      </canvas>
       <div class="row justify-content-center">
         <div class="col-12 col-md-10" id="piano-container">
           <div class="keys d-flex flex-wrap justify-content-center">
@@ -127,9 +130,7 @@
 
     <section id="visualiser" class="container mt-5">
       <h2>Visualiser</h2>
-      <canvas id="visualiser-canvas">
-        Your browser does not support the canvas element.
-      </canvas>
+      
       <p>
         The visualiser displays the notes being played in real-time. Each note
         corresponds to a key on the virtual piano.
