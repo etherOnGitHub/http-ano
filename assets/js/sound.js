@@ -1,11 +1,13 @@
-
 // Shared AudioContext and Analyser for visualiser
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 export const audioContext = new AudioCtx();
 export const analyser = audioContext.createAnalyser();
 
+// Cache Audio elements by file path
+const audioCache = {};
+
 // Configure analyser (adjust as desired)
-analyser.fftSize = 32; 
+analyser.fftSize = 32;
 analyser.smoothingTimeConstant = 0.9;
 // Ensure analyser feeds the speakers so media routed through it is audible
 analyser.connect(audioContext.destination);
@@ -17,30 +19,31 @@ function ensureAudioContextRunning() {
 }
 
 export function playSound(soundFilePath) {
-  // Play audio if available for this note (allow overlapping sounds)
   if (!soundFilePath) return;
-
   ensureAudioContextRunning();
 
-  const audio = new Audio(soundFilePath);
+  // Reuse cached audio element if available
+  let audio = audioCache[soundFilePath];
+  if (!audio) {
+    audio = new Audio(soundFilePath);
+    audioCache[soundFilePath] = audio;
+    // Connect to analyser once
+    try {
+      const src = audioContext.createMediaElementSource(audio);
+      src.connect(analyser);
+    } catch (e) {}
+  }
 
-  // Use existing slider value (0..1)
+  // Reset and play
+  audio.pause();
+  audio.currentTime = 0;
+
+  // Set volume
   const volumeSlider = document.getElementById("volume-slider");
   if (volumeSlider) {
-    const v = parseFloat(volumeSlider.value/100);
+    const v = parseFloat(volumeSlider.value / 100);
     if (!Number.isNaN(v)) audio.volume = v;
   }
 
-  // Feed this audio element into the analyser so the visualiser can read it
-  try {
-    const src = audioContext.createMediaElementSource(audio);
-  // Route through analyser (which is connected to destination)
-  src.connect(analyser);
-  } catch (e) {
-
-  }
-
-  audio.currentTime = 0;
   audio.play();
 }
-
