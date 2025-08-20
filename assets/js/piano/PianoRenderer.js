@@ -246,12 +246,7 @@ export class PianoRenderer {
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
 
-    // Set text color based on key type
-    if (isBlackKey) {
-      this.ctx.fillStyle = "#ffffff"; // White text on black keys
-    } else {
-      this.ctx.fillStyle = "#333333"; // Dark text on white keys
-    }
+    this.ctx.fillStyle = "#ffffff"; // White text on black keys
 
     // Calculate position (bottom center of the key)
     const textX = key.x + key.width / 2;

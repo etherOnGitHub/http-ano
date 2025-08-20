@@ -237,14 +237,18 @@ export function handlePianoKeyPress(mappedKey) {
     setTimeout(() => {
       window.piano.releaseKey(mappedKey.note);
     }, 200);
+  } else if (mappedKey.note) {
+    // Fallback: if piano is not available, dispatch the event directly
+    // This ensures play-along functionality works even during initialization
+    document.dispatchEvent(
+      new CustomEvent("noteplayed", { detail: { note: mappedKey.note } })
+    );
   }
 
   console.log(`Piano key '${mappedKey.key}' pressed - Note: ${mappedKey.note}`);
 
-  // Dispatch a custom event for play-along logic
-  document.dispatchEvent(
-    new CustomEvent("noteplayed", { detail: { note: mappedKey.note } })
-  );
+  // Note: When piano is available, piano.pressKey() dispatches the 'noteplayed' event
+  // When piano is not available, we dispatch it directly as a fallback
 }
 
 export function handleButtonAction(id) {
