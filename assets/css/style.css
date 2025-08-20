@@ -3,17 +3,17 @@
 /* Basic stylesheet - no design */
 /* 🎹 General cyberpunk/neon style */
 
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 body {
-  min-height: 100%;
-  background-color: #0d0d0d;
-  color: #f5f5f5;
-  font-family: "Orbitron", sans-serif;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    min-height: 100%;
+    background-color: #0d0d0d;
+    color: #f5f5f5;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .section-spacing {
@@ -23,27 +23,27 @@ body {
 
 /* Navbar neon style */
 .navbar {
-  background: linear-gradient(90deg, #ff00ff, #00fff9);
-  border-bottom: 2px solid #0ff;
-  box-shadow: 0 0 20px #0ff;
+    background: linear-gradient(90deg, #ff00ff, #00fff9);
+    border-bottom: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff;
 }
 
 .navbar-brand {
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-  margin-left: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin-left: 1.5rem;
 }
 
 .nav-link:hover {
-  color: #0d0d0d !important;
-  text-shadow: 0 0 5px #00fff9;
-  transition: all 0.2s ease-in-out;
+    color: #0d0d0d !important;
+    text-shadow: 0 0 5px #00fff9;
+    transition: all 0.2s ease-in-out;
 }
 
 .nav-link {
-  color: #ff00ff !important;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    color: #ff00ff !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
 /* playback box */
@@ -76,106 +76,106 @@ body {
 
 /* Piano container */
 #piano-container {
-  margin-top: 2rem;
-  padding: 20px;
-  background: rgba(15, 15, 30, 0.95);
-  border: 2px solid #ff00ff;
-  border-radius: 10px;
-  box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset;
+    margin-top: 2rem;
+    padding: 20px;
+    background: rgba(15, 15, 30, 0.95);
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset;
 }
 
 /* Keys styling */
 .key {
-  position: relative;
-  display: inline-block;
-  margin: 3px;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
+    position: relative;
+    display: inline-block;
+    margin: 3px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
 }
 
 .key.white {
-  width: 40px;
-  height: 140px;
-  background: #1a1a1a;
-  border: 2px solid #0ff;
-  box-shadow: 0 0 10px #0ff;
+    width: 40px;
+    height: 140px;
+    background: #1a1a1a;
+    border: 2px solid #0ff;
+    box-shadow: 0 0 10px #0ff;
 }
 
 .key.black {
-  width: 30px;
-  height: 90px;
-  margin-left: -15px;
-  margin-right: -15px;
-  background: #111;
-  border: 2px solid #ff00ff;
-  box-shadow: 0 0 10px #ff00ff;
-  z-index: 2;
+    width: 30px;
+    height: 90px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background: #111;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+    z-index: 2;
 }
 
 .key:hover {
-  box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset;
-  /* neon purple glow */
+    box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset;
+    /* neon purple glow */
 }
 
 /* Buttons inside keys */
 .key button {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-shadow: 0 0 5px #00fff9, 0 0 10px #ff00ff;
-  cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00fff9, 0 0 10px #ff00ff;
+    cursor: pointer;
 }
 
 /* Animation when a key is pressed */
 .key.active,
 .key button:active {
-  transform: scale(0.96);
-  box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9;
-  transition: 0.1s ease;
+    transform: scale(0.96);
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9;
+    transition: 0.1s ease;
 }
 
 /* Canvas with neon border */
 /* Canvas with neon border and unified styles */
 #piano {
-  background: transparent;
-  border: 2px solid #ff00ff;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff9;
-  display: block;
-  max-width: 100%;
-  height: auto;
+    background: transparent;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff9;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 #visualiser,
 #instructions {
-  max-height: 600px;
-  background: rgba(25, 25, 60, 0.85);
-  border: 1px solid #0ff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
-  z-index: 1;
-  position: relative;
+    max-height: 600px;
+    background: rgba(25, 25, 60, 0.85);
+    border: 1px solid #0ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff inset;
+    z-index: 1;
+    position: relative;
 }
 
 #visualiser button {
-  background: transparent;
-  border: none;
-  color: #0ff;
-  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+    background: transparent;
+    border: none;
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
 }
 
 /* Instructions panel */
 
 #instructions button {
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
 }
 
 #instructions ul {
@@ -216,126 +216,181 @@ body {
 
 #instructions h2,
 #instructions h3 {
-  color: #0ff;
-  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
 }
 
 /* When collapsed, shrink the instructions box to the width of its header */
 #instructions.collapsed {
-  width: fit-content;
-  max-width: none;
-  padding: 8px 12px; /* smaller padding so border hugs the h2 */
-  margin-left: auto;
-  margin-right: auto; /* keep centered */
+    width: fit-content;
+    max-width: none;
+    padding: 8px 12px; /* smaller padding so border hugs the h2 */
+    margin-left: auto;
+    margin-right: auto; /* keep centered */
 }
 
 #instructions.collapsed #instructions-box {
-  display: none !important; /* ensure content is hidden */
+    display: none !important; /* ensure content is hidden */
 }
 
 #instructions .toggle-text {
-  display: inline-block; /* allow box to size to header */
-  background: transparent;
-  border: none;
-  padding: 0;
+    display: inline-block; /* allow box to size to header */
+    background: transparent;
+    border: none;
+    padding: 0;
 }
 
 #instructions .toggle-text h2 {
-  display: inline-block;
-  margin: 0;
-  white-space: nowrap; /* keep header on one line */
+    display: inline-block;
+    margin: 0;
+    white-space: nowrap; /* keep header on one line */
 }
 
 /* Piano Canvas Styles */
 #piano-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
 }
 
 #piano {
-  border: 2px solid #333;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  display: block;
-  /* Remove any width constraints to let the Piano class handle sizing */
-  max-width: 100%;
-  height: auto;
-  z-index: 1;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: block;
+    /* Remove any width constraints to let the Piano class handle sizing */
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
 }
 #pick-visuals {
     z-index: 1;
 }
 #visualiser-canvas {
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  border: 1px solid #ffffffc7;
-  border-radius: 0;
-  position: fixed;
-  left: 0;
-  z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    /* border: 1px solid #ffffffc7; */
+    border-radius: 0;
+    position: fixed;
+    left: 0;
+    z-index: 0;
+}
+
+/* Remove all custom modal backdrop effects */
+.modal-backdrop {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    pointer-events: none !important;
+}
+
+/* Recording Controls styles */
+
+#recording-controls {
+    max-width: 900px;
+    margin: 16px auto;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1000;
+}
+
+.btn-custom {
+    border-radius: 12px;
+    font-weight: bold;
+    border: 2px solid;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;
+    user-select: none;
+    z-index: 11;
+    background-color: #181c2f;
+    font-family: Arial, sans-serif;
+}
+
+/* start buttons */
+.btn-custom.r-start {
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
+}
+
+/* Stop buttons */
+.btn-custom.r-stop {
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
+}
+
+/* playback button */
+.btn-custom.r-play {
+    color: #ff00ff; /* magenta neón, igual que el botón stop */
+    border-color: #ff00ff;
+    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
+    background-color: transparent; /* o el fondo que uses */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Active state for any button */
+.btn-custom.active {
+    background-color: #00fff9;
+    border-color: #00fff9;
+    color: #181c2f !important;
+    box-shadow: none !important;
 }
 
 /* Footer styling */
 footer {
-  background: linear-gradient(90deg, #ff00ff, #00fff9);
-  border-top: 2px solid #0ff;
-  box-shadow: 0 0 20px #0ff;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+    background: linear-gradient(90deg, #ff00ff, #00fff9);
+    border-top: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 footer .container-fluid {
-  position: relative;
+    position: relative;
 }
 
 footer .row {
-  position: relative;
+    position: relative;
 }
 
 #tagline {
-  color: #fff !important;
-  font-weight: bold;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-  text-align: center !important;
-  display: block;
-  width: 100%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    color: #fff !important;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    text-align: center !important;
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 footer .text-muted {
-  color: #fff !important;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    color: #fff !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
 /* Ensure spacing between icons and text in taglines */
 #tagline i {
-  margin-right: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 #tagline i:last-child {
     margin-left: 0.5rem;
     margin-right: 0;
 }
-
-/* Remove all custom modal backdrop effects */
-.modal-backdrop {
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-  pointer-events: none !important;
-}
-
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
@@ -372,5 +427,3 @@ footer .text-muted {
         transition: all 0.2s ease-in-out;
     }
 }
-
-
