@@ -2,7 +2,6 @@
 /* 🎹 General cyberpunk/neon style */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-
 body {
     min-height: 100%;
     background-color: #0d0d0d;
@@ -117,7 +116,8 @@ body {
     height: auto;
 }
 
-#visualiser, #instructions {
+#visualiser,
+#instructions {
     max-height: 600px;
     background: rgba(25, 25, 60, 0.85);
     border: 1px solid #0ff;
@@ -127,7 +127,6 @@ body {
     z-index: 1;
     position: relative;
 }
-
 
 #visualiser button {
     background: transparent;
@@ -210,8 +209,6 @@ body {
     position: fixed;
     left: 0;
     z-index: 0;
-
-
 }
 
 /* Footer styling */
@@ -223,11 +220,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    
-    
-    
 }
-
 
 footer .container-fluid {
     position: relative;
@@ -264,4 +257,26 @@ footer .text-muted {
     margin-left: 0.5rem;
     margin-right: 0;
 }
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    footer .row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
 
+    footer .mobile-view {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 0;
+        font-size: 0.6rem;
+    }
+
+    #tagline {
+        position: static;
+        transform: none;
+        margin-bottom: 8px;
+    }
+}
