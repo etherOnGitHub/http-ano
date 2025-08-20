@@ -318,6 +318,13 @@ const pressedKeys = new Set(); // Track pressed keys
 // Key press anti-spam logic for piano
 function handleKeyDown(event) {
   const key = event.key.toLowerCase();
+  if (
+    key === "tab" &&
+    keyMap.some((mappedKey) => mappedKey.key.toLowerCase() === "tab")
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   if (pressedKeys.has(key)) return; // Prevent repeated key spamming
   pressedKeys.add(key);
   const mappedKey = keyMap.find(
@@ -331,6 +338,13 @@ function handleKeyDown(event) {
 
 function handleKeyUp(event) {
   const key = event.key.toLowerCase();
+  if (
+    key === "tab" &&
+    keyMap.some((mappedKey) => mappedKey.key.toLowerCase() === "tab")
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   pressedKeys.delete(key);
 }
 
