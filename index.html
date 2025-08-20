@@ -3,29 +3,32 @@
 
 <head>
 
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>httpano</title>
-    <!-- Favicon using Font Awesome wave-square icon in white (same as navbar) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z'/></svg>" type="image/svg+xml">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>httpano</title>
+  <!-- Favicon using Font Awesome wave-square icon in white (same as navbar) -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z'/></svg>"
+    type="image/svg+xml">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">HTTP <i class="fa-solid fa-wave-square"></i> AN<i class="fa-solid fa-compact-disc fa-spin"></i></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">HTTP <i class="fa-solid fa-wave-square"></i> AN<i
+          class="fa-solid fa-compact-disc fa-spin"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
 
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -42,42 +45,42 @@
       Your browser does not support the canvas element.
     </canvas>
   </div>
-      <div class="container-fluid mt-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10" id="piano-container">
-                <div class="keys d-flex flex-wrap justify-content-center">
-                    <!-- Song Controls -->
-                    <div style="text-align:center; margin-bottom:20px;" class="my-1">
-                        <label for="song-select">Choose a song:</label>
-                        <select id="song-select">
-                            <option value="twinkle">Twinkle Twinkle</option>
-                            <option value="mary">Mary Had a Little Lamb</option>
-                            <option value="keytest">keytest</option>
-                        </select>
-                        <button id="play-song">Play</button>
-                        <button id="stop-song">Stop</button>
-                    </div>
-                </div>
-                <!-- Volume Control -->
-                <div class="volume-control text-center ms-4">
-                <label for="volume-slider">Volume: </label>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.3">  
-                </div>
-            </div>
-        </div>
-
-        <!-- Canvas Row -->
-        <div class="container">
-          <div class="row justify-content-center mt-3">
-              <div class="col-12 d-flex flex-column align-items-center">
-                  <canvas id="piano"></canvas>
-                  <span id="keybind-indicator"
-                      style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800; z-index: 1;"></span>
-              </div>
+  <div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10" id="piano-container">
+        <div class="keys d-flex flex-wrap justify-content-center">
+          <!-- Song Controls -->
+          <div style="text-align:center; margin-bottom:20px;" class="my-1">
+            <label for="song-select">Choose a song:</label>
+            <select id="song-select">
+              <option value="twinkle">Twinkle Twinkle</option>
+              <option value="mary">Mary Had a Little Lamb</option>
+              <option value="keytest">keytest</option>
+            </select>
+            <button id="play-song">Play</button>
+            <button id="stop-song">Stop</button>
           </div>
         </div>
+        <!-- Volume Control -->
+        <div class="volume-control text-center ms-4">
+          <label for="volume-slider">Volume: </label>
+          <input type="range" class="ms-2" id="volume-slider" min="0" max="1" step="0.01" value="0.3">
+        </div>
+      </div>
     </div>
+    <section class="section-spacing"></section>
+    <!-- Canvas Row -->
+    <div class="container mt-20">
+      <div class="row justify-content-center mt-3">
+        <div class="col-12 d-flex flex-column align-items-center">
+          <canvas id="piano"></canvas>
+          <span id="keybind-indicator"
+            style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800; z-index: 1;"></span>
+        </div>
+      </div>
     </div>
+  </div>
+  <section class="section-spacing"></section>
 
   <section id="visualiser" class="container mt-5">
     <button class="toggle-text">
@@ -95,7 +98,7 @@
     </div>
   </section>
 
-  <section id="instructions" class="container mt-1 mb-5">
+  <section id="instructions" class="container mt-1 mb-5 section-spacing">
     <button class="toggle-text">
       <h2>Instructions</h2>
     </button>
@@ -111,27 +114,27 @@
         is designed to match the physical keyboard layout for easier play.
       </p>
 
-        <h3>Tips</h3>
-        <ul>
-            <li>Press the corresponding QWERTY key to play a note.</li>
-            <li>Use multiple keys simultaneously to play chords.</li>
-            <li>
-                Clicking on the piano keys with your mouse will also play the notes.
-            </li>
-        </ul>
-    </section>
+      <h3>Tips</h3>
+      <ul>
+        <li>Press the corresponding QWERTY key to play a note.</li>
+        <li>Use multiple keys simultaneously to play chords.</li>
+        <li>
+          Clicking on the piano keys with your mouse will also play the notes.
+        </li>
+      </ul>
+  </section>
 
 
 
-    <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
-    <script src="assets/js/taglines.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
+  <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
+  <script src="assets/js/taglines.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
 </body>
 <!-- Footer matching navbar theme -->
 <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
   <div class="container-fluid">
     <div class="row w-100 align-items-center">
-      
+
       <!-- Center tagline -->
       <div class="col text-center">
         <span class="text-muted" id="tagline">Virtual Piano Experience</span>
@@ -145,4 +148,5 @@
     </div>
   </div>
 </footer>
+
 </html>
