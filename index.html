@@ -105,19 +105,23 @@
           <input type="range" class="ms-2" id="volume-slider" min="0" max="1" step="0.01" value="0.3">
         </div>
       </div>
-    </div>
-    <section class="section-spacing"></section>
-    <!-- Canvas Row -->
-    <div class="container mt-20">
-      <div class="row justify-content-center mt-3">
-        <div class="col-12 d-flex flex-column align-items-center">
-          <canvas id="piano"></canvas>
-          <span id="keybind-indicator"
-            style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800; z-index: 1;"></span>
+      <section class="section-spacing"></section>
+      <!-- Canvas Row -->
+      <div class="container mt-20">
+        <div class="row justify-content-center mt-3">
+          <div class="col-12 d-flex flex-column align-items-center">
+            <canvas id="piano"></canvas>
+            <span id="keybind-indicator"
+              style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800; z-index: 1;"></span>
+          </div>
         </div>
       </div>
     </div>
-
+    <section class="section-spacing"></section>
+    <div id="pick-visuals">
+      <input type="checkbox" id="toggle-visuals" checked>
+      <label for="toggle-visuals" class="toggle-label">
+    </div>
     <div id="playalong-controls" class="d-flex justify-content-center mt-3"></div>
     <section id="visualiser" class="container mt-5">
         <button class="toggle-text">
@@ -162,24 +166,23 @@
     </section>
 
 <!-- Footer matching navbar theme -->
-    <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
-      <div class="container-fluid">
-          <div class="row w-100 align-items-center">
+  <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+    <div class="container-fluid">
+      <div class="row w-100 align-items-center">
 
-            <!-- Center tagline -->
-            <div class="col text-center">
-                <span class="text-muted" id="tagline">Virtual Piano Experience</span>
-            </div>
-
-            <!-- Right copyright -->
-            <div class="col-auto ms-auto text-end">
-                <span class="text-muted">© 2025 HTTPano</span>
-            </div>
-          </div>
+        <!-- Center tagline -->
+        <div class="col text-center mobile-view">
+          <span class="text-muted" id="tagline">Virtual Piano Experience</span>
         </div>
-      </footer>
 
+        <!-- Right copyright -->
+        <div class="col-auto ms-auto text-end mobile-view">
+          <span class="text-muted">© 2025 HTTPano</span>
+        </div>
 
+      </div>
+    </div>
+  </footer>
     <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
     <script src="assets/js/taglines.js"></script>
     <script type="module" src="assets/js/main.js"></script>
@@ -208,6 +211,7 @@
 </script>
 
 </body>
+
 
 
 </html>

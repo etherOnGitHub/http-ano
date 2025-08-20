@@ -2,6 +2,7 @@
 /* Ensure Bootstrap modal and backdrop are always on top */
 /* Basic stylesheet - no design */
 /* 🎹 General cyberpunk/neon style */
+
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
 
 body {
@@ -153,7 +154,6 @@ body {
 
 #visualiser,
 #instructions {
-
   max-height: 600px;
   background: rgba(25, 25, 60, 0.85);
   border: 1px solid #0ff;
@@ -299,8 +299,8 @@ footer .text-muted {
 }
 
 #tagline i:last-child {
-  margin-left: 0.5rem;
-  margin-right: 0;
+    margin-left: 0.5rem;
+    margin-right: 0;
 }
 
 /* Remove all custom modal backdrop effects */
@@ -309,4 +309,42 @@ footer .text-muted {
   backdrop-filter: none !important;
   pointer-events: none !important;
 }
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    footer .row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    footer .mobile-view {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 0;
+        font-size: 0.6rem;
+    }
+
+    #tagline {
+        position: static;
+        transform: none;
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .navbar .nav-link {
+        color: #fff !important;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    .nav-link:hover {
+        color: #0d0d0d !important;
+        text-shadow: 0 0 5px #00fff9;
+        transition: all 0.2s ease-in-out;
+    }
+}
+
 
