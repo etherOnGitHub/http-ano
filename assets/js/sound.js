@@ -27,7 +27,7 @@ export function playSound(soundFilePath) {
   // Use existing slider value (0..1)
   const volumeSlider = document.getElementById("volume-slider");
   if (volumeSlider) {
-    const v = parseFloat(volumeSlider.value);
+    const v = parseFloat(volumeSlider.value/100);
     if (!Number.isNaN(v)) audio.volume = v;
   }
 
