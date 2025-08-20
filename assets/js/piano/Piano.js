@@ -89,7 +89,9 @@ class Piano {
    * Draw the complete piano using the PianoRenderer
    */
   draw() {
-    this.renderer.draw(this.keys, this.pressedKeys);
+    // Get the expected note from global state for play-along highlighting
+    const expectedNote = window.expectedNote || null;
+    this.renderer.draw(this.keys, this.pressedKeys, expectedNote);
   }
 
   // =========================
@@ -175,6 +177,11 @@ class Piano {
     if (this.noteAudioMap[note]) {
       playSound(this.noteAudioMap[note]);
     }
+
+    // Dispatch a custom event for play-along logic (same as keyboard press)
+    document.dispatchEvent(
+      new CustomEvent("noteplayed", { detail: { note: note } })
+    );
   }
 
   /**
