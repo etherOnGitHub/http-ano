@@ -50,7 +50,7 @@
       <div class="col-12 col-md-10" id="piano-container">
         <div class="keys d-flex flex-wrap justify-content-center">
           <!-- Song Controls -->
-          <div style="text-align:center; margin-bottom:20px;">
+          <div style="text-align:center; margin-bottom:20px;" class="my-1">
             <label for="song-select">Choose a song:</label>
             <select id="song-select">
               <option value="twinkle">Twinkle Twinkle</option>
@@ -61,12 +61,16 @@
             <button id="stop-song">Stop</button>
           </div>
         </div>
-
+        <!-- Volume Control -->
+        <div class="volume-control text-center ms-4">
+          <label for="volume-slider">Volume: </label>
+          <input type="range" class="ms-2" id="volume-slider" min="0" max="1" step="0.01" value="0.3">
+        </div>
       </div>
     </div>
-
+    <section class="section-spacing"></section>
     <!-- Canvas Row -->
-    <div class="container">
+    <div class="container mt-20">
       <div class="row justify-content-center mt-3">
         <div class="col-12 d-flex flex-column align-items-center">
           <canvas id="piano"></canvas>
@@ -76,8 +80,11 @@
       </div>
     </div>
   </div>
+  <section class="section-spacing"></section>
+  <div id="pick-visuals">
+    <input type="checkbox" id="toggle-visuals" checked>
+    <label for="toggle-visuals" class="toggle-label">
   </div>
-
   <section id="visualiser" class="container mt-5">
     <button class="toggle-text">
       <h2>Visualiser</h2>
@@ -94,7 +101,7 @@
     </div>
   </section>
 
-  <section id="instructions" class="container mt-1 mb-5">
+  <section id="instructions" class="container mt-1 mb-5 section-spacing">
     <button class="toggle-text">
       <h2>Instructions</h2>
     </button>
@@ -120,33 +127,30 @@
       </ul>
   </section>
 
-  <!-- Footer matching navbar theme -->
-  <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom ">
-    <div class="container-fluid">
-      <div class="row w-100 align-items-center">
-
-        <!-- Center tagline -->
-        <div class="col text-center mobile-view">
-          <span class="text-muted" id="tagline">Virtual Piano Experience</span>
-        </div>
-
-        <!-- Right copyright -->
-        <div class="col-auto ms-auto text-end mobile-view">
-          <span class="text-muted">© 2025 HTTPano</span>
-        </div>
-
-      </div>
-    </div>
-  </footer>
 
 
   <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
   <script src="assets/js/taglines.js"></script>
   <script type="module" src="assets/js/main.js"></script>
-  <!-- Bootstrap 5 JavaScript Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+  <script type="module" src="assets/js/piano/visualiser.js"></script>
 </body>
+<!-- Footer matching navbar theme -->
+<footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+  <div class="container-fluid">
+    <div class="row w-100 align-items-center">
+
+      <!-- Center tagline -->
+      <div class="col text-center">
+        <span class="text-muted" id="tagline">Virtual Piano Experience</span>
+      </div>
+
+      <!-- Right copyright -->
+      <div class="col-auto ms-auto text-end mobile-view">
+        <span class="text-muted">© 2025 HTTPano</span>
+      </div>
+
+    </div>
+  </div>
+</footer>
 
 </html>

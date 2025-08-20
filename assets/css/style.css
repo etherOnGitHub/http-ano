@@ -13,6 +13,11 @@ body {
     flex-grow: 1;
 }
 
+.section-spacing {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
 /* Navbar neon style */
 .navbar {
     background: linear-gradient(90deg, #ff00ff, #00fff9);
@@ -36,6 +41,34 @@ body {
 .nav-link {
     color: #ff00ff !important;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+/* playback box */
+
+#volume-slider {
+    appearance: none;
+    width: 50%;
+    height: 15px;
+    background: #000;
+    outline: none;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #000;
+    box-shadow: inset 0 0 10px #00fff9, inset 0 0 20px #ff00ff;
+}
+
+/* slider head styles */
+
+#volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 5px;
+    height: 20px;
+    background: #00fff9;
+    border: 1px solid #000;
+    border-radius: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px #00fff9, inset 0 0 20px #ff00ff;
 }
 
 /* Piano container */
@@ -143,15 +176,20 @@ body {
 }
 
 #instructions ul {
-    list-style: none; /* Remove default bullets */
+    list-style: none;
+    /* Remove default bullets */
     padding-left: 0;
 }
 
 #instructions ul li {
-    display: inline-flex; /* Horizontal flex with icon and text */
-    align-items: center; /* Vertically center */
-    justify-content: center; /* Center content */
-    gap: 0.5em; /* Space between icon and text */
+    display: inline-flex;
+    /* Horizontal flex with icon and text */
+    align-items: center;
+    /* Vertically center */
+    justify-content: center;
+    /* Center content */
+    gap: 0.5em;
+    /* Space between icon and text */
     margin-bottom: 0.7em;
 
     font-weight: bold;
@@ -161,9 +199,12 @@ body {
 }
 
 #instructions ul li::before {
-    font-family: 'Font Awesome 6 Free'; /* Font Awesome font */
-    content: '\f51f'; /* Unicode for compact-disc icon */
-    font-weight: 900; /* Solid style */
+    font-family: 'Font Awesome 6 Free';
+    /* Font Awesome font */
+    content: '\f51f';
+    /* Unicode for compact-disc icon */
+    font-weight: 900;
+    /* Solid style */
     color: #0ff;
     text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
     font-size: 1.2em;
@@ -199,7 +240,9 @@ body {
     height: auto;
     z-index: 1;
 }
-
+#pick-visuals {
+    z-index: 1;
+}
 #visualiser-canvas {
     width: 100%;
     height: 100%;
@@ -287,8 +330,8 @@ footer .text-muted {
         text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
     }
     .nav-link:hover {
-    color: #0d0d0d !important;
-    text-shadow: 0 0 5px #00fff9;
-    transition: all 0.2s ease-in-out;
-}
+        color: #0d0d0d !important;
+        text-shadow: 0 0 5px #00fff9;
+        transition: all 0.2s ease-in-out;
+    }
 }
