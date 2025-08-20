@@ -58,6 +58,11 @@ export const PIANO_CONFIG = {
     notePattern: ["C", "D", "E", "F", "G", "A", "B"],
     blackKeyPattern: [1, 1, 0, 1, 1, 1, 0], // Which notes have sharps
   },
+
+  // Keyboard key labels configuration
+  keyLabels: {
+    visible: true, // Whether to show keyboard key labels on piano keys
+  },
 };
 
 /**
@@ -97,6 +102,14 @@ export class PianoConfigHelper {
       effects: {
         ...PIANO_CONFIG.effects,
         ...userConfig.effects,
+      },
+      layout: {
+        ...PIANO_CONFIG.layout,
+        ...userConfig.layout,
+      },
+      keyLabels: {
+        ...PIANO_CONFIG.keyLabels,
+        ...userConfig.keyLabels,
       },
     };
   }
