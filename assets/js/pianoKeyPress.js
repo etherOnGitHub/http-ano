@@ -227,9 +227,6 @@ export function handlePianoKeyPress(mappedKey) {
   if (window.piano && mappedKey.note) {
     window.piano.pressKey(mappedKey.note);
     // Release the key after a short duration for visual feedback
-    setTimeout(() => {
-      window.piano.releaseKey(mappedKey.note);
-    }, 200);
   }
 
   console.log(`Piano key '${mappedKey.key}' pressed - Note: ${mappedKey.note}`);
@@ -247,43 +244,42 @@ export function handleButtonAction(id) {
     // Handle button visual feedback if button exists
     if (btn) {
       btn.classList.add("active");
-      setTimeout(() => btn.classList.remove("active"), 200);
     }
+  }
 
-    // Handle the piano key press
-    handlePianoKeyPress(mappedKey);
+  // Handle the piano key press
+  handlePianoKeyPress(mappedKey);
 
-    // Play-along advancement for mouse/touch
-    if (window.playModeActive) {
-      const currentNote = window.songSequence[window.songCurrentIndex];
-      if (mappedKey.note === currentNote) {
-        document.dispatchEvent(new Event("playalongadvance"));
-      }
+  // Play-along advancement for mouse/touch
+  if (window.playModeActive) {
+    const currentNote = window.songSequence[window.songCurrentIndex];
+    if (mappedKey.note === currentNote) {
+      document.dispatchEvent(new Event("playalongadvance"));
     }
+  }
 
-    // Switch for console logging and future testing
-    switch (id) {
-      case "vk-btn-C5":
-      case "vk-btn-Cs5":
-      case "vk-btn-D5":
-      case "vk-btn-Ds5":
-      case "vk-btn-E5":
-      case "vk-btn-F5":
-      case "vk-btn-Fs5":
-      case "vk-btn-G5":
-      case "vk-btn-Gs5":
-      case "vk-btn-A5":
-      case "vk-btn-As5":
-      case "vk-btn-B5":
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-        break;
-      default:
-        console.log(
-          `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-        );
-    }
+  // Switch for console logging and future testing
+  switch (id) {
+    case "vk-btn-C5":
+    case "vk-btn-Cs5":
+    case "vk-btn-D5":
+    case "vk-btn-Ds5":
+    case "vk-btn-E5":
+    case "vk-btn-F5":
+    case "vk-btn-Fs5":
+    case "vk-btn-G5":
+    case "vk-btn-Gs5":
+    case "vk-btn-A5":
+    case "vk-btn-As5":
+    case "vk-btn-B5":
+      console.log(
+        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+      );
+      break;
+    default:
+      console.log(
+        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+      );
   }
 }
 
@@ -346,6 +342,17 @@ function handleKeyUp(event) {
     event.stopPropagation();
   }
   pressedKeys.delete(key);
+  // Remove highlight on keyup
+  const mappedKey = keyMap.find(
+    (mappedKey) => mappedKey.key.toLowerCase() === key
+  );
+  window.piano.releaseKey(mappedKey.note);
+  if (mappedKey) {
+    const btn = document.getElementById(mappedKey.id);
+    if (btn) {
+      btn.classList.remove("active");
+    }
+  }
 }
 
 document.addEventListener("keydown", handleKeyDown);
