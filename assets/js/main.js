@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 setupVirtualKeyboard();
-
+masterGain();
 testPlayAlong("twinkle");
 // Console output:
 // Note 1: C4
