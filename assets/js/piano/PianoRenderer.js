@@ -87,18 +87,30 @@ export class PianoRenderer {
     keys
       .filter((key) => key.type === "white")
       .forEach((key) => {
-        const isPressed = pressedKeys.has(key.note);
-        const isExpected = expectedNote === key.note;
-        this.drawKey(key, isPressed, isExpected);
+        this.drawKey(
+          {
+            ...key,
+            x: key.x + (this.containerPadding || 0),
+            y: key.y + (this.containerPadding || 0),
+          },
+          pressedKeys.has(key.note),
+          expectedNote === key.note
+        );
       });
 
     // Draw black keys on top (foreground layer)
     keys
       .filter((key) => key.type === "black")
       .forEach((key) => {
-        const isPressed = pressedKeys.has(key.note);
-        const isExpected = expectedNote === key.note;
-        this.drawKey(key, isPressed, isExpected);
+        this.drawKey(
+          {
+            ...key,
+            x: key.x + (this.containerPadding || 0),
+            y: key.y + (this.containerPadding || 0),
+          },
+          pressedKeys.has(key.note),
+          expectedNote === key.note
+        );
       });
   }
 
