@@ -17,9 +17,9 @@ function draw() {
 	const barWidth = canvas.width / bufferLen;
 	for (let i = 0; i < bufferLen; i++) {
 		const v = data[i] / 255;
-		const h = v * canvas.height + 25;
+		const h = v * canvas.height - 20;
 		ctx.fillStyle = `hsl(${(i / bufferLen) * 255}, 100%, ${15 + v * 33}%)`;
-		ctx.fillRect (i * barWidth , canvas.height - h, Math.max(13, barWidth - 13), h);
+		ctx.fillRect (i * barWidth + 50 , canvas.height/1.1 - h, Math.max(30, barWidth - 25), h + 100);
 	}
 
 	requestAnimationFrame(draw);

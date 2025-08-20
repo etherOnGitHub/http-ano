@@ -1,4 +1,4 @@
-// Virtual keyboard button key mapping - Extended for multi-octave piano
+// Virtual keyboard button key mapping
 export const keyMap = [
   // White keys in order (C4-B6)
   // Octave 4
@@ -11,17 +11,20 @@ export const keyMap = [
   {
     id: "vk-btn-D4",
     key: "q",
+    key: "q",
     audio: "assets/audio/piano/D4piano.mp3",
     note: "D4",
   },
   {
     id: "vk-btn-E4",
     key: "w",
+    key: "w",
     audio: "assets/audio/piano/E4piano.mp3",
     note: "E4",
   },
   {
     id: "vk-btn-F4",
+    key: "e",
     key: "e",
     audio: "assets/audio/piano/F4piano.mp3",
     note: "F4",
@@ -71,7 +74,7 @@ export const keyMap = [
   },
   {
     id: "vk-btn-G5",
-    key: "z",
+    key: "b",
     audio: "assets/audio/piano/G5piano.mp3",
     note: "G5",
   },
@@ -87,6 +90,7 @@ export const keyMap = [
     audio: "assets/audio/piano/B5piano.mp3",
     note: "B5",
   },
+  // Octave 6
   // Octave 6
   {
     id: "vk-btn-C6",
@@ -258,16 +262,42 @@ export function handleButtonAction(id) {
     // Handle button visual feedback if button exists
     if (btn) {
       btn.classList.add("active");
-      setTimeout(() => btn.classList.remove("active"), 200);
     }
+  }
 
-    // Handle the piano key press
-    handlePianoKeyPress(mappedKey);
+  // Handle the piano key press
+  handlePianoKeyPress(mappedKey);
 
-    // Console logging for testing
-    console.log(
-      `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-    );
+  // Play-along advancement for mouse/touch
+  if (window.playModeActive) {
+    const currentNote = window.songSequence[window.songCurrentIndex];
+    if (mappedKey.note === currentNote) {
+      document.dispatchEvent(new Event("playalongadvance"));
+    }
+  }
+
+  // Switch for console logging and future testing
+  switch (id) {
+    case "vk-btn-C5":
+    case "vk-btn-Cs5":
+    case "vk-btn-D5":
+    case "vk-btn-Ds5":
+    case "vk-btn-E5":
+    case "vk-btn-F5":
+    case "vk-btn-Fs5":
+    case "vk-btn-G5":
+    case "vk-btn-Gs5":
+    case "vk-btn-A5":
+    case "vk-btn-As5":
+    case "vk-btn-B5":
+      console.log(
+        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+      );
+      break;
+    default:
+      console.log(
+        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
+      );
   }
 }
 
@@ -294,19 +324,54 @@ export function setupVirtualKeyboard() {
     }
   });
 
-  // Track pressed keys to prevent repeat firing
-  const pressedKeys = new Set();
-  document.addEventListener("keydown", (e) => {
-    const key = e.key.toLowerCase();
-    if (pressedKeys.has(key)) return; // Ignore holding
-    pressedKeys.add(key);
-    const mappedKey = keyMap.find((mappedKey) => mappedKey.key === key);
-    if (mappedKey) {
-      handleButtonAction(mappedKey.id);
-    }
-  });
-  document.addEventListener("keyup", (e) => {
-    const key = e.key.toLowerCase();
-    pressedKeys.delete(key);
-  });
+  // ...existing code...
 }
+
+const pressedKeys = new Set(); // Track pressed keys
+
+// Key press anti-spam logic for piano
+function handleKeyDown(event) {
+  const key = event.key.toLowerCase();
+  if (
+    key === "tab" &&
+    keyMap.some((mappedKey) => mappedKey.key.toLowerCase() === "tab")
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  if (pressedKeys.has(key)) return; // Prevent repeated key spamming
+  pressedKeys.add(key);
+  const mappedKey = keyMap.find(
+    (mappedKey) => mappedKey.key.toLowerCase() === key
+  );
+  if (mappedKey) {
+    event.preventDefault();
+    handleButtonAction(mappedKey.id);
+  }
+}
+
+function handleKeyUp(event) {
+  const key = event.key.toLowerCase();
+  if (
+    key === "tab" &&
+    keyMap.some((mappedKey) => mappedKey.key.toLowerCase() === "tab")
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  pressedKeys.delete(key);
+  // Remove highlight on keyup
+  const mappedKey = keyMap.find(
+    (mappedKey) => mappedKey.key.toLowerCase() === key
+  );
+  window.piano.releaseKey(mappedKey.note);
+  if (mappedKey) {
+    const btn = document.getElementById(mappedKey.id);
+    if (btn) {
+      btn.classList.remove("active");
+    }
+  }
+}
+
+document.addEventListener("keydown", handleKeyDown);
+document.addEventListener("keyup", handleKeyUp);
