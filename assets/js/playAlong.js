@@ -113,6 +113,8 @@ export const SONGS = {
     "G#6",
     "A#6",
   ],
+  // use function to write songs in shorthand format
+  // just type the keyboard letters in the order you want
   neverGonnaGiveYouUp: keybindToNotes("tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"),
 };
 
