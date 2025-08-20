@@ -1,3 +1,5 @@
+import { keybindToNotes } from "./helpers.js";
+
 export const SONGS = {
   twinkle: [
     "C4",
@@ -111,6 +113,7 @@ export const SONGS = {
     "G#6",
     "A#6",
   ],
+  neverGonnaGiveYouUp: keybindToNotes("tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"),
 };
 
 export function testPlayAlong(songName) {
@@ -198,6 +201,7 @@ export class PlayAlongController {
     console.log(`Press key: '${expectedKey}' for note: '${currentNote}'`);
   }
 }
+
 // Usage example (in main.js):
 // import { PlayAlongController } from './playAlong.js';
 // import { keyMap } from './pianoKeyPress.js';

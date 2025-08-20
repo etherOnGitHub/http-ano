@@ -7,6 +7,7 @@ import {
   createBottomRoundedRectPath,
   applyBlackKey3DEffect,
 } from "./helpers/canvasHelpers.js";
+import { keyMap } from "../pianoKeyPress.js";
 
 /**
  * PianoRenderer - Handles all piano canvas rendering operations
@@ -158,6 +159,9 @@ export class PianoRenderer {
     }
     this.ctx.lineWidth = 4;
     this.ctx.strokeRect(key.x, key.y, key.width, key.height);
+
+    // Draw keyboard key label
+    this.drawKeyLabel(key, false);
   }
 
   /**
@@ -216,6 +220,46 @@ export class PianoRenderer {
         key.height / this.config.keyRatios.blackKeyHeightRatio
       );
     }
+
+    // Draw keyboard key label
+    this.drawKeyLabel(key, true);
+  }
+
+  /**
+   * Draw keyboard key label at the bottom center of a piano key
+   * @param {Object} key - Key object
+   * @param {boolean} isBlackKey - Whether this is a black key
+   */
+  drawKeyLabel(key, isBlackKey = false) {
+    // Check if keyboard labels are enabled in config
+    if (!this.config.keyLabels || !this.config.keyLabels.visible) {
+      return;
+    }
+
+    // Find the corresponding keyboard key from keyMap
+    const mappedKey = keyMap.find((mapKey) => mapKey.note === key.note);
+    if (!mappedKey || !mappedKey.key) return;
+
+    // Set up text properties
+    this.ctx.save();
+    this.ctx.font = "12px Arial";
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+
+    // Set text color based on key type
+    if (isBlackKey) {
+      this.ctx.fillStyle = "#ffffff"; // White text on black keys
+    } else {
+      this.ctx.fillStyle = "#333333"; // Dark text on white keys
+    }
+
+    // Calculate position (bottom center of the key)
+    const textX = key.x + key.width / 2;
+    const textY = key.y + key.height - 15; // 15px from bottom
+
+    // Draw the keyboard key label
+    this.ctx.fillText(mappedKey.key.toUpperCase(), textX, textY);
+    this.ctx.restore();
   }
 
   /**
