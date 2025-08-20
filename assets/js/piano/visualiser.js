@@ -11,15 +11,15 @@ function draw() {
 	analyser.getByteFrequencyData(data);
 
 	// Clear with slight fade for trails
-	ctx.fillStyle = "rgba(0,0,0,0.2)";
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = "rgba(0,0,0,1)";
+	ctx.fillRect(0, 0.3, canvas.width, canvas.height);
 
 	const barWidth = canvas.width / bufferLen;
 	for (let i = 0; i < bufferLen; i++) {
 		const v = data[i] / 255;
-		const h = v * canvas.height;
-		ctx.fillStyle = `hsl(${(i / bufferLen) * 300}, 80%, ${35 + v * 45}%)`;
-		ctx.fillRect(i * barWidth, canvas.height - h, Math.max(1, barWidth - 1), h);
+		const h = v * canvas.height + 25;
+		ctx.fillStyle = `hsl(${(i / bufferLen) * 255}, 100%, ${15 + v * 33}%)`;
+		ctx.fillRect (i * barWidth , canvas.height - h, Math.max(13, barWidth - 13), h);
 	}
 
 	requestAnimationFrame(draw);
