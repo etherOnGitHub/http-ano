@@ -280,3 +280,15 @@ footer .text-muted {
         margin-bottom: 8px;
     }
 }
+
+@media screen and (max-width: 992px) {
+    .navbar .nav-link {
+        color: #fff !important;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    .nav-link:hover {
+    color: #0d0d0d !important;
+    text-shadow: 0 0 5px #00fff9;
+    transition: all 0.2s ease-in-out;
+}
+}
