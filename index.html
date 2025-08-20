@@ -2,24 +2,25 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>httpano</title>
+  <!-- Favicon using Font Awesome wave-square icon in white (same as navbar) -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z'/></svg>"
+    type="image/svg+xml">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>httpano</title>
-    <!-- Favicon using Font Awesome wave-square icon in white (same as navbar) -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z'/></svg>"
-        type="image/svg+xml">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/style.css" />
 
 
 </head>
 
 <body>
+
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -29,8 +30,6 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -66,6 +65,7 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <canvas id="visualiser-canvas">
             Your browser does not support the canvas element.
@@ -99,8 +99,25 @@
                 </div>
             </div>
         </div>
+        <!-- Volume Control -->
+        <div class="volume-control text-center ms-4">
+          <label for="volume-slider">Volume: </label>
+          <input type="range" class="ms-2" id="volume-slider" min="0" max="1" step="0.01" value="0.3">
+        </div>
+      </div>
     </div>
+    <section class="section-spacing"></section>
+    <!-- Canvas Row -->
+    <div class="container mt-20">
+      <div class="row justify-content-center mt-3">
+        <div class="col-12 d-flex flex-column align-items-center">
+          <canvas id="piano"></canvas>
+          <span id="keybind-indicator"
+            style="display:inline-block; margin-top:8px; font-size:24px; color:#ff9800; z-index: 1;"></span>
+        </div>
+      </div>
     </div>
+
     <div id="playalong-controls" class="d-flex justify-content-center mt-3"></div>
     <section id="visualiser" class="container mt-5">
         <button class="toggle-text">
@@ -144,20 +161,10 @@
             </ul>
     </section>
 
-
-
-    <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
-    <script src="assets/js/taglines.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <!-- Bootstrap JS Bundle for modal functionality -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6VKHr8zWLa4hZp6Gk5r9E+E0I1p5V4lWk5F2l5F5F5F5"
-        crossorigin="anonymous"></script>
-</body>
 <!-- Footer matching navbar theme -->
-<footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
-    <div class="container-fluid">
-        <div class="row w-100 align-items-center">
+    <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+      <div class="container-fluid">
+          <div class="row w-100 align-items-center">
 
             <!-- Center tagline -->
             <div class="col text-center">
@@ -168,32 +175,39 @@
             <div class="col-auto ms-auto text-end">
                 <span class="text-muted">© 2025 HTTPano</span>
             </div>
-
+          </div>
         </div>
-    </div>
-</footer>
-<!-- Bootstrap JS Bundle for modal functionality -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      </footer>
+
+
+    <script src="https://kit.fontawesome.com/ddb0718bd5.js" crossorigin="anonymous"></script>
+    <script src="assets/js/taglines.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+      <!-- Bootstrap JS Bundle for modal functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var settingsLink = document.querySelector('a.nav-link[href="#"]');
-        var settingsModal = document.getElementById('settingsModal');
-        if (settingsLink && settingsModal) {
-            settingsLink.addEventListener('click', function (e) {
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          var settingsLink = document.querySelector('a.nav-link[href="#"]');
+          var settingsModal = document.getElementById('settingsModal');
+          if (settingsLink && settingsModal) {
+              settingsLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 var modal = new bootstrap.Modal(settingsModal);
                 modal.show();
-            });
-            settingsModal.addEventListener('hidden.bs.modal', function () {
+              });
+              settingsModal.addEventListener('hidden.bs.modal', function () {
                 settingsLink.focus();
                 settingsModal.setAttribute('inert', '');
-            });
+               });
             settingsModal.addEventListener('shown.bs.modal', function () {
                 settingsModal.removeAttribute('inert');
-            });
-        }
-    });
+                });
+            }
+          });
 </script>
+
+</body>
+
 
 </html>

@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 setupVirtualKeyboard();
-
 testPlayAlong("twinkle");
 // Console output:
 // Note 1: C4
@@ -157,10 +156,12 @@ document.addEventListener("noteplayed", function (e) {
 document.querySelector("#visualiser .toggle-text").onclick = function () {
   const box = document.getElementById("visualiser-box");
   box.style.display = box.style.display === "none" ? "block" : "none";
+  console.log("Visualiser box toggled:", box.style.display);
 };
 
 // Toggle instructions box
 document.querySelector("#instructions .toggle-text").onclick = function () {
   const box = document.getElementById("instructions-box");
   box.style.display = box.style.display === "none" ? "block" : "none";
+  console.log("Instructions box toggled:", box.style.display);
 };
