@@ -11,20 +11,17 @@ export const keyMap = [
   {
     id: "vk-btn-D4",
     key: "q",
-    key: "q",
     audio: "assets/audio/piano/D4piano.mp3",
     note: "D4",
   },
   {
     id: "vk-btn-E4",
     key: "w",
-    key: "w",
     audio: "assets/audio/piano/E4piano.mp3",
     note: "E4",
   },
   {
     id: "vk-btn-F4",
-    key: "e",
     key: "e",
     audio: "assets/audio/piano/F4piano.mp3",
     note: "F4",
@@ -74,7 +71,7 @@ export const keyMap = [
   },
   {
     id: "vk-btn-G5",
-    key: "b",
+    key: "z",
     audio: "assets/audio/piano/G5piano.mp3",
     note: "G5",
   },
@@ -90,7 +87,6 @@ export const keyMap = [
     audio: "assets/audio/piano/B5piano.mp3",
     note: "B5",
   },
-  // Octave 6
   // Octave 6
   {
     id: "vk-btn-C6",
@@ -112,25 +108,25 @@ export const keyMap = [
   },
   {
     id: "vk-btn-F6",
-    key: ",",
+    key: "m",
     audio: "assets/audio/piano/F6piano.mp3",
     note: "F6",
   },
   {
     id: "vk-btn-G6",
-    key: ".",
+    key: ",",
     audio: "assets/audio/piano/G6piano.mp3",
     note: "G6",
   },
   {
     id: "vk-btn-A6",
-    key: "/",
+    key: ".",
     audio: "assets/audio/piano/A6piano.mp3",
     note: "A6",
   },
   {
     id: "vk-btn-B6",
-    key: "shift",
+    key: "/",
     audio: "assets/audio/piano/B6piano.mp3",
     note: "B6",
   }, // Right Shift key
