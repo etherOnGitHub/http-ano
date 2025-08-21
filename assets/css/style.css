@@ -176,6 +176,8 @@ body {
 #instructions button {
   background: transparent;
   border: none;
+  color: #0ff !important; 
+  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff !important;
 }
 
 #instructions ul {
