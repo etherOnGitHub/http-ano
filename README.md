@@ -61,10 +61,6 @@ Our carefully selected color scheme creates a cohesive visual identity:
 -   **Primary Font**: Orbitron - A futuristic typeface that complements the cyberpunk theme
 -   **Fallback**: Sans-serif fonts for maximum compatibility across devices
 
-### Visual Design Elements
-
-<img width="533" height="328" alt="image" src="https://github.com/user-attachments/assets/3745e8bc-3db8-496d-b027-4f686c2b5e18" />
-
 #### Piano Interface
 
 -   **Canvas-based rendering** for smooth, responsive piano keys
@@ -128,6 +124,10 @@ The virtual piano keys are mapped logically to your physical QWERTY keyboard for
 
 Refer to `pianoKeyPress.js` for the exact mappings of keys to notes and audio samples.
 
+## Visualiser
+
+The visualiser works by analysing the data behind the audio being played and storing them in "bins" the amount of "bins" can be scaled up or down, we chose to keep the amount of "bins" low so that the website is lightweight and accessible. Analysing the Fast Fourier Transform - it is a data manipulation concept where audio on a computer is represented over time in a relatively accurate and resource effective manor while the frequencies that make up the audio are spread into these "bins". Each "bin" represents a specific frequency range which is why the visualiser has several bars making it up. Essentially you are seeing the aggregate data of a specific frequency range of each note behind it while playing!
+
 ## Accessibility
 
 This project is designed with accessibility in mind, featuring:
@@ -136,18 +136,20 @@ This project is designed with accessibility in mind, featuring:
 -   High contrast neon color scheme meeting WCAG standards.
 -   Semantic HTML and ARIA roles for screen reader friendliness.
 
-### Git LFS
-
-(Callum) - Due to previous experience with game development we decided to add git LFS to track the
-audio and images in the repo, this decidion while not necessary really on a small scale allows for
-any future scalability with files associated with the repository. Storing the larger files in smart
-Large File Storage also considers conforming to GitHub standards.
-
 ## Deployment
+<p align="center">
+<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/3745e8bc-3db8-496d-b027-4f686c2b5e18" />
+</p>
+
+[Live Build](https://etherongithub.github.io/http-ano/)
+
+Deployment was handled through GitHub cloud directly from the repo.
+
 
 ## Testing & Validation
-
+<p  align="center">
 <img width="1178" height="847" alt="image" src="https://github.com/user-attachments/assets/0c22d2ef-db97-46dd-86fb-890bda887ff9" />
+</p>
 
 ## Lighthouse
 
@@ -170,14 +172,29 @@ Large File Storage also considers conforming to GitHub standards.
 
 ### Code Creation
 
-### Debugging
+#### Piano Canvas Element 🎹
 
-Throughout development, features were regularly tested and any bugs were raised and fixed before
-picking up any new tickets.
+(Daniel) - The development of the piano canvas element was greatly assisted using GitHub Copilot. I chose to use Claude Sonnet 4 as my primary AI model, as I found that it was the most reliable and useful when working with complex prompts, especially when using agent mode.
 
-### Optimization
+With the right prompts and guidance, the AI was able to successfully orchestrate changes across multiple files in agent mode. Originally, I had used a single class for managing all of the piano's features, but found that it was becoming too difficult to read and maintain. I decided on splitting this large class into modules, which not only made it easier for me to maintain the code manually, but allowed the AI to make changes more easily, too.
+
+#### Design 🎨
+
+After deciding on the theme and main features of the site, we used AI selectively to support the design process, helping ensure that layouts, styling, and components remained consistent with the overall visual objectives, with the creative direction and implementation guided by our design vision and project goals.
+
+### Debugging 🪳
+
+Throughout development, features were regularly tested and any bugs were raised and fixed before picking up any new tickets.
+
+#### Use of AI Assistance in Debugging and Optimisation ♣️
+
+During the development of this virtual piano project, AI-powered tools were leveraged extensively to enhance productivity and code quality. AI helped by generating code templates, providing guidance on best practices, and suggesting optimizations for performance and accessibility. It also assisted in debugging complex issues by analyzing code snippets and identifying potential problems or inconsistencies. This collaborative approach with AI accelerated development timelines and improved the overall robustness and maintainability of the codebase. Leveraging AI as a development partner allowed us to focus more on creative design and user experience while ensuring the technical foundation remained solid and efficient.
 
 ### Reflection
+
+Overall the use of AI has helped to implement some logic that may be hard to conceptualise in the moment but after being shown a way of doing it quickly using that information to take the next steps with or without AI assistance.
+
+AI is no perfect creation, accuracy accross models is inconsistent and sometimes it can misunderstand an operation and its requirements (especially visible elements for UI/UX).
 
 ## Credits
 
@@ -191,6 +208,7 @@ picking up any new tickets.
 
 -   [Copilot](https://github.com/features/copilot)
 -   [ChatGPT 5](https://chatgpt.com/)
+-   [Claude](https://claude.ai/)
 
 ### Illustrations & Design
 
@@ -200,3 +218,7 @@ picking up any new tickets.
 -   [Google Fonts](https://fonts.google.com/)
 
 ### Validators
+
+-   [W3C](https://validator.w3.org/)
+-   [Jigsaw](https://jigsaw.w3.org/css-validator/)
+-   [JSHint](https://jshint.com/)
