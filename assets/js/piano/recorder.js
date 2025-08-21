@@ -67,37 +67,47 @@ export function setupRecorderButtons() {
         btn.classList.remove('active');
         btn.disabled = true;
     }
-    // Initial state
+
+    // Initial State
     activate(startBtn);
     deactivate(stopBtn);
     deactivate(playBtn);
 
-    startBtn.addEventListener('click', () => {
+    function onStart() {
         if (startBtn.classList.contains('active')) {
             activate(stopBtn);
             deactivate(startBtn);
             deactivate(playBtn);
         }
-    });
+    }
 
-    stopBtn.addEventListener('click', () => {
+    function onStop() {
         if (stopBtn.classList.contains('active')) {
             activate(startBtn);
             activate(playBtn);
             deactivate(stopBtn);
         }
-    });
+    }
 
-    playBtn.addEventListener('click', () => {
+    function onPlay() {
         if (!playBtn.classList.contains('active')) {
-            activate(playBtn); // mantén playBtn activo para repetir
+            activate(playBtn);
         }
-        deactivate(startBtn); // desactiva startBtn al iniciar playback
+        deactivate(startBtn);
 
-        // Simula el fin de la reproducción
+        // Simulate playback delay
         setTimeout(() => {
-            activate(startBtn); // reactiva startBtn al terminar
-            // playBtn sigue activo para repetir si quieren
-        }, 3000); // duración simulada, cambia según tu playback real
-    });
+            activate(startBtn); // reactive startBtn after playback
+        }, 3000);
+    }
+
+    // Touchscreen and click events
+    startBtn.addEventListener('click', onStart);
+    startBtn.addEventListener('touchstart', onStart);
+
+    stopBtn.addEventListener('click', onStop);
+    stopBtn.addEventListener('touchstart', onStop);
+
+    playBtn.addEventListener('click', onPlay);
+    playBtn.addEventListener('touchstart', onPlay);
 }
