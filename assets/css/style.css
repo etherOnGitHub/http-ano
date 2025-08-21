@@ -338,13 +338,15 @@ body {
 
 /* Active state for any button */
 .btn-custom.active {
-    color: #ff00ff;
     border-color: #ff00ff;
     box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
-    background: radial-gradient(circle, #ff00ff 0%, #ff00ff80 50%, transparent 100%);
-    background-color: transparent;
+    background: radial-gradient(circle, transparent 0%, #ff00ff80 50%, #ff00ff 100%);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    color: #181c2f !important;
+    color: white !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+.btn-custom.active:hover {
+    transform: scale(1.1);
 }
 
 /* Footer styling */
