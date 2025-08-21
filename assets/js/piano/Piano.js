@@ -276,6 +276,25 @@ class Piano {
             case 3:
                 this.config.layout.defaultOctave = 4;
                 this.config.aspectRatio = 0.18;
+                this.config.keyLabels.visible = true; // Show keyboard labels for 3 octaves
+                break;
+            case 2:
+                this.config.layout.defaultOctave = 4;
+                this.config.aspectRatio = 0.2;
+                this.config.keyLabels.visible = false; // Hide keyboard labels for 2 octaves
+                break;
+            case 1:
+                this.config.layout.defaultOctave = 5;
+                this.config.aspectRatio = 0.25;
+                this.config.keyLabels.visible = false; // Hide keyboard labels for 1 octave
+                break;
+            default:
+                break;
+        }
+        switch (numOctaves) {
+            case 3:
+                this.config.layout.defaultOctave = 4;
+                this.config.aspectRatio = 0.18;
                 break;
             case 2:
                 this.config.layout.defaultOctave = 4;
@@ -296,6 +315,31 @@ class Piano {
         this.draw(); // Redraw the piano
     }
 
+    /**
+     * Get current configuration values
+     * @returns {Object} Current layout configuration
+     */
+    getCurrentLayout() {
+        return {
+            defaultOctave: this.config.layout.defaultOctave,
+            numOctaves: this.config.layout.numOctaves,
+            totalKeys: this.keys.length,
+            keyLabelsVisible: this.config.keyLabels.visible,
+        };
+    }
+
+    /**
+     * Toggle the visibility of keyboard key labels
+     * @param {boolean} visible - Whether to show keyboard labels (optional)
+     */
+    toggleKeyLabels(visible = null) {
+        if (visible !== null) {
+            this.config.keyLabels.visible = visible;
+        } else {
+            this.config.keyLabels.visible = !this.config.keyLabels.visible;
+        }
+        this.draw(); // Redraw the piano with updated label visibility
+    }
     /**
      * Get current configuration values
      * @returns {Object} Current layout configuration

@@ -9,7 +9,7 @@
   <!-- Favicon using Font Awesome wave-square icon in white (same as navbar) -->
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23ffffff' d='M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z'/></svg>"
-    type="image/svg+xml">
+    type="image/svg+xml" />
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -17,8 +17,6 @@
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">HTTP <i class="fa-solid fa-wave-square"></i> AN<i
@@ -43,25 +41,34 @@
   <!-- Settings Modal (direct child of body, appears just below navbar) -->
   <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content"
-        style="background: rgba(25,25,60,0.95); border: 2px solid #0ff; border-radius: 10px; box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset; color: #f5f5f5;">
-        <div class="modal-header" style="border-bottom: 1px solid #0ff;">
+      <div class="modal-content" style="
+            background: rgba(25, 25, 60, 0.95);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset;
+            color: #f5f5f5;
+          ">
+        <div class="modal-header" style="border-bottom: 1px solid #0ff">
           <h5 class="modal-title" id="settingsModalLabel"
-            style="color: #0ff; text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;">Settings</h5>
+            style="color: #0ff; text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff">
+            Settings
+          </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="d-flex align-items-center" style="gap: 1rem;">
-            <label for="volume-slider" style="color: #0ff; font-weight: bold;">Volume:</label>
-            <input type="range" id="volume-slider" min="0" max="100" value="50" style="flex: 1;">
+          <div class="d-flex align-items-center" style="gap: 1rem">
+            <label for="volume-slider" style="color: #0ff; font-weight: bold">Volume:</label>
+            <input type="range" id="volume-slider" min="0" max="100" value="50" style="flex: 1" />
           </div>
-          <div id="pick-visuals">
-            <input type="checkbox" id="toggle-visuals" checked>
-            <label for="toggle-visuals" class="toggle-label">
+          <div id="pick-visuals" class="d-flex align-items-center" style="gap: 1rem">
+            <label for="toggle-visuals" style="color: #0ff; font-weight: bold">Toggle Visuals:</label>
+            <input type="checkbox" id="toggle-visuals" checked />
           </div>
         </div>
-        <div class="modal-footer" style="border-top: 1px solid #0ff;">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="modal-footer" style="border-top: 1px solid #0ff">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -78,20 +85,33 @@
       <div class="col-12 col-md-10" id="piano-container">
         <div class="keys d-flex flex-wrap justify-content-center">
           <!-- Song Controls -->
-          <div style="text-align:center; margin-bottom:20px;">
+          <div style="text-align: center; margin-bottom: 20px">
             <label for="song-select">Choose a song:</label>
             <select id="song-select">
               <option value="freeplay">freeplay</option>
               <option value="twinkle">Twinkle Twinkle</option>
               <option value="mary">Mary Had a Little Lamb</option>
               <option value="keytest">keytest</option>
+              <option value="neverGonnaGiveYouUp">
+                Never Gonna Give You Up
+              </option>
             </select>
           </div>
         </div>
-
       </div>
     </div>
 
+    <!-- Canvas Row -->
+    <div class="container">
+      <div class="row justify-content-center mt-3">
+        <div class="col-12 d-flex flex-column align-items-center">
+          <canvas id="piano"></canvas>
+          <!-- keybind-indicator is now rendered inside playalong-controls -->
+        </div>
+      </div>
+    </div>
+    <div id="playalong-controls" class="d-flex justify-content-center mt-3"></div>
+    <section class="section-spacing"></section>
     <!-- Canvas Row -->
     <div class="container">
       <div class="row justify-content-center mt-3">
@@ -120,48 +140,51 @@
       </button>
       <div id="visualiser-box">
         <p>
-          The visualiser displays the notes being played in real-time. Each note
-          corresponds to a key on the virtual piano.
+          The visualiser displays the notes being played in real-time. Each
+          note corresponds to a key on the virtual piano.
         </p>
         <p>
-          Click on the piano keys or press the corresponding QWERTY keys to see
-          the visualisation.
+          Click on the piano keys or press the corresponding QWERTY keys to
+          see the visualisation.
         </p>
       </div>
+    </section>
+
+    <section id="instructions" class="container mt-1 mb-5">
+      <button class="toggle-text">
+        <h2>Instructions</h2>
+      </button>
+      <div id="instructions-box">
+        <p>
+          Welcome to the Virtual Piano! Use your QWERTY keyboard to play
+          notes. The piano spans 36 keys from <strong>C3</strong> to
+          <strong>C6</strong>.
+        </p>
+
+        <h3>Keyboard Mapping</h3>
+        <p>
+          Each piano key corresponds to a key on your QWERTY keyboard. The
+          mapping is designed to match the physical keyboard layout for easier
+          play.
+        </p>
+
+        <h3>Tips</h3>
+        <ul>
+          <li>Press the corresponding QWERTY key to play a note.</li>
+          <li>Use multiple keys simultaneously to play chords.</li>
+          <li>
+            Clicking on the piano keys with your mouse will also play the
+            notes.
+          </li>
+        </ul>
+      </div>
+    </section>
   </div>
-
-
-  <section id="instructions" class="container mt-1 mb-5">
-    <button class="toggle-text">
-      <h2>Instructions</h2>
-    </button>
-    <div id="instructions-box">
-      <p>
-        Welcome to the Virtual Piano! Use your QWERTY keyboard to play notes.
-        The piano spans 36 keys from <strong>C3</strong> to <strong>C6</strong>.
-      </p>
-
-      <h3>Keyboard Mapping</h3>
-      <p>
-        Each piano key corresponds to a key on your QWERTY keyboard. The mapping
-        is designed to match the physical keyboard layout for easier play.
-      </p>
-
-      <h3>Tips</h3>
-      <ul>
-        <li>Press the corresponding QWERTY key to play a note.</li>
-        <li>Use multiple keys simultaneously to play chords.</li>
-        <li>
-          Clicking on the piano keys with your mouse will also play the notes.
-        </li>
-      </ul>
-  </section>
 
   <!-- Footer matching navbar theme -->
   <footer class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
     <div class="container-fluid">
       <div class="row w-100 align-items-center">
-
         <!-- Center tagline -->
         <div class="col text-center mobile-view">
           <span class="text-muted" id="tagline">Virtual Piano Experience</span>
@@ -171,7 +194,6 @@
         <div class="col-auto ms-auto text-end mobile-view">
           <span class="text-muted">© 2025 HTTPano</span>
         </div>
-
       </div>
     </div>
   </footer>
@@ -183,28 +205,25 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener("DOMContentLoaded", function () {
       var settingsLink = document.querySelector('a.nav-link[href="#"]');
-      var settingsModal = document.getElementById('settingsModal');
+      var settingsModal = document.getElementById("settingsModal");
       if (settingsLink && settingsModal) {
-        settingsLink.addEventListener('click', function (e) {
+        settingsLink.addEventListener("click", function (e) {
           e.preventDefault();
           var modal = new bootstrap.Modal(settingsModal);
           modal.show();
         });
-        settingsModal.addEventListener('hidden.bs.modal', function () {
+        settingsModal.addEventListener("hidden.bs.modal", function () {
           settingsLink.focus();
-          settingsModal.setAttribute('inert', '');
+          settingsModal.setAttribute("inert", "");
         });
-        settingsModal.addEventListener('shown.bs.modal', function () {
-          settingsModal.removeAttribute('inert');
+        settingsModal.addEventListener("shown.bs.modal", function () {
+          settingsModal.removeAttribute("inert");
         });
       }
     });
   </script>
-
 </body>
-
-
 
 </html>

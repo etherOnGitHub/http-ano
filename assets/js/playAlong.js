@@ -1,3 +1,5 @@
+import { keybindToNotes } from "./helpers.js";
+
 export const SONGS = {
   twinkle: [
     "C4",
@@ -111,6 +113,9 @@ export const SONGS = {
     "G#6",
     "A#6",
   ],
+  // use function to write songs in shorthand format
+  // just type the keyboard letters in the order you want
+  neverGonnaGiveYouUp: keybindToNotes("tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"),
 };
 
 export function testPlayAlong(songName) {
@@ -136,11 +141,13 @@ export class PlayAlongController {
     this.currentIndex = 0;
     this.active = true;
     this.logCurrentKey();
+    document.getElementById("keybind-indicator").style.backgroundColor = "#181c2f";
   }
 
   stop() {
     this.active = false;
     this.currentIndex = 0;
+    document.getElementById("keybind-indicator").style.backgroundColor = "transparent";
   }
 
   // New method: handle note played
@@ -207,17 +214,20 @@ export function renderPlayAlongControls(selectedSong) {
 
   if (selectedSong && selectedSong !== "freeplay" && selectedSong !== "") {
     controls.innerHTML = `
-  <div class="d-flex justify-content-between align-items-center w-100" style="max-width: 900px; min-height: 90px; padding: 24px 16px 0 16px; position: relative; z-index: 1000;">
-        <button id="play-song" class="btn px-4"
-          style="background-color: #181c2f; color: #00fff9; border: 2px solid #00fff9; border-radius: 12px; box-shadow: 0 0 16px #00fff9, 0 0 32px #00fff980; font-weight: bold; z-index: 11; transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;">
-          Play
-        </button>
-        <div id="keybind-indicator" class="text-center mx-4" style="font-size: 2rem; color: #ff9800; z-index: 1100; min-height: 48px;"></div>
-        <button id="stop-song" class="btn px-4"
-          style="background-color: #181c2f; color: #ff00ff; border: 2px solid #ff00ff; border-radius: 12px; box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80; font-weight: bold; z-index: 11; transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;">
-          Stop
-        </button>
+    <div class="d-flex justify-content-between align-items-center w-100"
+    style="max-width: 900px; min-height: 90px; padding: 24px 16px 0 16px; position: relative; z-index: 1000;">
+      <button id="play-song" class="btn px-4"
+      style="background-color: #181c2f; color: #fff; border: 2px solid #00fff9; border-radius: 12px; box-shadow: 0 0 16px #00fff9, 0 0 32px #00fff980; font-weight: bold; z-index: 11; transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;">
+      Play
+      </button>
+      <div id="keybind-indicator" class="text-center mx-4 btn px-4"
+      style="font-size: 2rem; color: #fff; z-index: 1100; min-height: 48px; border-radius: 16px;">
       </div>
+      <button id="stop-song" class="btn px-4"
+      style="background-color: #181c2f; color: #fff; border: 2px solid #ff00ff; border-radius: 12px; box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80; font-weight: bold; z-index: 11; transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;">
+      Stop
+      </button>
+    </div>
     `;
 
     // Active indicator logic for Play/Stop buttons

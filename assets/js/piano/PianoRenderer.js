@@ -7,6 +7,7 @@ import {
   createBottomRoundedRectPath,
   applyBlackKey3DEffect,
 } from "./helpers/canvasHelpers.js";
+import { keyMap } from "../pianoKeyPress.js";
 
 /**
  * PianoRenderer - Handles all piano canvas rendering operations
@@ -144,7 +145,7 @@ export class PianoRenderer {
 
     // Set fill color and draw main body - orange if expected
     if (isExpected && !isPressed) {
-      this.ctx.fillStyle = "#ff9800"; // Orange for expected key
+      this.ctx.fillStyle = "#eee"; // Orange for expected key
     } else {
       this.ctx.fillStyle = isPressed
         ? this.config.colors.whiteKeyPressed
@@ -164,12 +165,15 @@ export class PianoRenderer {
 
     // Draw border - orange if expected
     if (isExpected && !isPressed) {
-      this.ctx.strokeStyle = "#ff6f00"; // Darker orange for border
+      this.ctx.strokeStyle = "#eee"; // Darker orange for border
     } else {
       this.ctx.strokeStyle = this.config.colors.whiteKeyBorder;
     }
     this.ctx.lineWidth = 4;
     this.ctx.strokeRect(key.x, key.y, key.width, key.height);
+
+    // Draw keyboard key label
+    this.drawKeyLabel(key, false, isExpected);
   }
 
   /**
@@ -182,7 +186,7 @@ export class PianoRenderer {
     const radius = 6;
 
     // Draw neon border effect - orange if expected
-    const borderColor = isExpected && !isPressed ? "#ff9800" : "#ff00ff";
+    const borderColor = isExpected && !isPressed ? "#eee" : "#ff00ff";
     drawNeonBorder(
       this.ctx,
       key.x,
@@ -198,7 +202,7 @@ export class PianoRenderer {
 
     // Set fill color and draw rounded rectangle - orange if expected
     if (isExpected && !isPressed) {
-      this.ctx.fillStyle = "#ff9800"; // Orange for expected key
+      this.ctx.fillStyle = "#eee"; // Orange for expected key
     } else {
       this.ctx.fillStyle = isPressed
         ? this.config.colors.blackKeyPressed
@@ -228,6 +232,41 @@ export class PianoRenderer {
         key.height / this.config.keyRatios.blackKeyHeightRatio
       );
     }
+
+    // Draw keyboard key label
+    this.drawKeyLabel(key, true, isExpected);
+  }
+
+  /**
+   * Draw keyboard key label at the bottom center of a piano key
+   * @param {Object} key - Key object
+   * @param {boolean} isBlackKey - Whether this is a black key
+   */
+  drawKeyLabel(key, isBlackKey = false, isExpected = false) {
+    // Check if keyboard labels are enabled in config
+    if (!this.config.keyLabels || !this.config.keyLabels.visible) {
+      return;
+    }
+
+    // Find the corresponding keyboard key from keyMap
+    const mappedKey = keyMap.find((mapKey) => mapKey.note === key.note);
+    if (!mappedKey || !mappedKey.key) return;
+
+    // Set up text properties
+    this.ctx.save();
+    this.ctx.font = "12px Orbitron, Arial, sans-serif";
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+
+    this.ctx.fillStyle = isExpected ? "#000000" : "#ffffff";
+
+    // Calculate position (bottom center of the key)
+    const textX = key.x + key.width / 2;
+    const textY = key.y + key.height - 15; // 15px from bottom
+
+    // Draw the keyboard key label
+    this.ctx.fillText(mappedKey.key.toUpperCase(), textX, textY);
+    this.ctx.restore();
   }
 
   /**
