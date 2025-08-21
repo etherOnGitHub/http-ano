@@ -50,8 +50,10 @@ class Piano {
   createNoteAudioMap() {
     const noteAudioMap = {};
     keyMap.forEach(({ note, audio }) => {
-      if (note && audio) {
-        noteAudioMap[note] = audio;
+      if (note && audio && Array.isArray(note)) {
+        note.forEach((singleNote) => {
+          noteAudioMap[singleNote] = audio;
+        });
       }
     });
     return noteAudioMap;
@@ -295,22 +297,6 @@ class Piano {
       default:
         break;
     }
-    switch (numOctaves) {
-      case 3:
-        this.config.layout.defaultOctave = 4;
-        this.config.aspectRatio = 0.18;
-        break;
-      case 2:
-        this.config.layout.defaultOctave = 4;
-        this.config.aspectRatio = 0.2;
-        break;
-      case 1:
-        this.config.layout.defaultOctave = 5;
-        this.config.aspectRatio = 0.25;
-        break;
-      default:
-        break;
-    }
 
     this.config.layout.numOctaves = numOctaves;
     this.releaseAllKeys(); // Clear any pressed keys
@@ -343,17 +329,6 @@ class Piano {
       this.config.keyLabels.visible = !this.config.keyLabels.visible;
     }
     this.draw(); // Redraw the piano with updated label visibility
-  }
-  /**
-   * Get current configuration values
-   * @returns {Object} Current layout configuration
-   */
-  getCurrentLayout() {
-    return {
-      defaultOctave: this.config.layout.defaultOctave,
-      numOctaves: this.config.layout.numOctaves,
-      totalKeys: this.keys.length,
-    };
   }
 
   /**

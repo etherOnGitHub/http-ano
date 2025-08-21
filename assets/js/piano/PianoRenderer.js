@@ -61,7 +61,7 @@ export class PianoRenderer {
    * Draw the complete piano with all keys
    * @param {Array} keys - Array of key objects
    * @param {Set} pressedKeys - Set of currently pressed key notes
-   * @param {string} expectedNote - The note that should be highlighted for play-along
+   * @param {Array} expectedNote - The note array that should be highlighted for play-along
    */
   draw(keys, pressedKeys, expectedNote = null) {
     this.clearCanvas();
@@ -81,13 +81,17 @@ export class PianoRenderer {
    * Draw all piano keys in proper layering order
    * @param {Array} keys - Array of key objects
    * @param {Set} pressedKeys - Set of currently pressed key notes
-   * @param {string} expectedNote - The note that should be highlighted for play-along
+   * @param {Array} expectedNote - The note array that should be highlighted for play-along
    */
   drawKeys(keys, pressedKeys, expectedNote = null) {
     // Draw white keys first (background layer)
     keys
       .filter((key) => key.type === "white")
       .forEach((key) => {
+        const isExpected =
+          expectedNote &&
+          Array.isArray(expectedNote) &&
+          expectedNote.includes(key.note);
         this.drawKey(
           {
             ...key,
@@ -95,7 +99,7 @@ export class PianoRenderer {
             y: key.y + (this.containerPadding || 0),
           },
           pressedKeys.has(key.note),
-          expectedNote === key.note
+          isExpected
         );
       });
 
@@ -103,6 +107,10 @@ export class PianoRenderer {
     keys
       .filter((key) => key.type === "black")
       .forEach((key) => {
+        const isExpected =
+          expectedNote &&
+          Array.isArray(expectedNote) &&
+          expectedNote.includes(key.note);
         this.drawKey(
           {
             ...key,
@@ -110,7 +118,7 @@ export class PianoRenderer {
             y: key.y + (this.containerPadding || 0),
           },
           pressedKeys.has(key.note),
-          expectedNote === key.note
+          isExpected
         );
       });
   }
@@ -194,7 +202,7 @@ export class PianoRenderer {
       key.width,
       key.height,
       radius,
-      "#ff00ff"
+      borderColor
     );
 
     // Apply shadow effects
@@ -249,7 +257,7 @@ export class PianoRenderer {
     }
 
     // Find the corresponding keyboard key from keyMap
-    const mappedKey = keyMap.find((mapKey) => mapKey.note === key.note);
+    const mappedKey = keyMap.find((mapKey) => mapKey.note.includes(key.note));
     if (!mappedKey || !mappedKey.key) return;
 
     // Set up text properties

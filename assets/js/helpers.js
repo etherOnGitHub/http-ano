@@ -1,7 +1,7 @@
 import { keyMap } from "./pianoKeyPress.js";
 
 // Helper function to convert keybind letters to piano notes
-// e.g. "uio" -> ["C5", "D5", "E5"]
+// e.g. "uio" -> [["C5"], ["D5"], ["E5"]]
 export function keybindToNotes(keybindString) {
   const notes = [];
 
