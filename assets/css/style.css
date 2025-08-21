@@ -342,7 +342,7 @@ body {
     border-color: #ff00ff;
     box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
     background: radial-gradient(circle, #ff00ff 0%, #ff00ff80 50%, transparent 100%);
-    background-color: transparent; /* o el fondo que uses */
+    background-color: transparent;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     color: #181c2f !important;
 }
