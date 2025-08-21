@@ -400,8 +400,8 @@ footer .text-muted {
 @media (max-width: 600px) {
     #recording-controls {
         flex-direction: column;
-        align-items: stretch;
-        width: 50%;
+        align-items: center;
+        width: 100%;
     }
 }
 

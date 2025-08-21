@@ -67,7 +67,7 @@ export function setupRecorderButtons() {
         btn.classList.remove('active');
         btn.disabled = true;
     }
-
+    // Initial state
     activate(startBtn);
     deactivate(stopBtn);
     deactivate(playBtn);
@@ -86,5 +86,18 @@ export function setupRecorderButtons() {
             activate(playBtn);
             deactivate(stopBtn);
         }
+    });
+
+    playBtn.addEventListener('click', () => {
+        if (!playBtn.classList.contains('active')) {
+            activate(playBtn); // mantén playBtn activo para repetir
+        }
+        deactivate(startBtn); // desactiva startBtn al iniciar playback
+
+        // Simula el fin de la reproducción
+        setTimeout(() => {
+            activate(startBtn); // reactiva startBtn al terminar
+            // playBtn sigue activo para repetir si quieren
+        }, 3000); // duración simulada, cambia según tu playback real
     });
 }
