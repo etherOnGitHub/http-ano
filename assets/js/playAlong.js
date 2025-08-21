@@ -115,7 +115,11 @@ export const SONGS = {
   ],
   // use function to write songs in shorthand format
   // just type the keyboard letters in the order you want
-  neverGonnaGiveYouUp: keybindToNotes("tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"),
+  neverGonnaGiveYouUp: keybindToNotes(
+    "tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"
+  ),
+  happyBirthday: keybindToNotes("uuiupo uuiuzp uuvx ppoi ddx pzp"),
+  mexicanHatDance: keybindToNotes("zazououyur r4rtyuiopi popiyiytyr zzzxzpoiu"),
 };
 
 export function testPlayAlong(songName) {
@@ -141,13 +145,15 @@ export class PlayAlongController {
     this.currentIndex = 0;
     this.active = true;
     this.logCurrentKey();
-    document.getElementById("keybind-indicator").style.backgroundColor = "#181c2f";
+    document.getElementById("keybind-indicator").style.backgroundColor =
+      "#181c2f";
   }
 
   stop() {
     this.active = false;
     this.currentIndex = 0;
-    document.getElementById("keybind-indicator").style.backgroundColor = "transparent";
+    document.getElementById("keybind-indicator").style.backgroundColor =
+      "transparent";
   }
 
   // New method: handle note played
