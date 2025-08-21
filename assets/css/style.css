@@ -1,10 +1,16 @@
-/* Custom position for settings modal to protrude from Settings link */
-/* Ensure Bootstrap modal and backdrop are always on top */
-/* Basic stylesheet - no design */
-/* 🎹 General cyberpunk/neon style */
+/* ==================================================
+   style.css — reorganised by semantic sections
+   Sections: Base | Layout | Navbar | Controls | Piano
+             | Visualiser & Instructions | Recording
+             | Footer | Responsive
+   Goal: keep exact selectors and behaviour; improve readability
+   ================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
 
+/* ----------------------
+   Base / Reset
+   ---------------------- */
 body {
   min-height: 100%;
   background-color: #0d0d0d;
@@ -21,7 +27,9 @@ body {
   margin-bottom: 10rem;
 }
 
-/* Navbar neon style */
+/* ----------------------
+   Layout / Navbar
+   ---------------------- */
 .navbar {
   background: linear-gradient(90deg, #ff00ff, #00fff9);
   border-bottom: 2px solid #0ff;
@@ -35,19 +43,21 @@ body {
   margin-left: 1.5rem;
 }
 
+.nav-link {
+  color: #ff00ff !important;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
 .nav-link:hover {
   color: #0d0d0d !important;
   text-shadow: 0 0 5px #00fff9;
   transition: all 0.2s ease-in-out;
 }
 
-.nav-link {
-  color: #ff00ff !important;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-}
-
-/* playback box */
-
+/* ----------------------
+   Controls (volume, toggles)
+   ---------------------- */
+/* Playback volume slider (navbar) */
 #volume-slider {
   appearance: none;
   width: 50%;
@@ -57,11 +67,8 @@ body {
   border: 1px solid #ff00ff;
   border-radius: 8px;
   cursor: pointer;
-  background: #000;
   box-shadow: inset 0 0 10px #00fff9, inset 0 0 20px #ff00ff;
 }
-
-/* slider head styles */
 
 #volume-slider::-webkit-slider-thumb {
   appearance: none;
@@ -74,7 +81,9 @@ body {
   box-shadow: inset 0 0 10px #00fff9, inset 0 0 20px #ff00ff;
 }
 
-/* Piano container */
+/* ----------------------
+   Piano (container, keys, canvas)
+   ---------------------- */
 #piano-container {
   margin-top: 2rem;
   padding: 20px;
@@ -82,9 +91,9 @@ body {
   border: 2px solid #ff00ff;
   border-radius: 10px;
   box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset;
+  z-index: 1;
 }
 
-/* Keys styling */
 .key {
   position: relative;
   display: inline-block;
@@ -116,10 +125,8 @@ body {
 
 .key:hover {
   box-shadow: 0 0 15px #8000ff, 0 0 30px #8000ff inset;
-  /* neon purple glow */
 }
 
-/* Buttons inside keys */
 .key button {
   width: 100%;
   height: 100%;
@@ -132,7 +139,6 @@ body {
   cursor: pointer;
 }
 
-/* Animation when a key is pressed */
 .key.active,
 .key button:active {
   transform: scale(0.96);
@@ -140,18 +146,39 @@ body {
   transition: 0.1s ease;
 }
 
-/* Canvas with neon border */
-/* Canvas with neon border and unified styles */
+/* Consolidated piano canvas rules (merged duplicates) */
 #piano {
-  background: transparent;
-  border: 2px solid #ff00ff;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff9;
+  /* keep consistent sizing and stacking */
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
+  z-index: 1;
+
+  /* Visual appearance: prefer neutral background with subtle neon glow */
+  border: 2px solid #333;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00fff9;
 }
 
+#pick-visuals {
+  z-index: 1;
+}
+
+/* Fullscreen visualiser canvas (positioned behind UI) */
+#visualiser-canvas {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  border-radius: 0;
+  position: fixed;
+  left: 0;
+  z-index: 0;
+}
+
+/* ----------------------
+   Visualiser & Instructions
+   ---------------------- */
 #visualiser,
 #instructions {
   max-height: 600px;
@@ -164,39 +191,25 @@ body {
   position: relative;
 }
 
-#visualiser button {
+#visualiser button,
+#instructions button {
   background: transparent;
   border: none;
   color: #0ff;
   text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
 }
 
-/* Instructions panel */
-
-#instructions button {
-  background: transparent;
-  border: none;
-  color: #0ff !important; 
-  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff !important;
-}
-
 #instructions ul {
   list-style: none;
-  /* Remove default bullets */
   padding-left: 0;
 }
 
 #instructions ul li {
   display: inline-flex;
-  /* Horizontal flex with icon and text */
   align-items: center;
-  /* Vertically center */
   justify-content: center;
-  /* Center content */
   gap: 0.5em;
-  /* Space between icon and text */
   margin-bottom: 0.7em;
-
   font-weight: bold;
   width: 100%;
   text-align: center;
@@ -205,11 +218,8 @@ body {
 
 #instructions ul li::before {
   font-family: "Font Awesome 6 Free";
-  /* Font Awesome font */
   content: "\f51f";
-  /* Unicode for compact-disc icon */
   font-weight: 900;
-  /* Solid style */
   color: #0ff;
   text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
   font-size: 1.2em;
@@ -222,21 +232,21 @@ body {
   text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
 }
 
-/* When collapsed, shrink the instructions box to the width of its header */
+/* Collapse behaviour: shrink panel to its header width */
 #instructions.collapsed {
   width: fit-content;
   max-width: none;
-  padding: 8px 12px; /* smaller padding so border hugs the h2 */
+  padding: 8px 12px;
   margin-left: auto;
-  margin-right: auto; /* keep centered */
+  margin-right: auto;
 }
 
 #instructions.collapsed #instructions-box {
-  display: none !important; /* ensure content is hidden */
+  display: none !important;
 }
 
 #instructions .toggle-text {
-  display: inline-block; /* allow box to size to header */
+  display: inline-block;
   background: transparent;
   border: none;
   padding: 0;
@@ -245,54 +255,34 @@ body {
 #instructions .toggle-text h2 {
   display: inline-block;
   margin: 0;
-  white-space: nowrap; /* keep header on one line */
+  white-space: nowrap;
 }
 
-/* Piano Canvas Styles */
-#piano-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+/* Mirror collapse for visualiser */
+#visualiser.collapsed {
+  width: fit-content;
+  max-width: none;
+  padding: 8px 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#piano {
-  border: 2px solid #333;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  display: block;
-  /* Remove any width constraints to let the Piano class handle sizing */
-  max-width: 100%;
-  height: auto;
-  z-index: 1;
-}
-#pick-visuals {
-  z-index: 1;
-}
-#visualiser-canvas {
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  /* border: 1px solid #ffffffc7; */
-  border-radius: 0;
-  position: fixed;
-  left: 0;
-  z-index: 0;
+#visualiser.collapsed #visualiser-box {
+  display: none !important;
 }
 
-/* Remove all custom modal backdrop effects */
+/* ----------------------
+   Modal / Backdrop tweaks
+   ---------------------- */
 .modal-backdrop {
   background-color: transparent !important;
   backdrop-filter: none !important;
   pointer-events: none !important;
 }
 
-/* Recording Controls styles */
-
+/* ----------------------
+   Recording Controls
+   ---------------------- */
 #recording-controls {
   max-width: 900px;
   margin: 3rem auto;
@@ -304,11 +294,13 @@ body {
   z-index: 1000;
   align-items: center;
 }
+
 .heading-3 {
   color: #0ff;
   text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
   padding-bottom: 1rem;
 }
+
 .btn-custom {
   width: 50%;
   justify-content: center;
@@ -323,7 +315,6 @@ body {
   background-color: #181c2f;
 }
 
-/* start, stop, play buttons */
 .btn-custom.r-start,
 .btn-custom.r-stop,
 .btn-custom.r-play {
@@ -333,12 +324,10 @@ body {
     rgba(0, 255, 255, 0.1) 50%,
     rgba(0, 255, 255, 0) 100%
   );
-
   border-color: #00fff9;
   color: #4d4f5b !important;
 }
 
-/* Active state for any button */
 .btn-custom.active {
   border-color: #ff00ff;
   box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
@@ -352,11 +341,14 @@ body {
   color: white !important;
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
+
 .btn-custom.active:hover {
   transform: scale(1.1);
 }
 
-/* Footer styling */
+/* ----------------------
+   Footer
+   ---------------------- */
 footer {
   background: linear-gradient(90deg, #ff00ff, #00fff9);
   border-top: 2px solid #0ff;
@@ -393,7 +385,6 @@ footer .text-muted {
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
-/* Ensure spacing between icons and text in taglines */
 #tagline i {
   margin-right: 0.5rem;
 }
@@ -403,7 +394,9 @@ footer .text-muted {
   margin-right: 0;
 }
 
-/* Responsive styles */
+/* ----------------------
+   Responsive tweaks
+   ---------------------- */
 @media (max-width: 600px) {
   #recording-controls {
     flex-direction: column;

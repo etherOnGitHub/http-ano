@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">HTTP <i class="fa-solid fa-wave-square"></i> AN <i
+      <a class="navbar-brand" href="#index">HTTP <i class="fa-solid fa-wave-square"></i> AN <i
           class="fa-solid fa-compact-disc fa-spin"></i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,41 +39,12 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#instructions">Instructions</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Settings Modal (direct child of body, appears just below navbar) -->
-  <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content"
-        style="background: rgba(25,25,60,0.95); border: 2px solid #0ff; border-radius: 10px; box-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff9 inset; color: #f5f5f5;">
-        <div class="modal-header" style="border-bottom: 1px solid #0ff;">
-          <h5 class="modal-title" id="settingsModalLabel"
-            style="color: #0ff; text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;">Settings</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex align-items-start" style="gap: 1rem;">
-            <label for="volume-slider-modal" style="color: #0ff; font-weight: bold;">Volume:</label>
-            <input type="range" id="volume-slider-modal" min="0" max="100" value="50" style="flex: 1;">
-          </div>
-          <div id="pick-visuals" class="dflex align-items-start" style="gap: 0.5rem;">
-            <label for="toggle-visuals-modal" style="color: #0ff; font-weight: bold;">Toggle Visuals:</label>
-            <input type="checkbox" id="toggle-visuals-modal" checked>
-          </div>
-        </div>
-        <div class="modal-footer" style="border-top: 1px solid #0ff;">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="container-fluid">
     <canvas id="visualiser-canvas">
