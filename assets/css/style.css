@@ -273,12 +273,85 @@ body {
 }
 #visualiser-canvas {
   width: 100%;
-  height: 200%;
-  border: 0px solid #333;
+  height: 100%;
+  background-color: #000000;
+  /* border: 1px solid #ffffffc7; */
   border-radius: 0;
   position: fixed;
   left: 0;
   z-index: 0;
+}
+
+/* Remove all custom modal backdrop effects */
+.modal-backdrop {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  pointer-events: none !important;
+}
+
+/* Recording Controls styles */
+
+#recording-controls {
+  max-width: 900px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1000;
+  align-items: center;
+}
+.heading-3 {
+  color: #0ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+  padding-bottom: 1rem;
+}
+.btn-custom {
+  width: 50%;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: bold;
+  border: 2px solid;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, color 0.2s, background-color 0.2s;
+  user-select: none;
+  z-index: 11;
+  background-color: #181c2f;
+}
+
+/* start, stop, play buttons */
+.btn-custom.r-start,
+.btn-custom.r-stop,
+.btn-custom.r-play {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.3) 0%,
+    rgba(0, 255, 255, 0.1) 50%,
+    rgba(0, 255, 255, 0) 100%
+  );
+
+  border-color: #00fff9;
+  color: #4d4f5b !important;
+}
+
+/* Active state for any button */
+.btn-custom.active {
+  border-color: #ff00ff;
+  box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
+  background: radial-gradient(
+    circle,
+    transparent 0%,
+    #ff00ff80 70%,
+    #ff00ff 100%
+  );
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: white !important;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+.btn-custom.active:hover {
+  transform: scale(1.1);
 }
 
 /* Footer styling */
@@ -328,14 +401,15 @@ footer .text-muted {
   margin-right: 0;
 }
 
-/* Remove all custom modal backdrop effects */
-.modal-backdrop {
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-  pointer-events: none !important;
+/* Responsive styles */
+@media (max-width: 600px) {
+  #recording-controls {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 }
 
-/* Responsive styles */
 @media screen and (max-width: 768px) {
   footer .row {
     flex-direction: column !important;
