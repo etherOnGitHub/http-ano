@@ -219,4 +219,4 @@ document.getElementById('toggle-visuals').addEventListener('change', function ()
         visualiser.style.display = 'none';
         console.log('Visualiser disabled');
     }
-})
+});
