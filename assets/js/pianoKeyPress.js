@@ -233,10 +233,6 @@ export function handlePianoKeyPress(mappedKey) {
   // Audio will be handled by the piano's pressKey method
   if (window.piano && mappedKey.note) {
     window.piano.pressKey(mappedKey.note);
-    // Release the key after a short duration for visual feedback
-    setTimeout(() => {
-      window.piano.releaseKey(mappedKey.note);
-    }, 200);
   } else if (mappedKey.note) {
     // Fallback: if piano is not available, dispatch the event directly
     // This ensures play-along functionality works even during initialization
@@ -270,30 +266,6 @@ export function handleButtonAction(id) {
     if (mappedKey.note === currentNote) {
       document.dispatchEvent(new Event("playalongadvance"));
     }
-  }
-
-  // Switch for console logging and future testing
-  switch (id) {
-    case "vk-btn-C5":
-    case "vk-btn-Cs5":
-    case "vk-btn-D5":
-    case "vk-btn-Ds5":
-    case "vk-btn-E5":
-    case "vk-btn-F5":
-    case "vk-btn-Fs5":
-    case "vk-btn-G5":
-    case "vk-btn-Gs5":
-    case "vk-btn-A5":
-    case "vk-btn-As5":
-    case "vk-btn-B5":
-      console.log(
-        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-      );
-      break;
-    default:
-      console.log(
-        `Key '${mappedKey.key}' pressed (Button ${id}) - Piano note: ${mappedKey.note}`
-      );
   }
 }
 
@@ -365,6 +337,7 @@ function handleKeyUp(event) {
     const btn = document.getElementById(mappedKey.id);
     if (btn) {
       btn.classList.remove("active");
+      window.piano.releaseKey(mappedKey.note);
     }
   }
 }
