@@ -28,12 +28,48 @@ During the planning Ryan decided to create the wireframes for the project as he 
 --------------
 
 <br>
-After some consideration we also had another great alternative mock up done by Naz for mobile with a simplified view.
+After some consideration we also had another great alternative mock up done by Naz and Rocio for mobile with a simplified view.
 
 <p align="center">
     <img src="https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/mobile-wireframe-naz-rocio.webp" alt="Another black and white wireframe showing an alternative view of the keyboard in portrain mode with simplified features."><br>
     <sub>Link to Git Image: https://github.com/etherOnGitHub/http-ano/blob/main/assets/images/wireframes/mobile-wireframe-naz-rocio.webp</sub>
 </p>
+
+
+### Design Philosophy
+HTTP-ANO embraces a modern cyberpunk aesthetic with a neon-themed interface that transforms the traditional piano experience into an interactive digital playground. The design prioritizes both visual appeal and functionality, ensuring an engaging user experience across all devices.
+
+### Color Palette
+Our carefully selected color scheme creates a cohesive visual identity:
+- **Primary Neon Cyan**: `#00fff9` - Used for borders, highlights, and interactive elements
+- **Secondary Magenta**: `#ff00ff` - Accent color for glow effects and visual feedback
+- **Dark Background**: `rgba(25, 25, 60, 0.85)` - Provides contrast and reduces eye strain
+- **Light Text**: `#ffffff` - Ensures accessibility and readability
+
+<img width="428" height="120" alt="image" src="https://github.com/user-attachments/assets/47834a0e-886b-4c45-8304-513626a0e46c" />
+
+
+
+### Typography
+- **Primary Font**: Orbitron - A futuristic typeface that complements the cyberpunk theme
+- **Fallback**: Sans-serif fonts for maximum compatibility across devices
+
+### Visual Design Elements
+
+<img width="533" height="328" alt="image" src="https://github.com/user-attachments/assets/3745e8bc-3db8-496d-b027-4f686c2b5e18" />
+
+
+#### Piano Interface
+- **Canvas-based rendering** for smooth, responsive piano keys
+- **Neon glow effects** that activate when keys are pressed
+- **Gradient backgrounds** that enhance the futuristic aesthetic
+- **Real-time visual feedback** for user interactions
+
+#### Interactive Components
+- **Animated taglines** in the footer with rotating Font Awesome icons
+- **Responsive navigation** with Bootstrap collapse functionality
+- **Modal dialogs** with themed styling for settings and controls
+- **Custom buttons** with hover effects and neon borders
 
 ## Development
 ### Git LFS
@@ -43,10 +79,15 @@ After some consideration we also had another great alternative mock up done by N
 
 ## Testing & Validation
 
+<img width="1178" height="847" alt="image" src="https://github.com/user-attachments/assets/0c22d2ef-db97-46dd-86fb-890bda887ff9" />
+
+
 ## Use of AI
 ### Code Creation
 
 ### Debugging
+
+Throughout development, features were regularly tested and any bugs were raised and fixed before picking up any new tickets.
 
 ### Optimization
 
@@ -65,5 +106,10 @@ After some consideration we also had another great alternative mock up done by N
 
 ### Illustrations & Design
 - [Balsamiq](https://balsamiq.com/)
+- [Font Awesome](https://fontawesome.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Google Fonts](https://fonts.google.com/)
+
 
 ### Validators
+
