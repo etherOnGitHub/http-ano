@@ -313,6 +313,8 @@ export const SONGS = {
   neverGonnaGiveYouUp: keybindToNotes(
     "tyutooi rtyr iiuyt tyut ui ytr riu tyutooi rtyr z yuyt tyut ui ytr riu"
   ),
+  happyBirthday: keybindToNotes("uuiupo uuiuzp uuvx ppoi ddx pzp"),
+  mexicanHatDance: keybindToNotes("zazououyur r4rtyuiopi popiyiytyr zzzxzpoiu"),
 };
 
 export function testPlayAlong(songName) {

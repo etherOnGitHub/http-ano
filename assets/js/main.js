@@ -207,3 +207,16 @@ document.querySelector('#instructions .toggle-text').onclick = function () {
     box.style.display = box.style.display === 'none' ? 'block' : 'none';
     console.log('Instructions box toggled:', box.style.display);
 };
+
+
+// Toggle visualiser visibility
+document.getElementById('toggle-visuals').addEventListener('change', function () {
+    const visualiser = document.getElementById('visualiser-canvas');
+    if (this.checked) {
+        visualiser.style.display = 'block';
+        console.log('Visualiser enabled');
+    } else {
+        visualiser.style.display = 'none';
+        console.log('Visualiser disabled');
+    }
+})
