@@ -65,6 +65,9 @@ class Piano {
         this.createKeys();
         this.eventHandler.setupEventListeners();
         this.draw();
+
+        // Handle initial screen size to ensure proper mobile/desktop layout
+        this.eventHandler.handleResize();
     }
 
     /**
