@@ -79,7 +79,62 @@ Our carefully selected color scheme creates a cohesive visual identity:
 -   **Modal dialogs** with themed styling for settings and controls
 -   **Custom buttons** with hover effects and neon borders
 
-## Development
+## Features
+
+-   Canvas-rendered piano keyboard supporting up to 4 octaves (default 3 octaves starting at C4).
+-   Responsive design with dynamic resizing and key label toggling.
+-   Play notes using mouse/touch clicks or mapped QWERTY keyboard keys.
+-   Authentic piano sound samples for each note from C4 to B6 with sharp notes.
+-   Visual key press effects with neon glow highlights.
+-   Play-along mode featuring built-in songs for practice (e.g., "Twinkle Twinkle Little Star").
+-   Record, stop, and playback your piano performance.
+-   Audio visualizer powered by the Web Audio API to display sound waves in real-time.
+-   Clean, modular JavaScript code organized into components for easy customization.
+-   Accessibility compliant with keyboard navigation and high contrast colors.
+-   Optimized for performance and follows web best practices.
+
+## Development and Customization
+
+-   To **change the number of octaves**, adjust the `numOctaves` in `PianoConfig.js` or call
+    `setNumOctaves()` method on the piano instance.
+-   To **add new songs**, extend the `SONGS` object in `playAlong.js` with note arrays or use
+    keyboard letter shorthand converted via helper functions.
+-   To **customize styles**, modify `style.css` for colors, fonts, and layout effects.
+-   To **add or replace audio samples**, update `pianoKeyPress.js` with new audio file paths
+    accordingly.
+-   To **toggle keyboard key label visibility**, use the piano’s API method `toggleKeyLabels()` or
+    update config.
+-   To **extend recording features**, modify `recorder.js` as needed.
+-   To **optimize performance**, ensure audio files are efficiently loaded and event handlers are
+    properly debounced, as demonstrated.
+
+## Installation and Usage
+
+1. Clone or download the repository.
+2. Open the `index.html` file in a modern web browser (Chrome, Firefox, Edge).
+3. Use your mouse, touch screen, or QWERTY keyboard keys to play the piano.
+4. Select play-along songs from the dropdown menu to practice with guided note highlights.
+5. Use "Start Recording", "Stop Recording", and "Play Recording" buttons to record and playback your
+   session.
+6. Adjust volume with the slider and toggle key labels for better usability.
+
+## Keyboard Mapping
+
+The virtual piano keys are mapped logically to your physical QWERTY keyboard for intuitive play:
+
+-   White keys use keys such as `Tab`, `Q`, `W`, `E`, `R`, `T`, `Y`, `U`, `I`, `O`, `P`, etc.
+-   Black keys (sharps) use number and letter keys like `1`, `2`, `4`, `5`, `6`, `8`, `9`, `A`, `S`,
+    `D`, `G`, etc.
+
+Refer to `pianoKeyPress.js` for the exact mappings of keys to notes and audio samples.
+
+## Accessibility
+
+This project is designed with accessibility in mind, featuring:
+
+-   Full keyboard navigability and key press feedback.
+-   High contrast neon color scheme meeting WCAG standards.
+-   Semantic HTML and ARIA roles for screen reader friendliness.
 
 ### Git LFS
 
@@ -96,9 +151,9 @@ Large File Storage also considers conforming to GitHub standards.
 
 ## Lighthouse
 
--   \*\* Performance: 97/100
--   \*\* Accessibility: 100/100
--   \*\* Best Practices: 100/100 What These Scores Mean:
+-   Performance: 97/100
+-   Accessibility: 100/100
+-   Best Practices: 100/100 What These Scores Mean:
 -   Performance (97): The application runs smoothly, loads quickly, and is optimized for efficient
     resource usage. A high performance score indicates fast load times and responsive interactions,
     providing a seamless user experience.
