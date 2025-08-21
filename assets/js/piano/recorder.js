@@ -60,12 +60,12 @@ export function setupRecorderButtons() {
 
     function activate(btn) {
         btn.classList.add('active');
-        btn.disabled = false; // habilita el botón para que sea clickeable
+        btn.disabled = false;
     }
 
     function deactivate(btn) {
         btn.classList.remove('active');
-        btn.disabled = true; // deshabilita el botón para que no responda
+        btn.disabled = true;
     }
 
     activate(startBtn);
@@ -77,7 +77,6 @@ export function setupRecorderButtons() {
             activate(stopBtn);
             deactivate(startBtn);
             deactivate(playBtn);
-            // lógica inicio grabación
         }
     });
 
@@ -86,9 +85,6 @@ export function setupRecorderButtons() {
             activate(startBtn);
             activate(playBtn);
             deactivate(stopBtn);
-            // lógica paro grabación
         }
     });
-
-    // Puedes añadir eventos para play y clear si es necesario
 }
