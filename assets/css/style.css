@@ -293,15 +293,23 @@ body {
 
 #recording-controls {
     max-width: 900px;
-    margin: 16px auto;
+    margin: 3rem auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 16px;
     position: relative;
     z-index: 1000;
+    align-items: center;
 }
-
+.heading-3 {
+    color: #0ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+    padding-bottom: 1rem;
+}
 .btn-custom {
+    width: 50%;
+    justify-content: center;
     border-radius: 12px;
     font-weight: bold;
     border: 2px solid;
@@ -311,38 +319,32 @@ body {
     user-select: none;
     z-index: 11;
     background-color: #181c2f;
-    font-family: Arial, sans-serif;
 }
 
-/* start buttons */
-.btn-custom.r-start {
-    color: #ff00ff;
-    border-color: #ff00ff;
-    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
-}
-
-/* Stop buttons */
-.btn-custom.r-stop {
-    color: #ff00ff;
-    border-color: #ff00ff;
-    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
-}
-
-/* playback button */
+/* start, stop, play buttons */
+.btn-custom.r-start,
+.btn-custom.r-stop,
 .btn-custom.r-play {
-    color: #ff00ff; /* magenta neón, igual que el botón stop */
-    border-color: #ff00ff;
-    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
-    background-color: transparent; /* o el fondo que uses */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.3) 0%,
+        rgba(0, 255, 255, 0.1) 50%,
+        rgba(0, 255, 255, 0) 100%
+    );
+
+    border-color: #00fff9;
+    color: #4d4f5b !important;
 }
 
 /* Active state for any button */
 .btn-custom.active {
-    background-color: #00fff9;
-    border-color: #00fff9;
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 16px #ff00ff, 0 0 32px #ff00ff80;
+    background: radial-gradient(circle, #ff00ff 0%, #ff00ff80 50%, transparent 100%);
+    background-color: transparent; /* o el fondo que uses */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     color: #181c2f !important;
-    box-shadow: none !important;
 }
 
 /* Footer styling */
@@ -393,6 +395,14 @@ footer .text-muted {
 }
 
 /* Responsive styles */
+@media (max-width: 600px) {
+    #recording-controls {
+        flex-direction: column;
+        align-items: stretch;
+        width: 50%;
+    }
+}
+
 @media screen and (max-width: 768px) {
     footer .row {
         flex-direction: column !important;
